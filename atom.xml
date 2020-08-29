@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>maple-leaf&#39;s blog</title>
+  
+  <subtitle>技术积累</subtitle>
+  <link href="https://maple-leaf-0219.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://maple-leaf-0219.github.io/"/>
+  <updated>2020-08-29T06:35:23.372Z</updated>
+  <id>https://maple-leaf-0219.github.io/</id>
+  
+  <author>
+    <name>Maple Leaf</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何不靠运气变得富有</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E5%A6%82%E4%BD%95%E4%B8%8D%E9%9D%A0%E8%BF%90%E6%B0%94%E5%8F%98%E5%BE%97%E5%AF%8C%E6%9C%89/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E5%A6%82%E4%BD%95%E4%B8%8D%E9%9D%A0%E8%BF%90%E6%B0%94%E5%8F%98%E5%BE%97%E5%AF%8C%E6%9C%89/</id>
+    <published>2020-08-29T06:34:39.000Z</published>
+    <updated>2020-08-29T06:35:23.372Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/taosue/how-to-get-rich-without-getting-lucky/" target="_blank" rel="noopener">如何不靠运气变得富有</a>  </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/taosue/how-to-get-rich-without-getting-lucky/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;如何不靠运气变得富有&lt;/a&gt;  &lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于二维码实时传输数据</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E5%9F%BA%E4%BA%8E%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E5%9F%BA%E4%BA%8E%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE/</id>
+    <published>2020-08-29T06:23:20.000Z</published>
+    <updated>2020-08-29T06:28:39.139Z</updated>
+    
+    <content type="html"><![CDATA[<p>在特殊情况下,两个系统之间是无网络连接的,但又需要传输少量的数据. 抽时间验证了下基于二维码视频流实现文件传输的想法,核心思路是将数据编码为二维码视频流,然后通过录像设备再从视频流中解析出原始数据.   </p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/watershade2010/article/details/104292102" target="_blank" rel="noopener">用不同的QR Code识别库实现二维码的识别</a><br><a href="https://github.com/LiuhangZhang/qrcode_android" target="_blank" rel="noopener">二维码扫码优化</a><br><a href="https://yo1995.github.io/coding/file-to-GIF/" target="_blank" rel="noopener">GIF 与 QRcode 玩具二则</a>   </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在特殊情况下,两个系统之间是无网络连接的,但又需要传输少量的数据. 抽时间验证了下基于二维码视频流实现文件传输的想法,核心思路是将数据编码为二维码视频流,然后通过录像设备再从视频流中解析出原始数据.   &lt;/p&gt;
+&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; </summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>博客用法笔记</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-08-29T06:01:13.517Z</published>
+    <updated>2020-03-14T02:30:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇文章的目的是记录hexo+github搭建博客的使用方法，以备查询。</p><a id="more"></a><h1 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h1><h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><p>通过如下命令新建一个文章<br><code>hexo new [layout] &lt;title&gt;</code>  </p><p>如果未指定文章的布局（layout），则默认使用 <code>post</code> 布局，生成的文档存放于 <code>source\_posts\</code> 目录下，打开后使用 Markdown 语法进行写作，保存后刷新浏览器即可看到文章。</p><p>目前有如下几种布局</p><h3 id="文章（post）"><a href="#文章（post）" class="headerlink" title="文章（post）"></a>文章（post）</h3><p>基于 post 布局生成的文档存在于 <code>source\_posts\</code> 目录下，该目录下的文档会作为博客正文显示在网站中</p><h3 id="页面（page）"><a href="#页面（page）" class="headerlink" title="页面（page）"></a>页面（page）</h3><p>暂时不用，未了解</p><h3 id="草稿（draft）"><a href="#草稿（draft）" class="headerlink" title="草稿（draft）"></a>草稿（draft）</h3><p>该布局用于创建草稿，生成的文档存在于 <code>source\_drafts\</code> 目录中，默认配置下将不会把该目录下的文档渲染到网站中。</p><p>通过以下命令将草稿发布为正式文章：<br><code>hexo publish &lt;title&gt;</code>  </p><h3 id="摘要指示"><a href="#摘要指示" class="headerlink" title="摘要指示"></a>摘要指示</h3><p>通过 <code>&lt;!--more --&gt;</code>来提示，该标记之前的为摘要信息</p><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>通过如下语法引用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% blockquote [author[, source]] [link] [source_link_title] %&#125;  </span><br><span class="line">content  </span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img 图片文件名 提示 %&#125;</span><br></pre></td></tr></table></figure><h1 id="本地运行"><a href="#本地运行" class="headerlink" title="本地运行"></a>本地运行</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><h1 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><h1 id="部署到远端"><a href="#部署到远端" class="headerlink" title="部署到远端"></a>部署到远端</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></li><li><a href="http://yearito.cn/posts/hexo-writing-skills.html" target="_blank" rel="noopener">Hexo 搭建个人博客系列：写作技巧篇</a></li><li><a href="https://guanqr.com/tech/website/hexo-theme-next-customization/" target="_blank" rel="noopener">Hexo-NexT 主题个性优化</a></li><li><a href="https://theme-next.org/" target="_blank" rel="noopener">https://theme-next.org/</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;本篇文章的目的是记录hexo+github搭建博客的使用方法，以备查询。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="博客用法" scheme="https://maple-leaf-0219.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>项目管理的一点思考</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</id>
+    <published>2020-05-17T16:38:03.000Z</published>
+    <updated>2020-08-29T06:41:32.002Z</updated>
+    
+    <content type="html"><![CDATA[<p>纸上得来终觉浅，绝知此事要躬行。</p><h1 id="一定要做计划"><a href="#一定要做计划" class="headerlink" title="一定要做计划"></a>一定要做计划</h1><p>做计划时，任务的粒度一定要细，分解的越细，越能及早的发现实际和计划之间的偏差，不至于到最后不可挽回。</p><p>任务的结果一定要明确、可量化、易检查，模糊不清的结果是无法判断是否完成了的。</p><p>以软件中的模块开发为例，可以分解为XXX模块开发，也可以分解成XXX模块接口定义和XXX模式接口实现。在实际执行中，推荐采用后者。</p><p>一个经验教训是，模块的对外接口、系统的对外接口（接口包括但不限于API、通讯规范、交互模式）都需要先评审，评审通过后再继续后续开发。</p><h1 id="一定要监控计划的落实情况"><a href="#一定要监控计划的落实情况" class="headerlink" title="一定要监控计划的落实情况"></a>一定要监控计划的落实情况</h1><p>实际情况和计划一定会有偏差，有偏差是正常的，没有偏差才是不正常的，关键在于是否及时的发现了偏差并采取了应对措施。所以一定要监控计划的落实情况</p><h1 id="要形成适合自己的工作流程"><a href="#要形成适合自己的工作流程" class="headerlink" title="要形成适合自己的工作流程"></a>要形成适合自己的工作流程</h1><p>管理书上讲的流程、工具当然是有用的，但应该根据自己的实际情况裁剪，定制属于自己的工作流程，并经常评估是否还满足当下的实际情况。</p><h1 id="事情的可观测性-可量化性"><a href="#事情的可观测性-可量化性" class="headerlink" title="事情的可观测性/可量化性"></a>事情的可观测性/可量化性</h1><p>项目的进度、执行的结果都应该是可观测的、可量化的，否则很容易成为一锅粥。</p><h1 id="做事情的原则"><a href="#做事情的原则" class="headerlink" title="做事情的原则"></a>做事情的原则</h1><ol><li>做事情、评估事情时，不能仅限于把眼前做好，还应该关注它对我未来有什么用  </li><li>在做事情之前，应该想清楚，它应该是什么样子，现有的资源我能做成什么样子，以什么途径向最终的样子去逼近，也就是所谓的以终为始  </li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;纸上得来终觉浅，绝知此事要躬行。&lt;/p&gt;
+&lt;h1 id=&quot;一定要做计划&quot;&gt;&lt;a href=&quot;#一定要做计划&quot; class=&quot;headerlink&quot; title=&quot;一定要做计划&quot;&gt;&lt;/a&gt;一定要做计划&lt;/h1&gt;&lt;p&gt;做计划时，任务的粒度一定要细，分解的越细，越能及早的发现实际</summary>
+      
+    
+    
+    
+    
+    <category term="项目管理" scheme="https://maple-leaf-0219.github.io/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在短视频的时代，读书过时了吗</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E5%9C%A8%E7%9F%AD%E8%A7%86%E9%A2%91%E7%9A%84%E6%97%B6%E4%BB%A3%EF%BC%8C%E8%AF%BB%E4%B9%A6%E8%BF%87%E6%97%B6%E4%BA%86%E5%90%97/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E5%9C%A8%E7%9F%AD%E8%A7%86%E9%A2%91%E7%9A%84%E6%97%B6%E4%BB%A3%EF%BC%8C%E8%AF%BB%E4%B9%A6%E8%BF%87%E6%97%B6%E4%BA%86%E5%90%97/</id>
+    <published>2020-05-10T05:04:17.000Z</published>
+    <updated>2020-05-10T05:04:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://mp.weixin.qq.com/s/yRqOh7xlEmPlUwxtr7Wsuw" target="_blank" rel="noopener">在短视频的时代，读书过时了吗</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/yRqOh7xlEmPlUwxtr7Wsuw&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;在短视频的时代，读书过时了吗&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>科学思维要点</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E7%A7%91%E5%AD%A6%E6%80%9D%E7%BB%B4%E8%A6%81%E7%B4%A0/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E7%A7%91%E5%AD%A6%E6%80%9D%E7%BB%B4%E8%A6%81%E7%B4%A0/</id>
+    <published>2020-05-10T05:01:09.000Z</published>
+    <updated>2020-05-10T05:02:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://mp.weixin.qq.com/s/57yJ5vLgx7KC3OjRxOHD7g" target="_blank" rel="noopener">科学思维要点</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/57yJ5vLgx7KC3OjRxOHD7g&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;科学思维要点&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LD_DEBUG说明</title>
+    <link href="https://maple-leaf-0219.github.io/2020/LD-DEBUG%E8%AF%B4%E6%98%8E/"/>
+    <id>https://maple-leaf-0219.github.io/2020/LD-DEBUG%E8%AF%B4%E6%98%8E/</id>
+    <published>2020-04-25T07:39:13.000Z</published>
+    <updated>2020-04-25T07:51:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在排查动态库符号查找失败、符号覆盖时特别有用。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> LD_DEBUG&#x3D;help .&#x2F;program1</span><br><span class="line">Valid options for the LD_DEBUG environment variable are:</span><br><span class="line"></span><br><span class="line">  libs        display library search paths</span><br><span class="line">  reloc       display relocation processing</span><br><span class="line">  files       display progress for input file</span><br><span class="line">  symbols     display symbol table processing</span><br><span class="line">  bindings    display information about symbol binding</span><br><span class="line">  versions    display version dependencies</span><br><span class="line">  scopes      display scope information</span><br><span class="line">  all         all previous options combined</span><br><span class="line">  statistics  display relocation statistics</span><br><span class="line">  unused      determined unused DSOs</span><br><span class="line">  help        display this help message and exit</span><br><span class="line"></span><br><span class="line">To direct the debugging output into a file instead of standard output</span><br><span class="line">a filename can be specified using the LD_DEBUG_OUTPUT environment variable.</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在排查动态库符号查找失败、符号覆盖时特别有用。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于C的开发实践</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E5%9F%BA%E4%BA%8EC%E7%9A%84%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E5%9F%BA%E4%BA%8EC%E7%9A%84%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/</id>
+    <published>2020-04-11T04:55:00.000Z</published>
+    <updated>2020-04-11T05:24:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>从头到尾刷了下<a href="https://blog.codingnow.com/" target="_blank" rel="noopener">云风的博客</a>，将和C、软件设计相关的文章汇总在了该页面，有时候，通过查看文章下面的评论更能理解文章在说什么</p><p><a href="https://blog.codingnow.com/2009/08/getter_setter.html" target="_blank" rel="noopener">关于 getter 和 setter</a><br><a href="https://blog.codingnow.com/2010/01/good_design.html" target="_blank" rel="noopener">好的设计</a><br><a href="https://blog.codingnow.com/2010/01/c_modularization.html" target="_blank" rel="noopener">C 语言对模块化支持的欠缺</a><br><a href="https://blog.codingnow.com/2010/01/modularization_in_c_1.html" target="_blank" rel="noopener">浅谈 C 语言中模块化设计的范式</a><br><a href="https://blog.codingnow.com/2010/05/memory_proxy.html" target="_blank" rel="noopener">给你的模块设防</a><br><a href="https://blog.codingnow.com/2010/03/object_oriented_programming_in_c.html" target="_blank" rel="noopener">我所偏爱的 C 语言面向对象编程范式</a><br><a href="https://blog.codingnow.com/2012/01/_oeouoeie.html" target="_blank" rel="noopener">关于分工合作</a><br><a href="https://blog.codingnow.com/2012/01/libuv.html" target="_blank" rel="noopener">libuv 初窥</a><br><a href="https://blog.codingnow.com/2012/02/ring_buffer.html" target="_blank" rel="noopener">Ring Buffer 的应用</a><br><a href="https://blog.codingnow.com/2014/02/select_bug.html" target="_blank" rel="noopener">一起 select 引起的崩溃</a><br><a href="https://blog.codingnow.com/2018/05/ineffective_debugger.html" target="_blank" rel="noopener">断点单步跟踪是一种低效的调试方法</a><br><a href="https://blog.codingnow.com/2019/07/top_programmer.html" target="_blank" rel="noopener">程序员应该怎样提高自己</a><br><a href="https://blog.codingnow.com/2009/01/c_interface.html" target="_blank" rel="noopener">一个 C 接口设计的问题</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;从头到尾刷了下&lt;a href=&quot;https://blog.codingnow.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;云风的博客&lt;/a&gt;，将和C、软件设计相关的文章汇总在了该页面，有时候，通过查看文章下面的评论更能理解文章在说什么&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="C语言" scheme="https://maple-leaf-0219.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>connect_nonb的问题</title>
+    <link href="https://maple-leaf-0219.github.io/2020/connect-nonb%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>https://maple-leaf-0219.github.io/2020/connect-nonb%E7%9A%84%E9%97%AE%E9%A2%98/</id>
+    <published>2020-04-05T12:55:24.000Z</published>
+    <updated>2020-04-05T12:59:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>linux socket API connect函数，在socket是堵塞模式下，该API是不允许设置超时时间的，一个经常的实现如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"unp.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">connect_nonb</span><span class="params">(<span class="keyword">int</span> sockfd, <span class="keyword">const</span> SA *saptr, <span class="keyword">socklen_t</span> salen, <span class="keyword">int</span> nsec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span>flags, n, error;</span><br><span class="line"><span class="keyword">socklen_t</span>len;</span><br><span class="line">fd_setrset, wset;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span><span class="title">tval</span>;</span></span><br><span class="line"></span><br><span class="line">flags = Fcntl(sockfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">Fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);</span><br><span class="line"></span><br><span class="line">error = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> ( (n = <span class="built_in">connect</span>(sockfd, (struct sockaddr *) saptr, salen)) &lt; <span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> (errno != EINPROGRESS)</span><br><span class="line"><span class="keyword">return</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Do whatever we want while the connect is taking place. */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">goto</span> done;<span class="comment">/* connect completed immediately */</span></span><br><span class="line"></span><br><span class="line">FD_ZERO(&amp;rset);</span><br><span class="line">FD_SET(sockfd, &amp;rset);</span><br><span class="line">wset = rset;</span><br><span class="line">tval.tv_sec = nsec;</span><br><span class="line">tval.tv_usec = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( (n = Select(sockfd+<span class="number">1</span>, &amp;rset, &amp;wset, <span class="literal">NULL</span>,</span><br><span class="line"> nsec ? &amp;tval : <span class="literal">NULL</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line"><span class="built_in">close</span>(sockfd);<span class="comment">/* timeout */</span></span><br><span class="line">errno = ETIMEDOUT;</span><br><span class="line"><span class="keyword">return</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (FD_ISSET(sockfd, &amp;rset) || FD_ISSET(sockfd, &amp;wset)) &#123;</span><br><span class="line">len = <span class="keyword">sizeof</span>(error);</span><br><span class="line"><span class="keyword">if</span> (getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &amp;error, &amp;len) &lt; <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span>(<span class="number">-1</span>);<span class="comment">/* Solaris pending error */</span></span><br><span class="line">&#125; <span class="keyword">else</span></span><br><span class="line">err_quit(<span class="string">"select error: sockfd not set"</span>);</span><br><span class="line"></span><br><span class="line">done:</span><br><span class="line">Fcntl(sockfd, F_SETFL, flags);<span class="comment">/* restore file status flags */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line"><span class="built_in">close</span>(sockfd);<span class="comment">/* just in case */</span></span><br><span class="line">errno = error;</span><br><span class="line"><span class="keyword">return</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这是Unix-Network-Programming书上给的一个示例程序，但要注意，<strong>实现过程中采用了select函数，所以sockfd不能超过1024，否则会出问题</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;linux socket API connect函数，在socket是堵塞模式下，该API是不允许设置超时时间的，一个经常的实现如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;s</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>两个半小时学会perl</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E4%B8%A4%E4%B8%AA%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%AD%A6%E4%BC%9Aperl/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E4%B8%A4%E4%B8%AA%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%AD%A6%E4%BC%9Aperl/</id>
+    <published>2020-04-05T12:30:17.000Z</published>
+    <updated>2020-04-05T12:31:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>因工作需要用到了perl语言，在有C开发基础的情况下，通过如下教程可以快速的入门</p><p><a href="https://qntm.org/perl_cn" target="_blank" rel="noopener">两个半小时学会Perl</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;因工作需要用到了perl语言，在有C开发基础的情况下，通过如下教程可以快速的入门&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://qntm.org/perl_cn&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;两个半小时学会Perl&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="perl" scheme="https://maple-leaf-0219.github.io/tags/perl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu离线安装软件包</title>
+    <link href="https://maple-leaf-0219.github.io/2020/ubuntu%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85/"/>
+    <id>https://maple-leaf-0219.github.io/2020/ubuntu%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85/</id>
+    <published>2020-04-05T12:21:55.000Z</published>
+    <updated>2020-04-05T12:28:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为只离线安装过openssh-server，所以以该软件包的安装为例，想必其它软件包操作方式类似</p><ol><li><p>下载openssh-server包</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get download openssh-server</span><br></pre></td></tr></table></figure></li><li><p>下载openssh-server依赖包</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get build-dep --download-only -o dir::cache=PATHFORDEPS openssh-server</span><br></pre></td></tr></table></figure><p> PATHFORDEPS 替换为保存依赖包的目录</p></li><li><p>下载额外的依赖包</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get download openssh-sftp-server openssh-client</span><br></pre></td></tr></table></figure></li><li><p>安装依赖包<br> 注意，通过find命令将所有的依赖包和主包放在同一个路径下面</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i *.deb</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;因为只离线安装过openssh-server，所以以该软件包的安装为例，想必其它软件包操作方式类似&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;下载openssh-server包&lt;/p&gt;
+ &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cl</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vscode hexo markdown定制思路</title>
+    <link href="https://maple-leaf-0219.github.io/2020/vscode-hexo-markdown%E5%AE%9A%E5%88%B6%E6%80%9D%E8%B7%AF/"/>
+    <id>https://maple-leaf-0219.github.io/2020/vscode-hexo-markdown%E5%AE%9A%E5%88%B6%E6%80%9D%E8%B7%AF/</id>
+    <published>2020-03-28T19:19:01.000Z</published>
+    <updated>2020-03-28T19:53:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>参考资料中说的很详细了，利用的是 Markdown Preview Enhanced: Extend Parser功能，在预览时将hexo特有的语法转换为markdown语法，参考资料给的代码片段如下： </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onWillParseMarkdown: <span class="function"><span class="keyword">function</span>(<span class="params">markdown</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span> &#123;</span><br><span class="line">    markdown = markdown.replace(</span><br><span class="line">      /\&#123;%\s*asset_img\s*(.*)\s*%\&#125;/g,</span><br><span class="line">      (whole, content) =&gt; (<span class="string">`![](<span class="subst">$&#123;content&#125;</span>)`</span>)</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> resolve(markdown)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p>在实际测试时发现存在如下两个问题：</p><ol><li>正则表达式不准确，不能适配完整的asset_img语法</li><li>图片位于和文档同名目录下面，生成的新的markdown语法没有包含前缀路径</li></ol><p>本人对vscode和js均不熟悉，经过一番搜索，修改后的代码片段如下：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">onWillParseMarkdown: <span class="function"><span class="keyword">function</span>(<span class="params">markdown</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span> &#123;</span><br><span class="line">      markdown = markdown.replace(</span><br><span class="line">        /\&#123;%\s*asset_img\s*(\S+)\s*\S*\s*%\&#125;/g,</span><br><span class="line">        (whole, content) =&gt; &#123;</span><br><span class="line">          <span class="comment">//(`![]($&#123;content&#125;)`)</span></span><br><span class="line">          <span class="comment">//console.log("test--" + content);</span></span><br><span class="line">          abs_filename = vscode.window.activeTextEditor.document.fileName</span><br><span class="line">          filename = path.basename(abs_filename);</span><br><span class="line">          filename = filename.substring(<span class="number">0</span>,filename.indexOf(<span class="string">'.'</span>))</span><br><span class="line">          <span class="comment">//console.log("test--" + filename);</span></span><br><span class="line">          </span><br><span class="line">          <span class="keyword">return</span> <span class="string">`![](<span class="subst">$&#123;filename + <span class="string">"/"</span>+ content&#125;</span>)`</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">      <span class="keyword">return</span> resolve(markdown)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="https://blog.vlitter.top/post/make-vscode-be-the-best-editor-for-hexo/" target="_blank" rel="noopener">将VS Code打造成Hexo博客的最佳编辑器</a></li><li><a href="https://channelsray.github.io/2019/05/23/VSCode%E6%8F%92%E4%BB%B6%E6%8F%90%E5%8D%87hexo%E4%BD%93%E9%AA%8C/" target="_blank" rel="noopener">VSCode插件提升hexo体验</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h1&gt;&lt;p&gt;参考资料中说的很详细了，利用的是 Markdown Preview Enhanced: Extend Parser功能，在预览时将hexo特</summary>
+      
+    
+    
+    
+    
+    <category term="博客用法" scheme="https://maple-leaf-0219.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>源码管理范式</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/</id>
+    <published>2020-03-28T06:13:44.000Z</published>
+    <updated>2020-03-28T09:07:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。<br>不要寄希望于万能的模型实践，每个模型都有各自的优缺点，要根据自己的实际情况选择。</p><h1 id="仓库组织"><a href="#仓库组织" class="headerlink" title="仓库组织"></a>仓库组织</h1><h2 id="单仓库"><a href="#单仓库" class="headerlink" title="单仓库"></a>单仓库</h2><p>将所有项目代码存放在一个代码仓库当中，这个好处在于项目的所有开发者可以共享看到项目中的所有代码； 在项目规模较小的时候，一个库可以更好地管理和维护，发版本只要统一发布即可；对于持续集成，也只需要针对一个库维护若干条流水线。但再好的实践以及工具都有它适用的范围。Git 已经是非常流行的代码托管工具，但 Git 会把所有历史记录以及代码同步到各个用户的本地机器，所以对于大型项目而言，如果使用单仓库，就意味着某个模块开发者的本地可能有大量冗余代码和提交记录的信息，这个时候拆分成更小的库显得更加合适。</p><p>谷歌与 Facebook 就是业界典型的单仓库派代表。作为代码行数已经超过数十亿行、commit 数量累计达到千万次的团队（2015 年的统计数据），如果没有强悍的基础设施，也很难运转顺利。Google 曾发表论文介绍其强大的代码管理系统 Piper 以及客户端工具 CitC，但对于大部分企业来说是否有必要投入如此之大的研发成本去自研一个代码管理系统值得商榷，所以谷歌的实践对于大部分企业来说不一定具备参考性。</p><p>项目规模小时一般都是单仓库，但项目规模庞大时，如果再使用单仓库则要有完善的工具链支持。</p><h2 id="多仓库"><a href="#多仓库" class="headerlink" title="多仓库"></a>多仓库</h2><p>将项目代码进行一定的拆分放在多个库当中，好处就是 将代码进行一定的解耦，对于体型较为庞大的项目来说管理上会更加清晰和富有弹性。将代码按照一定逻辑分库之后，仓库与模块有了自描述的特征，让一起协作的开发者可以一目了然。发布源码版本、持续集成构建时，负责各仓库的研发组织可以按照自己的节奏来发布，同时将一些“坏代码”的影响控制在某个仓库中，而不会影响项目全部代码。分库也有要注意的地方，在同一个项目里的代码多多少少都有业务上或者是技术上的联系，比如编译依赖：以一个Java 项目为例，客户端接口的调用代码究竟是直接依赖服务端接口代码的定义，还是间接依赖？如果是间接依赖，那么分库管理是非常方便的，但同时客户端就无法快速感知到服务端接口定义的变化。所以在进行多仓库划分时，要注意划分的一些常用原则。</p><p>多仓库情况下，要仔细处理项目多组件之间的依赖关系并能及时检测到依赖变更和不兼容升级，<strong>可以通过语义化版本号和依赖管理工具来维护</strong>。</p><h1 id="分支模型"><a href="#分支模型" class="headerlink" title="分支模型"></a>分支模型</h1><p>只讨论基于git的分支模型，常见的有如下几种，详细介绍见参考资料</p><ul><li>GitFlow模型  </li><li>GitHub Flow 模型  </li><li>Trunk Based development 模型 （配合Branch By Abstraction使用）  </li><li>GitLab Flow 模型  </li><li>Atlassian Simple Git Flow 模型  </li></ul><p>在上面的模型介绍中，TBD模型支持多个不兼容版本维护，其余的模型未看到如何支持多个不兼容版本的并行维护。</p><h1 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h1><p>选用了仓库模型和分支模型，基本就确定了版本发布模型。</p><h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><p>在源码管理上可以参考安卓、IOS的源码管理变迁，因为安卓、IOS需求多变，承载的业务复杂，其演进的轨迹具有借鉴意义。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="https://yrom.net/blog/2018/10/18/evolution-of-android-codebase-organization-in-bilibili/" target="_blank" rel="noopener">B 站 Android 代码库的演进历程</a></li><li><a href="http://www.brofive.org/?p=2165" target="_blank" rel="noopener">Git 代码分支模型（1）</a></li><li><a href="http://www.brofive.org/?p=2233" target="_blank" rel="noopener">Git 代码分支模型（2）</a></li><li><a href="http://www.brofive.org/?p=4352" target="_blank" rel="noopener">Git 代码分支模型（3）</a></li><li><a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li><li><a href="https://trunkbaseddevelopment.com/" target="_blank" rel="noopener">Trunk Based development </a></li><li><a href="https://cloud.tencent.com/developer/article/1441619" target="_blank" rel="noopener">App组件化与业务拆分那些事</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。&lt;br&gt;不</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>只言片语</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/</id>
+    <published>2020-03-21T06:23:53.000Z</published>
+    <updated>2020-03-21T06:25:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>生活终究是复杂的，具体的。罕有完美无缺的英雄，也难有十恶不赦的坏蛋。更普遍的情况是，英雄可能在某些场合私欲膨胀，而坏蛋也可能在某些时候良心发现。<br>窥见英雄的阴暗面，由此剧烈转向，相信“人间不值得”是一种选择，但未必是必然的选择，因为由此理解人性的复杂，明白要始终做个好人并不容易，也是一种选择。<br>–源自网络</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;生活终究是复杂的，具体的。罕有完美无缺的英雄，也难有十恶不赦的坏蛋。更普遍的情况是，英雄可能在某些场合私欲膨胀，而坏蛋也可能在某些时候良心发现。&lt;br&gt;窥见英雄的阴暗面，由此剧烈转向，相信“人间不值得”是一种选择，但未必是必然的选择，因为由此理解人性的复杂，明白要始终做个好</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CPU topology 汇总</title>
+    <link href="https://maple-leaf-0219.github.io/2020/CPU-topology-%E6%B1%87%E6%80%BB/"/>
+    <id>https://maple-leaf-0219.github.io/2020/CPU-topology-%E6%B1%87%E6%80%BB/</id>
+    <published>2020-03-14T03:34:03.000Z</published>
+    <updated>2020-03-28T19:12:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="SMP-NUMA-MPP"><a href="#SMP-NUMA-MPP" class="headerlink" title="SMP,NUMA,MPP"></a>SMP,NUMA,MPP</h2><h3 id="SMP-Symmetric-Multi-Processor"><a href="#SMP-Symmetric-Multi-Processor" class="headerlink" title="SMP(Symmetric Multi-Processor)"></a>SMP(Symmetric Multi-Processor)</h3><img src="/2020/CPU-topology-%E6%B1%87%E6%80%BB/smp.gif" class="" title="smp.gif">     <p>SMP（对称多处理系统）， 所谓对称多处理器结构，是指服务器中多个 CPU 对称工作，无主次或从属关系。各 CPU 共享相同的物理内存，每个 CPU 访问内存中的任何地址所需时间是相同的，因此 SMP 也被称为一致存储器访问结构 (UMA ： Uniform Memory Access) 。对 SMP 服务器进行扩展的方式包括增加内存、使用更快的 CPU 、增加 CPU 、扩充 I/O( 槽口数与总线数 ) 以及添加更多的外部设备 ( 通常是磁盘存储 ) 。</p><p>SMP 服务器的主要特征是共享，系统中所有资源 (CPU 、内存、 I/O 等 ) 都是共享的。也正是由于这种特征，导致了 SMP 服务器的主要问题，那就是它的扩展能力非常有限。对于 SMP 服务器而言，每一个共享的环节都可能造成 SMP 服务器扩展时的瓶颈，而最受限制的则是内存。由于每个 CPU 必须通过相同的内存总线访问相同的内存资源，因此随着 CPU 数量的增加，内存访问冲突将迅速增加，最终会造成 CPU 资源的浪费，使 CPU 性能的有效性大大降低。实验证明， SMP 服务器 CPU 利用率最好的情况是 2 至 4 个 CPU 。</p><a id="more"></a><h3 id="NUMA-Non-Uniform-Memory-Access"><a href="#NUMA-Non-Uniform-Memory-Access" class="headerlink" title="NUMA(Non-Uniform Memory Access)"></a>NUMA(Non-Uniform Memory Access)</h3><img src="/2020/CPU-topology-%E6%B1%87%E6%80%BB/numa.gif" class="" title="numa.gif">  <p>NUMA 服务器的基本特征是具有多个 CPU 模块，每个 CPU 模块由多个 CPU( 如 4 个 ) 组成，并且具有独立的本地内存、 I/O 槽口等。由于其节点之间可以通过互联模块 ( 如称为 Crossbar Switch) 进行连接和信息交互，因此每个 CPU 可以访问整个系统的内存 ( 这是 NUMA 系统与 MPP 系统的重要差别 ) 。显然，访问本地内存的速度将远远高于访问远地内存 ( 系统内其它节点的内存 ) 的速度，这也是非一致存储访问 NUMA 的由来。由于这个特点，为了更好地发挥系统性能，开发应用程序时需要尽量减少不同 CPU 模块之间的信息交互。  </p><p>利用 NUMA 技术，可以较好地解决原来 SMP 系统的扩展问题，在一个物理服务器内可以支持上百个 CPU 。比较典型的 NUMA 服务器的例子包括 HP 的 Superdome 、 SUN15K 、 IBMp690 等。但 NUMA 技术同样有一定缺陷，由于访问远地内存的延时远远超过本地内存，因此当 CPU 数量增加时，系统性能无法线性增加。如 HP 公司发布 Superdome 服务器时，曾公布了它与 HP 其它 UNIX 服务器的相对性能值，结果发现， 64 路 CPU 的 Superdome (NUMA 结构 ) 的相对性能值是 20 ，而 8 路 N4000( 共享的 SMP 结构 ) 的相对性能值是 6.3 。从这个结果可以看到， 8 倍数量的 CPU 换来的只是 3 倍性能的提升。</p><p><strong>程序角度最关注的是内存，在numa中内存被划分为本地内存和远端内存，访问本地内存要比访问远端内存快</strong></p><h3 id="MPP-Massive-Parallel-Processing"><a href="#MPP-Massive-Parallel-Processing" class="headerlink" title="MPP(Massive Parallel Processing)"></a>MPP(Massive Parallel Processing)</h3><img src="/2020/CPU-topology-%E6%B1%87%E6%80%BB/mpp.gif" class="" title="mpp.gif"> <p>和 NUMA 不同， MPP 提供了另外一种进行系统扩展的方式，它由多个 SMP 服务器通过一定的节点互联网络进行连接，协同工作，完成相同的任务，从用户的角度来看是一个服务器系统。其基本特征是由多个 SMP 服务器 ( 每个 SMP 服务器称节点 ) 通过节点互联网络连接而成，每个节点只访问自己的本地资源 ( 内存、存储等 ) ，是一种完全无共享 (Share Nothing) 结构，因而扩展能力最好，理论上其扩展无限制，目前的技术可实现 512 个节点互联，数千个 CPU 。目前业界对节点互联网络暂无标准，如 NCR 的 Bynet ， IBM 的 SPSwitch ，它们都采用了不同的内部实现机制。但节点互联网仅供 MPP 服务器内部使用，对用户而言是透明的。</p><p>在 MPP 系统中，每个 SMP 节点也可以运行自己的操作系统、数据库等。但和 NUMA 不同的是，它不存在异地内存访问的问题。换言之，每个节点内的 CPU 不能访问另一个节点的内存。节点之间的信息交互是通过节点互联网络实现的，这个过程一般称为数据重分配 (Data Redistribution) 。</p><p>但是 MPP 服务器需要一种复杂的机制来调度和平衡各个节点的负载和并行处理过程。目前一些基于 MPP 技术的服务器往往通过系统级软件 ( 如数据库 ) 来屏蔽这种复杂性。举例来说， NCR 的 Teradata 就是基于 MPP 技术的一个关系数据库软件，基于此数据库来开发应用时，不管后台服务器由多少个节点组成，开发人员所面对的都是同一个数据库系统，而不需要考虑如何调度其中某几个节点的负载。</p><p>MPP (Massively Parallel Processing)，大规模并行处理系统，这样的系统是由许多松耦合的处理单元组成的，要注意的是这里指的是处理单元而不是处理器。每个单元内的CPU都有自己私有的资源，如总线，内存，硬盘等。在每个单元内都有操作系统和管理数据库的实例复本。这种结构最大的特点在于不共享资源。</p><h2 id="Node-Socket-Core-Thread"><a href="#Node-Socket-Core-Thread" class="headerlink" title="Node,Socket,Core,Thread"></a>Node,Socket,Core,Thread</h2><img src="/2020/CPU-topology-%E6%B1%87%E6%80%BB/cpu-topology.gif" class="" title="cpu-topology.gif"><ul><li>Socket<br>  主板上CPU的插槽，一个插槽就是一个Socket。一般同一socket上的core共享三级缓存.</li><li>Core<br>  常说的核,核有独立的物理资源.比如单独的一级二级缓存什么的</li><li>Thread<br>  逻辑cpu（top命令里面看到的cpu）.如果不开超线程,thead和core数量相同，如果开了超线程，thread是core数量的2倍。</li><li>Node<br>  numa结构中的概念，个人理解是一个或多个socket加上本地的资源（比如本地内存）称之为node</li></ul><p>上述几个概念的关系如下图：</p><img src="/2020/CPU-topology-%E6%B1%87%E6%80%BB/numa%E6%A6%82%E5%BF%B5%E5%85%B3%E7%B3%BB.jpg" class="" title="numa概念关系"><p>#参考资料<br><a href="http://fishcried.com/2015-01-09/cpu_topology/" target="_blank" rel="noopener">Cpu bindings (一) 理解cpu topology</a><br><a href="https://www.cnblogs.com/yubo/archive/2010/04/23/1718810.html" target="_blank" rel="noopener">SMP、NUMA、MPP体系结构介绍</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h1&gt;&lt;h2 id=&quot;SMP-NUMA-MPP&quot;&gt;&lt;a href=&quot;#SMP-NUMA-MPP&quot; class=&quot;headerlink&quot; title=&quot;SMP,NUMA,MPP&quot;&gt;&lt;/a&gt;SMP,NUMA,MPP&lt;/h2&gt;&lt;h3 id=&quot;SMP-Symmetric-Multi-Processor&quot;&gt;&lt;a href=&quot;#SMP-Symmetric-Multi-Processor&quot; class=&quot;headerlink&quot; title=&quot;SMP(Symmetric Multi-Processor)&quot;&gt;&lt;/a&gt;SMP(Symmetric Multi-Processor)&lt;/h3&gt;&lt;img src=&quot;/2020/CPU-topology-%E6%B1%87%E6%80%BB/smp.gif&quot; class=&quot;&quot; title=&quot;smp.gif&quot;&gt;     
+
+&lt;p&gt;SMP（对称多处理系统）， 所谓对称多处理器结构，是指服务器中多个 CPU 对称工作，无主次或从属关系。各 CPU 共享相同的物理内存，每个 CPU 访问内存中的任何地址所需时间是相同的，因此 SMP 也被称为一致存储器访问结构 (UMA ： Uniform Memory Access) 。对 SMP 服务器进行扩展的方式包括增加内存、使用更快的 CPU 、增加 CPU 、扩充 I/O( 槽口数与总线数 ) 以及添加更多的外部设备 ( 通常是磁盘存储 ) 。&lt;/p&gt;
+&lt;p&gt;SMP 服务器的主要特征是共享，系统中所有资源 (CPU 、内存、 I/O 等 ) 都是共享的。也正是由于这种特征，导致了 SMP 服务器的主要问题，那就是它的扩展能力非常有限。对于 SMP 服务器而言，每一个共享的环节都可能造成 SMP 服务器扩展时的瓶颈，而最受限制的则是内存。由于每个 CPU 必须通过相同的内存总线访问相同的内存资源，因此随着 CPU 数量的增加，内存访问冲突将迅速增加，最终会造成 CPU 资源的浪费，使 CPU 性能的有效性大大降低。实验证明， SMP 服务器 CPU 利用率最好的情况是 2 至 4 个 CPU 。&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>三十而立后的心态</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E4%B8%89%E5%8D%81%E8%80%8C%E7%AB%8B%E5%90%8E%E7%9A%84%E5%BF%83%E6%80%81/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E4%B8%89%E5%8D%81%E8%80%8C%E7%AB%8B%E5%90%8E%E7%9A%84%E5%BF%83%E6%80%81/</id>
+    <published>2020-03-07T07:48:36.000Z</published>
+    <updated>2020-03-07T08:17:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>年少轻狂的时候，以自我为中心，总是认为可以改变一切。<br>等接受几年社会的毒打，会逐渐回归现实，见过形形色色的人和事之后，也会感慨，自己一辈子努力的终点也许都赶不上别人的起点。<br>会怨天尤人，怼天怼地怼空气，也会幻想突然获得主角光环，从此一路开挂，但也会再挣扎下，努力前行。<br>如果说人生1/3过去了有什么收获，那就是学会了接受自己，接受自己就是普通人，一个路人甲的设定，各方面都是中规中矩的。<br>我们登上并非我们所选择的舞台，演绎并非我们所选择的剧本，偶尔埋怨为什么舞台不够大，剧本不够好，但更多的时候还是去思考如何去演好。</p><p>以前更多的是想我想要什么，为什么不给我，转变为我如何做，我向别人提供什么才能匹配到更好的资源。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;年少轻狂的时候，以自我为中心，总是认为可以改变一切。&lt;br&gt;等接受几年社会的毒打，会逐渐回归现实，见过形形色色的人和事之后，也会感慨，自己一辈子努力的终点也许都赶不上别人的起点。&lt;br&gt;会怨天尤人，怼天怼地怼空气，也会幻想突然获得主角光环，从此一路开挂，但也会再挣扎下，努力</summary>
+      
+    
+    
+    
+    
+    <category term="碎碎念" scheme="https://maple-leaf-0219.github.io/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息素养</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E4%BF%A1%E6%81%AF%E7%B4%A0%E5%85%BB/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E4%BF%A1%E6%81%AF%E7%B4%A0%E5%85%BB/</id>
+    <published>2020-03-07T06:32:13.000Z</published>
+    <updated>2020-03-21T06:23:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在目前的网络中，为了获得流量，充斥着虚假的信息，为了做出有效的决策，我们必须对获取的信息质量进行评估。</p><ul><li>尽可能看原始来源<br>  信息传递过程中会失真（未必是故意的），所以要寻找信息的原始来源做确认。</li><li>尽可能从不同的视角了解同一个消息<br>  屁股决定脑袋，不同的人/信息源/媒介有不同立场，不同的价值观，在传递信息的过程中有可能只保留了一个视角的信息（再次强调，未必是故意的）。</li><li>区分事实和观点<br>  事实是一种客观存在，你可以可验证其真实存在与否；观点是个人看法，你可以同意或者不同意一个观点，但是你不能证明或者证伪一个观点的存在。要基于事实做出自己的观点，评估他人的观点，而不是忽视事实，直接采用他人的观点</li><li>理解概率<br>  当前的信息未必能得出明确的结论，但可以依据概率获取一个可能的结论，并随着信息的增加修改完善/推翻这个结论。概率不能保证处理的一定对，但放到一个大的时间尺度下，能保证你大部分时候是对的。</li><li>严谨的思路<br>  不要被带节奏，要能独立自主的思考做决策</li><li>对信息源建立自己的分级体系<br>  不是所有的信息源都是同等有价值的，有的信息源更可信，要建立自己的分级体系并动态调整</li></ul><p>还有一点，即使是权威的信息源，也会有自己的立场，当评估时，一定要考虑到信息源本身的立场和信息的价值是否冲突。</p><h1 id="原始来源"><a href="#原始来源" class="headerlink" title="原始来源"></a>原始来源</h1><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxMjQwNDcxNQ==&mid=2649329422&idx=1&sn=7f104ad54b862e94e889b335540cf85b&scene=21#wechat_redirect" target="_blank" rel="noopener">逼近真相：在虚假和半真半假中的生存指南</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzAxMjQwNDcxNQ==&mid=2649329431&idx=1&sn=6834c8b2a3ce5dcde809706ac76dec8e&chksm=83af7d93b4d8f485fa569f91a23818e1d11a5686a314709ec6ff55ed0433cfcc2eb531bb964a&mpshare=1&scene=1&srcid=&sharer_sharetime=1579906035265&sharer_shareid=67f1f28fc114be68c1b15160f246d0c2#rd" target="_blank" rel="noopener">斯坦索姆的故事</a><br><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODIyMTE0MA==&mid=2650974297&idx=1&sn=70f0a6ec8e9f745c40c8ab8bc84a1e24&chksm=bd380c628a4f857447329ee3e179f743886c5abaa9b0820d1fc3f5095148af47d51dd2c26227&mpshare=1&scene=1&srcid=&sharer_sharetime=1583557552368&sharer_shareid=67f1f28fc114be68c1b15160f246d0c2#rd" target="_blank" rel="noopener">疫情之下，提高一点个人信息素养</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在目前的网络中，为了获得流量，充斥着虚假的信息，为了做出有效的决策，我们必须对获取的信息质量进行评估。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;尽可能看原始来源&lt;br&gt;  信息传递过程中会失真（未必是故意的），所以要寻找信息的原始来源做确认。&lt;/li&gt;
+&lt;li&gt;尽可能从不同的视角了解同一</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>个人知识管理及相关工具</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7/</id>
+    <published>2020-03-01T16:40:07.000Z</published>
+    <updated>2020-03-01T16:45:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="学习的过程"><a href="#学习的过程" class="headerlink" title="学习的过程"></a>学习的过程</h1><p>回顾这几年的求索之路，除了一开始的迷糊之外，后续基本遵循着下面一个循环</p><ol><li>提出问题<br> 首先要提出一个明确的问题，可以是因工作需要提出，也可以因个人进修需要拟定的。</li><li>搜集资料<br> 根据提出的问题检索资料。检索到的资料会先读一遍，如果觉得好就搜集起来。通过阅读资料会建立起来一个知识的轮廓，随着阅读的增多，知识的面貌会越来越清晰，直到感觉自己搞懂了。<br> 搜集资料这块可以使用中文了解轮廓，但真正深入的技术问题，要真正的搞明白，还是要读英文资料。</li><li>消化吸收<br> 这个步骤和搜集资料是重叠的、交互进行的。随着对知识理解的加深，需要搜集更多的资料来学习。</li><li>整理输出<br> 到此阶段，自己觉得自己已经掌握了这块知识，也可能没有真正的掌握，只是感觉掌握了。通过整理资料，组织逻辑关系，能用自己的话表达出来才算是真正的理解。</li><li>资料归档<br> 针对以前搜集的资料，结合现有的理解，剔除糟粕、重复的，将相关资料归档，以便将来查阅。</li></ol><a id="more"></a><h1 id="使用的工具"><a href="#使用的工具" class="headerlink" title="使用的工具"></a>使用的工具</h1><ul><li><a href="https://dida365.com/" target="_blank" rel="noopener">滴答清单</a><br>  用来随时随地的记录自己的想法，并定时的整理，从中筛选出真的有价值的问题。</li><li><a href="https://feedly.com/" target="_blank" rel="noopener">feedly</a><br>  订阅优秀的RSS源，以便更新自己的知识，在此过程中会提出各种各样的问题，然后用滴答清单记录下来</li><li>科学上网工具<br>  真正的检索资料，推荐使用谷歌，次之是必应国际版。有一把好梯子，使用谷歌事半功倍。</li><li><a href="https://maple-leaf-0219.github.io/">博客</a><br>  整理输出的东西和最终归档的资料会放在该博客上</li><li><a href="https://app.getpocket.com/" target="_blank" rel="noopener">pocket</a><br>  特别好用的一个Chrome的插件，可以收藏当前网页并按标签分类，以便后续消化吸收。</li><li><a href="https://cidian.youdao.com/index.html" target="_blank" rel="noopener">有道词典</a><br>  没办法，进阶的、有价值的资料都是以英文表达的。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;学习的过程&quot;&gt;&lt;a href=&quot;#学习的过程&quot; class=&quot;headerlink&quot; title=&quot;学习的过程&quot;&gt;&lt;/a&gt;学习的过程&lt;/h1&gt;&lt;p&gt;回顾这几年的求索之路，除了一开始的迷糊之外，后续基本遵循着下面一个循环&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;提出问题&lt;br&gt; 首先要提出一个明确的问题，可以是因工作需要提出，也可以因个人进修需要拟定的。&lt;/li&gt;
+&lt;li&gt;搜集资料&lt;br&gt; 根据提出的问题检索资料。检索到的资料会先读一遍，如果觉得好就搜集起来。通过阅读资料会建立起来一个知识的轮廓，随着阅读的增多，知识的面貌会越来越清晰，直到感觉自己搞懂了。&lt;br&gt; 搜集资料这块可以使用中文了解轮廓，但真正深入的技术问题，要真正的搞明白，还是要读英文资料。&lt;/li&gt;
+&lt;li&gt;消化吸收&lt;br&gt; 这个步骤和搜集资料是重叠的、交互进行的。随着对知识理解的加深，需要搜集更多的资料来学习。&lt;/li&gt;
+&lt;li&gt;整理输出&lt;br&gt; 到此阶段，自己觉得自己已经掌握了这块知识，也可能没有真正的掌握，只是感觉掌握了。通过整理资料，组织逻辑关系，能用自己的话表达出来才算是真正的理解。&lt;/li&gt;
+&lt;li&gt;资料归档&lt;br&gt; 针对以前搜集的资料，结合现有的理解，剔除糟粕、重复的，将相关资料归档，以便将来查阅。&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    
+    <category term="MISC" scheme="https://maple-leaf-0219.github.io/tags/MISC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>false share（伪共享）</title>
+    <link href="https://maple-leaf-0219.github.io/2020/false-share/"/>
+    <id>https://maple-leaf-0219.github.io/2020/false-share/</id>
+    <published>2020-03-01T08:13:36.000Z</published>
+    <updated>2020-03-01T08:40:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>理解了false share，解决办法就比较简单了，采用cache填充即可。现在的问题是随着代码量、协作人数变多，很难避免合入的代码没有false share问题，有没有什么工具可以有效的检测出false share.</p><h1 id="资料归档"><a href="#资料归档" class="headerlink" title="资料归档"></a>资料归档</h1><p><a href="https://software.intel.com/en-us/articles/avoiding-and-identifying-false-sharing-among-threads" target="_blank" rel="noopener">avoiding-and-identifying-false-sharing-among-threads</a><br>[c2c-blog][<a href="https://joemario.github.io/blog/2016/09/01/c2c-blog/]" target="_blank" rel="noopener">https://joemario.github.io/blog/2016/09/01/c2c-blog/]</a><br><a href="http://oliveryang.net/2018/01/cache-false-sharing-debug/" target="_blank" rel="noopener">cache-false-sharing-debug(中文资料，推荐)</a></p><a href="/2020/false-share/cache-false-sharing-debug.pdf" title="cache-false-sharing-debug.pdf">cache-false-sharing-debug.pdf</a>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;理解了false share，解决办法就比较简单了，采用cache填充即可。现在的问题是随着代码量、协作人数变多，很难避免合入的代码没有false share问题，有没有什么工具可以有效的检测出false share.&lt;/p&gt;
+&lt;h1 id=&quot;资料归档&quot;&gt;&lt;a href=&quot;</summary>
+      
+    
+    
+    
+    
+    <category term="memory-cache" scheme="https://maple-leaf-0219.github.io/tags/memory-cache/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux内核的内存屏障-译</title>
+    <link href="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/"/>
+    <id>https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/</id>
+    <published>2020-02-29T05:03:58.000Z</published>
+    <updated>2020-02-29T05:03:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="译者注"><a href="#译者注" class="headerlink" title="译者注"></a>译者注</h1><p><a href="https://www.kernel.org/doc/Documentation/memory-barriers.txt" target="_blank" rel="noopener">原文</a></p><p>barriers：屏障， 本文档中指内存屏障<br>memory barriers： 内存屏障</p><h2 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序"></a>指令重排序</h2><p>基础不牢靠的程序员有一个错觉， 指令执行的顺序就是我所理解的代码编写的顺序。<br>在目前多核、多发射、乱序执行的今天，编译器、CPU都可以根据需要调整指令执行顺序，<strong>指令实际的执行顺序和代码的书写顺序不一定一致</strong>。  </p><h2 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h2><p>在内存-多级缓存的今天，一定存在一个层次，在这个层次下，数据的变化是同步的，即所有CPU看到的都是相同的状态，任意一个CPU的修改其它CPU都能看到。在这个层次只上，每个CPU有自己独享的缓存，这些缓存对其它CPU是不可见的。内存屏障的目的是通知CPU让其将自己的缓存和共享的缓存/内存做一次同步，以便其它CPU可以感知到这些变化。</p><p><strong>注</strong>：内存屏障控制是本CPU独享缓存和共享缓存/内存的同步工作，而不关心和其它的CPU是否同步。如果其它CPU也想和共享内存同步下，需要自己来触发内存屏障。</p><a id="more"></a><p>如下开始是译文</p><h1 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h1><p>本篇文档不是技术规格说明文档；它有意（为了文档简洁）或者无意（人的因素）的不完整。本篇文档希望用来指导如何使用linux提供的各种内存屏障，如果有任何疑问请提问。一些疑问可以通过提供以前编写的内存一致性模型及其相关的文档（位于tools/memory-model）来解决。然而，即使是这个内存模型也应该只当作这个模型维护人员的集体观点而不是当作永远正确的神谕。</p><p>再次强调下，本篇文档不是linux对硬件预期的规格说明书。</p><p>本文档有两个目的：  </p><ol><li>指出对任何屏障都适用的最小功能集合  </li><li>针对目前可用的屏障提供一个使用指导</li></ol><p>注意任何一个体系结构对任何一种屏障都可以提供超过最小功能集合的功能，但是如果这个体系结构提供的功能少于最小功能集合，这个体系结构是不正确的。</p><p>也注意，针对一个特定的体系结构，内存屏障有可能是一个空操作，因为那个体系结构已经显示的处理了，所以不再需要做任何操作。</p><h1 id="抽象后的内存访问模型"><a href="#抽象后的内存访问模型" class="headerlink" title="抽象后的内存访问模型"></a>抽象后的内存访问模型</h1><p>考虑如下所示的系统的抽象模型：  </p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E7%B3%BB%E7%BB%9F%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B.png" class="" title="系统抽象模型"><p>每个CPU执行一个会触发内存访问的程序。在抽象的CPU层面，内存操作顺序是非常宽松的，CPU在保证程序因果关系的前提下，可以自由决定内存操作的顺序。类似的，编译器在保证不影响程序因果关系的前提下，也可以自由的重新编排指令。</p><p>上面的图表中，一个CPU触发的内存操作产生的影响可以通过接口（点状虚线表示）被系统的其余部分感知到。</p><p>举例如下，考虑如下事件序列：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE1.png" class="" title="图1"><p>内存系统（点状竖直虚线中间那部分 Memory）看到的上述内存访问，理论上有24种不同的情况，如下：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE2.png" class="" title="图2"><p>因此，会得出四种不同的结果：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE3.png" class="" title="图3"><p>此外，一个CPU向内存系统提交的STORE操作不一定被同一时间另一个CPU向内存系统提交的LOAD操作感知到。</p><p>再举一个例子，考虑如下事件序列：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE4.png" class="" title="图4"><p>此处有一个显然的数据依赖关系，LOAD到D中的数据取决于CPU2上P中的地址。当上述序列执行完后，有如下三种情况：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE5.png" class="" title="图5"><p>需要注意的是，CPU2重来不会尝试把C LOAD到D中，因为在执行D = *Q之前一定会先执行 Q = P。</p><h1 id="设备操作"><a href="#设备操作" class="headerlink" title="设备操作"></a>设备操作</h1><p>一些设备通过一组内存地址来表示它们的控制接口，但是这组内存地址所对应的控制寄存器的访问顺序是很重要的。比如，设想一个拥有一组内部寄存器的以太网卡，这组寄存器通过<strong>地址端口寄存器A</strong>和<strong>数据端口寄存器B</strong>来访问。<br>想访问5号内部寄存器，代码可能如下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*A &#x3D; 5  </span><br><span class="line"> x &#x3D; *D</span><br></pre></td></tr></table></figure><p>但是上述代码可以对应下面两个序列的任何一个：  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">STORE *A &#x3D; 5, x &#x3D; LOAD *D  &#x2F;&#x2F;序列1  </span><br><span class="line">x &#x3D; LOAD *D, STORE *A &#x3D; 5  &#x2F;&#x2F;序列2  </span><br></pre></td></tr></table></figure><p>序列2肯定会导致故障，因为是先读的值然后才设置。</p><h1 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h1><p>对CPU有一些最低限度的保证：</p><ul><li><p>从特定CPU自己的视角来看，依赖的内存访问必须按顺序触发，这意味着：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Q &#x3D; READ_ONCE(P); D &#x3D; READ_ONCE(*Q); </span><br></pre></td></tr></table></figure><p>  CPU会按照如下顺序触发内存操作：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Q &#x3D; LOAD P, D &#x3D; LOAD *Q</span><br></pre></td></tr></table></figure><p>  并且总是这个顺序。然而，在DEC Alpha上， READ_ONCE() 经常触发一个内存屏障指令，所以在DEC Alpha CPU上，内存操作序列如下：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Q &#x3D; LOAD P, MEMORY_BARRIER, D &#x3D; LOAD *Q, MEMORY_BARRIER</span><br></pre></td></tr></table></figure><p>  无论是在DEC Alpha还是其它平台， READ_ONCE()都保证避免编译器导致的不和。 </p></li><li><p>从特定CPU自己的视角来看，重叠的LOAD和STORE操作必须是按顺序触发，这意味着：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a &#x3D; READ_ONCE(*X); WRITE_ONCE(*X, b);</span><br></pre></td></tr></table></figure><p>  CPU比如按如下序列触发内存操作：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a &#x3D; LOAD *X, STORE *X &#x3D; b</span><br></pre></td></tr></table></figure><p>  并且：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WRITE_ONCE(*X, c); d &#x3D; READ_ONCE(*X)</span><br></pre></td></tr></table></figure><p>  CPU触发的内存序列也只能如下：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STORE *X &#x3D; c, d &#x3D; LOAD *X</span><br></pre></td></tr></table></figure><p>  (如果LOAD、STORE操作的内存区域是重叠的则称之为 LOAD STORE重叠)。</p></li></ul><p>特殊注意情况</p><ul><li><p>对没有采用READ_ONCE()、WRITE_ONCE()保护的内存访问不能假定编译器按你期望的方式工作。没有采用保护，编译器有权做各种创造性的转换，这会在<strong>编译屏障</strong>章节说明</p></li><li><p>不能假定独立的LOAD、SOTRE操作会按程序给出的顺序触发。这意味着如下命令</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; *A; Y &#x3D; *B; *D &#x3D; Z;</span><br></pre></td></tr></table></figure><p>  对应的内存访问序列是如下几种可能的任意一种：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; LOAD *A,  Y &#x3D; LOAD *B,  STORE *D &#x3D; Z</span><br><span class="line">X &#x3D; LOAD *A,  STORE *D &#x3D; Z, Y &#x3D; LOAD *B</span><br><span class="line">Y &#x3D; LOAD *B,  X &#x3D; LOAD *A,  STORE *D &#x3D; Z</span><br><span class="line">Y &#x3D; LOAD *B,  STORE *D &#x3D; Z, X &#x3D; LOAD *A</span><br><span class="line">STORE *D &#x3D; Z, X &#x3D; LOAD *A,  Y &#x3D; LOAD *B</span><br><span class="line">STORE *D &#x3D; Z, Y &#x3D; LOAD *B,  X &#x3D; LOAD *A</span><br></pre></td></tr></table></figure></li><li><p>必须假定重叠的内存访问可以被合并或者丢弃，这意味着：</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; *A; Y &#x3D; *(A + 4);</span><br></pre></td></tr></table></figure><p>  我们可以得到下述序列中的任何一个</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; LOAD *A; Y &#x3D; LOAD *(A + 4);</span><br><span class="line">Y &#x3D; LOAD *(A + 4); X &#x3D; LOAD *A;</span><br><span class="line">&#123;X, Y&#125; &#x3D; LOAD &#123;*A, *(A + 4) &#125;;</span><br></pre></td></tr></table></figure><p>  同样道理，对于</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*A &#x3D; X; *(A + 4) &#x3D; Y;</span><br></pre></td></tr></table></figure><p>  我们可以得到下述序列中的任何一个</p>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STORE *A &#x3D; X; STORE *(A + 4) &#x3D; Y;</span><br><span class="line">STORE *(A + 4) &#x3D; Y; STORE *A &#x3D; X;</span><br><span class="line">STORE &#123;*A, *(A + 4) &#125; &#x3D; &#123;X, Y&#125;;</span><br></pre></td></tr></table></figure><p>  也会有一些反常情况存在，如下：</p></li><li><p>这些保证不作用于位域，因为针对位操作的代码，编译器生成的代码通常都不是原子操作。不要尝试使用位操作来同步并行的算法。</p></li><li><p>即使有些情况采用了锁对位域进行保护，也要注意必须使用一把锁保护位域中的所有位。如果位域中的两个位使用两个不同的锁保护，编译器生成的代码依然会导致更新一个位的值时破坏相邻位的数据</p></li><li><p>这些保证只作用于以合适方式对齐的、合适大小的标量变量。<strong>合适大小</strong>目前指char/short/int/long，<strong>合适对齐</strong>指自然对齐，即对char类型无约束，short要两字节对齐,int要4字节对齐, 32位平台的long要4字节对齐,64平台的long要8字节对齐。</p></li></ul><h1 id="什么是内存屏障"><a href="#什么是内存屏障" class="headerlink" title="什么是内存屏障"></a>什么是内存屏障</h1><p>从上面可以看出，为了保证效率，独立的内存操作会被随机的执行，当涉及到CPU和CPU、CPU和IO之间的交互时这会是一个问题。所以需要一种介入的方式来通知编译器和CPU，对内存操作的顺序做一个约束。</p><p>内存屏障就是这样的一个介入方式。它在屏障的两边针对内存操作强加了一个可以感知的局部顺序要求。</p><p>这种干预是很重要的，因为系统中的CPU和其它设备会使用很多技巧来提升性能，这些技巧包括内存操作的乱序执行、延期执行和合并执行；预加载；分支预测和各种类型的缓存。内存屏障用来重载或者抑制这些技巧，以便可以稳健的控制多个CPU和设备之间的相互作用。</p><h2 id="内存屏障的类型"><a href="#内存屏障的类型" class="headerlink" title="内存屏障的类型"></a>内存屏障的类型</h2><p>内存屏障有四种基本类型</p><ol><li><p>写内存屏障（Write(or store) memory barriers）<br> 写内存屏障保证屏障之前指定的STORE操作都出现在屏障之后指定的STORE操作之前。</p><p> 写内存屏障只作用于STORE操作；并不要求对LOAD操作有任何作用</p><p> 一个CPU可以被看作随着时间推移会向内存系统提交一系列的内存STORE操作。写屏障之前的所有STORE操作一定在写屏障之后的所有STORE操作之前。<br> <strong>注</strong>：写屏障一般和读/写的数据依赖屏障成对使用，见 “SMB屏障配对”章节。</p></li><li><p>数据依赖屏障（Data dependency barriers）<br> 数据依赖屏障是读内存屏障的弱化版本。当有两个LOAD操作，如果第二个LOAD操作依赖第一个LOAD操作的结果（比如第一个LOAD获取地址，第二个LOAD依据该地址获取该地址的值），此时需要数据依赖屏障来保证第二个LOAD的目标已经被第一个LOAD的获取的值更新过了。</p><p> 数据依赖屏障只作用于<strong>相互作用</strong>的LOAD之间。并不要求对STORE、独立的LOAD、重叠的LOAD有任何影响。</p><p> 正如在1中提到的，系统中的其它CPU可以被看作向内存系统提交了一系列的STORE操作，这些操作随后被该CPU感知到。由该CPU发出的数据依赖屏障可以确保任何在该屏障之前的LOAD指令，如果该LOAD指令的目标被另一个CPU的STORE指令修改，在屏障执行完成之后，所有在该LOAD指令对应的STORE指令之前的STORE指令的更新都会被所有在数据依赖屏障之后的LOAD指令感知。（原话： A data dependency barrier issued by the CPU under consideration guarantees that for any load preceding it, if that load touches one of a sequence of stores from another CPU, then by the time the barrier completes, the effects of all the stores prior to that touched by the load will be perceptible to any loads issued after the data dependency barrier.）</p><p> 参见 “内存屏障序列例子”章节查看顺序约束。<br> <strong>注1</strong>：第一个LOAD必须有一个数据依赖，而不能是控制依赖。如果第二个LOAD的地址依赖第一个LOAD，但是这个依赖是通过条件判断而不是真正的地址本身，那么就是一个控制依赖，此时需要一个完整的读屏障或者更强的屏障。查看”控制依赖”章节获取更多信息。<br> <strong>注2</strong>：数据依赖屏障一般和写内存屏障配对使用，查看”SMB屏障配对”章节。</p></li><li><p>读内存屏障（Read (or load) memory barriers）<br> 读内存屏障是数据依赖屏障加上如下一个保证：屏障之前的所有LOAD操作出现在屏障之后的所有LOAD操作之前。</p><p> 读内存屏障只作用于LOAD，并不要求对STORE有什么影响。</p><p> 读内存屏障暗含数据依赖屏障，所以可以替代数据依赖屏障。</p><p> <strong>注</strong>：读内存屏障经常和写内存屏障配对使用，查看”SMB屏障配对”章节。</p></li><li><p>通用内内存屏障（General memory barriers）<br> 通用内存屏障保证：该屏障之前的LOAD和STORE操作，看起来一定在屏障之后的LOAD和STORE操作之前执行。</p><p> 通用内存屏障作用于LOAD和STORE。</p><p> 通用内存屏障暗含读内存屏障和写内存屏障，所以可以替代读/写内存屏障</p></li></ol><p>内存屏障还有如下隐含的变种：</p><ol start="5"><li><p>ACQUIRE 操作<br> 这类似一个单向渗透的屏障。它保证：ACQUIRE操作之后的所有内存操作一定出现在ACQUIRE操作之后。ACQUIRE操作包括LOCK操作和smp_load_acquire、smp_cond_load_acquire操作</p><p> ACQUIRE操作之前的内存操作也可以在ACQUIRE之后完成。</p><p> ACQUIRE操作经常和 RELEASE操作成对出现</p></li><li><p>RELEASE 操作<br> 这类似一个单向渗透的屏障。它保证：RELEASE操作之前的内存操作一定出现RELEASE操作之前。RELEASE操作包括UNLOCK和smp_store_release。</p><p> RELEASE操作之后的内存操作也可以在RELEASE操作之前出现。</p><p> 使用ACQUIRE和RELEASE的目的通常是为了避免使用各种内存屏障。此外，RELEASE + ACQUIRE对不等同于完整的内存屏障。然而，在一个给定的变量上进行ACQUIRE操作后，在相同变量上之前进行的RELEASE操作之前的内存访问均可见。换句话说，在一个给定变量的临界区，同一个变量先前临界区的所有操作均已完成。（The use of ACQUIRE and RELEASE operations generally precludes the need for other sorts of memory barrier.  In addition, a RELEASE+ACQUIRE pair is -not- guaranteed to act as a full memory barrier.  However, after an ACQUIRE on a given variable, all memory accesses preceding any prior RELEASE on that same variable are guaranteed to be visible.  In other words, within a given variable’s critical section, all accesses of all previous critical sections for that variable are guaranteed to have completed.）</p><p> 这意味着ACQUIRE类似于一个最小的acquire操作，RELEASE类似于一个最小的release操作。</p></li></ol><p>A subset of the atomic operations described in atomic_t.txt have ACQUIRE and<br>RELEASE variants in addition to fully-ordered and relaxed (no barrier<br>semantics) definitions.  For compound atomics performing both a load and a<br>store, ACQUIRE semantics apply only to the load and RELEASE semantics apply<br>only to the store portion of the operation.【不知道如何翻译】</p><p>只有当两个CPU之间或者CPU和设备之间有相互作用时才需要内存屏障。如果可以确保某段代码中不会有任何这种交互，那么这段代码就不需要内存屏障。</p><p>需要注意这些是最低的保证。不同体系结构可能给更多的保证，但是不应该依赖多出的那些写代码。</p><h2 id="内存屏障不保证什么"><a href="#内存屏障不保证什么" class="headerlink" title="内存屏障不保证什么"></a>内存屏障不保证什么</h2><p>有一些事情是Linux内核中的内存屏障不保证的：</p><ul><li>不能保证，任何在内存屏障之前的内存访问操作能在内存屏障指令执行完成时也执行完成；内存屏障相当于在CPU的访问队列中划了一条界线，相应类型的指令不能跨过该界线</li><li>不能保证，一个CPU发出的内存屏障能对另一个CPU或该系统中的其它硬件有任何直接影响。只会间接影响到第二个CPU看第一个CPU的存取操作发生的顺序，但请看下一条：</li><li>不能保证，一个CPU看到第二个CPU存取操作的结果的顺序，即使第二个CPU使用了内存屏障，除非第一个CPU也使用与第二个CPU相匹配的内存屏障</li><li>不能保证，一些CPU相关的硬件不会对内存访问重排序。 CPU缓存的一致性机制会在多个CPU之间传播内存屏障的间接影响，但可能不是有序的</li></ul><h2 id="数据依赖屏障（历史）"><a href="#数据依赖屏障（历史）" class="headerlink" title="数据依赖屏障（历史）"></a>数据依赖屏障（历史）</h2><p>从linux内核4.15版本开始，smp_read_barrier_depends()添加到了READ_ONCE()中，这意味着只有涉及DEC Alpha 体系结构特定的代码和READ_ONCE()实现的人才需要关注本章节。对这些需要的人，或者对这段历史感兴趣的人，本章节讲讲数据依赖屏障的故事。</p><p>需要使用数据依赖屏障的情况有点微妙，也经常不那么明显。为了解释，考虑如下事件序列：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE6.png" class="" title="图6"><p>此处有一个明显的数据依赖，处理结束后，Q只可能是&amp;A 或 &amp;B，同时：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE7.png" class="" title="图7"><p>但是！！！CPU2可能先看到P更新，然后才看到B更新，这会导致如下情形：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE8.png" class="" title="图8"> <p>这可能看起来像是一致性或因果关系维护失败，但其实不是，这是在某些CPU上可以真实看到的情况（比如DEC Alpha）。</p><p>为了处理这种情况，必须在地址LOAD和数据LOAD之前插入数据依赖屏障：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE9.png" class="" title="图9"> <p>这强制只能出现上述的两种情况，而不会出现第三种情况。</p><p><strong>注意</strong>：这种极其有违直觉的场景，在有多个独立缓存（split caches）的机器上很容易出现，比如：一个cache bank处理偶数编号的缓存行，另外一个cache bank处理奇数编号的缓存行。指针P可能存储在奇数编号的缓存行，变量B可能存储在偶数编号的缓存行中。然后，如果在读取CPU缓存的时候，偶数的bank非常繁忙，而奇数bank处于闲置状态，就会出现指针P（&amp;B）是新值，但变量B（2）是旧值的情况。</p><p>不需要通过数据依赖屏障来对写依赖的指令进行排序，因为linux内核支持的CPU在下面三个条件不具备时不会真正的写。</p><ol><li>确实需要这个写操作  </li><li>知道了要写的位置  </li><li>知道了要写的值<br>但请仔细阅读“控制依赖”章节和Documentation/RCU/rcu_dereference.txt文档：编译器可以以多种创造性的方式破坏依赖。</li></ol><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE10.png" class="" title="图10"><p>因此，在Q = READ_ONCE(P)和WRITE_ONCE(*Q, 5)之前不需要插入数据依赖屏障。换句话说，即使没有数据依赖屏障，也不会出现如下结果</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Q &#x3D;&#x3D; &amp;B) &amp;&amp; (B &#x3D;&#x3D; 4)</span><br></pre></td></tr></table></figure><p>需要注意的是这些情形很少出现。毕竟，依赖关系排序的全部意义在于防止数据结构的写操作，以及与这些写操作相关的昂贵缓存丢失。这种情形可以用来记录罕见的错误情况，同时cpu自然产生的顺序可以防止这些记录丢失。</p><p>同时也要注意，通过数据依赖提供的顺序只对包含该数据依赖屏障的CPU有用。查阅“Multicopy原子性”章节获取更多信息。</p><p>数据依赖屏障对RCU系统特别重要，例子可以参见See rcu_assign_pointer() and rcu_dereference() in<br>include/linux/rcupdate.h。这个函数允许RCU的指针被替换为一个新的值，而这个新的值还没有完全的初始化。</p><p>更多详细的例子参见”高速缓存一致性”小节。</p><h2 id="控制依赖"><a href="#控制依赖" class="headerlink" title="控制依赖"></a>控制依赖</h2><p>控制依赖有点狡猾因为当前的编译器不理解它。本章节的目的就是避免编译器的无知而破坏你的代码。</p><p>一个LOAD-LOAD控制依赖需要一个完整的读内存屏障，而不是一个简单的数据依赖屏障就能保证工作正常的。考虑如下代码：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE11.png" class="" title="图11">  <p>此处的数据依赖屏障不会起到预期的效果，因为此处没有真正的数据依赖。此处是因CPU提前预测结果导致IF短路引起的控制依赖，这种情况其它CPU可能看到LOAD b发生在LOAD a之前。在这种情况下，真正需要的是下面所示：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE12.png" class="" title="图12"> <p>然而，STORE不会因预测而执行（预读不会有问题，预写会导致逻辑问题）。意思是说对于LOAD-STORE控制依赖，顺序是固定的，如下面例子所示：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE13.png" class="" title="图13"> <p>控制依赖经常和其它类型的屏障成对使用。也就是说，请注意上文中的READ_ONCE()和WRITE_ONCE()均不是可选的！没有READ_ONCE(),编译器可能将LOAD a和其它地方的LOAD a合并。没有WRITE_ONCE()，编译器可能将STORE b和其它地方的STORE b合并。任意一种合并都会导致违反直觉的顺序。</p><p>更加糟糕的是，如果编译器可以证明变量’a’的值肯定是非0，那么编译器可以合法的消除IF语句，将上面的例子优化成下面的样子：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE14.png" class="" title="图14"> <p>所以不要去掉READ_ONCE()。</p><p>在if多个分支具有相同的STORE操作时，很容易忍不住添加一些强制顺序，比如下面的例子：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE15.png" class="" title="图15"> <p>很不幸，当前的编译器在高优化等级的情况下，会将上面代码转换为如下代码：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE16.png" class="" title="图16"><p>从代码上，看不出LOAD a和STORE b之间有关联，所以CPU有权重新进行排序。这个条件是绝对需要的，所以无论采用什么优化选项，在最终的汇编代码中也会体现出这个条件。因此，如果你需要控制顺序，你需要显示的使用内存屏障，比如使用smp_store_release():</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE17.png" class="" title="图17"><p>相反，没有显式的内存屏障，IF语句的两个分支控制顺序又想保证，只能STORE不同的值，如下：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE18.png" class="" title="图18"><p>The initial READ_ONCE() is still required to prevent the compiler from<br>proving the value of ‘a’.</p><p>另外，你需要注意局部变量q的相关操作，否则编译器可能推测q的值导致再次去掉条件语句，例如：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE19.png" class="" title="图19"><p>如果MAX值为1，然后编译器知道q%MAX肯定是0.在这种情况下编译器有权将上面的代码转换成下面的形式：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE20.png" class="" title="图20"><p>经过上述转换，CPU也不用再遵守LOAD a和STORE b之间的先后顺序。此时可能禁不住诱惑，会在二者之间添加一个内存屏障，然而这不会器作用。条件已经没有了，内存屏障不会将条件再带回来。因此，如果你依赖这个顺序，你需要确保MAX大于1，代码可能如下：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE21.png" class="" title="图21"><p>请再次注意，两个分支下STORE b的值是不同的。如果值相同，正如前文所说，编译器会将STORE b这个操作放在条件之外。</p><p>你也必须很小心的不要依赖太多的布尔短路计算。考虑如下代码：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE22.png" class="" title="图22"><p>if条件永远成立，编译器将上述代码转换为下面形式：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE23.png" class="" title="图23"><p>上面的例子强调了必须保证编译器不能推测你的代码。更概括的说，尽管READ_ONCE()强制编译器针对一个LOAD操作一定生成代码，但也不能强制编译器去使用这个结果。</p><p>此外，控制依赖只作用于if语句的then从句和else从句。典型的，它不会作用于如下的声明：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE24.png" class="" title="图24"><p>人们很容易认为这段代码保证了访问顺序因为编译器不能对volatile 访问进行重排序也不能对条件中的STORE b进行重排序。不幸的是，编译器可以将上面代码转为如下伪代码所表示的意思：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE25.png" class="" title="图25"><p>对于一个弱顺序的CPU来说，LOAD a和STORE c之间没有任何的依赖信息。控制依赖只作用于成对的cmov和依赖该指令的store上。简而言之，控制依赖只作用于IF语句的then从句和else从句中的STORE操作，不作用于IF语句之后的语句。</p><p>同时注意，控制依赖提供的顺序也只针对包含该控制依赖的CPU。查阅”Multicopy 原子”获取更多信息。</p><p>总结如下：</p><ul><li>控制依赖可以保证前面的LOAD和后面的STORE之间的顺序。然后，不能保证其它情况的顺序：不能保证前面的LOAD和后面的LOAD之间的顺序，不能保证前面的STORE和后面所有指令的顺序。如果你需要这些其它类型的顺序，使用smp_rmb()、smp_wmb()。如果在前面的STORE和后面的LOAD之间保序，使用smb_mb()。</li><li>如果IF语句的两个分支都以相同值STORE到相同变量，那么这些STORE需要通过在STORE之前加入smp_mb()或者smp_store_release()来保证顺序。需要注意，在每个分支的前面添加barrier()是不充足的，因为像前文所说，编译器优化在遵守barrier()的前提下依然可以破坏条件依赖。</li><li>控制依赖在前面的LOAD和后面的STORE之间需要至少一个运行时的条件，这个条件牵涉到前面的LOAD。如果编译器可以优化掉这个条件，那么也能优化掉顺序。仔细的使用READ_ONCE和WRITE_ONCE来保护这个条件不被优化。</li><li>控制依赖需要编译器避免重新排序导致依赖不存在。仔细的使用READ_ONCE/atomic_read/atomic64_read可以帮助保护依赖。查看“编译屏障”章节获取更多信息</li><li>控制依赖只作用于 IF语句的两个从句，包括从句中调用的函数。控制依赖不作用于IF语句之后的语句。</li><li>控制依赖经常和其它类型的屏障配对使用</li><li>控制依赖不提供multicopy atomicity。如果需要所有CPU在同一时间看到指定的STORE，使用smb_mb()</li><li>编译器不理解控制依赖。因此你要保证编译器不会破坏你的代码。</li></ul><h2 id="SMP-屏障配对"><a href="#SMP-屏障配对" class="headerlink" title="SMP 屏障配对"></a>SMP 屏障配对</h2><p>当处理CPU和CPU之间的相互作用时，特定类型的内存屏障经常是成对使用的。缺少配对的使用几乎可以肯定是错误的。</p><p>通用内存屏障自己和自己配对，尽管他们也可以和其它大部分类型的屏障配对使用。Acquire屏障和Relase屏障配对使用，但是他们两个都可以和其它类型的屏障配对使用，包括通用内存屏障。一个写内存屏障可以和数据依赖屏障、控制依赖、Acquire屏障、Relase屏障、读内存屏障或者通用内存屏障配对使用。类似的，一个读内存屏障、控制依赖屏障、数据依赖屏障也可以和写内存屏障、Acquire屏障、Release屏障或通用屏障配对使用。（原文：General barriers pair with each other, though they also pair with most other types of barriers, albeit without multicopy atomicity.  An acquire barrier pairs with a release barrier, but both may also pair with other barriers, including of course general barriers.  A write barrier pairs with a data dependency barrier, a control dependency, an acquire barrier, a release barrier, a read barrier, or a general barrier.  Similarly a read barrier, control dependency, or a data dependency barrier pairs with a write barrier, an acquire barrier, a release barrier, or a general barrier）</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE26.png" class="" title="图26"><p>基本上那个位置的读屏障是必不可少的，即使有时候是弱一些的读屏障。</p><p><strong>注</strong>：写屏障之前的STORE指令经常和读屏障之后的LOAD指令相匹配，反之亦然。</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE27.png" class="" title="图27"><h2 id="内存屏障序列的例子"><a href="#内存屏障序列的例子" class="headerlink" title="内存屏障序列的例子"></a>内存屏障序列的例子</h2><p>第一， 写内存屏障作用类似于对STORE操作做部分排序。考虑如下序列：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE28.png" class="" title="图28"><p>上述的序列提交给内存一致性系统，系统的其它部分可以感知到的顺序是 STORE A, STORE B, STORE C一定在STORE D, STORE E之前，至于 ABC之前的顺序和DE之间的顺序不做承诺。</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE29.png" class="" title="图29"><p>第二， 数据依赖内存屏障作用类似于在数据依赖的LOAD操作间部分排序，考虑如下序列：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE30.png" class="" title="图30"><p>如果没有干涉，CPU1触发的序列在CPU2看来就是随机的顺序，即使CPU1使用了写内存屏障：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE31.png" class="" title="图31"><p>在上面的例子中， CPU2 感受到的B取值就是7，尽管LOAD *C在 LOAD C之后发生。</p><p>如果，在CPU2上， 在LOAD C 和 LOAD *C之间插入一个数据依赖屏障：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE32.png" class="" title="图32"><p>那么CPU之间发生的事件序列如下：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE33.png" class="" title="图33"><p>第三， 一个读内存屏障作用类似于对LOAD操作做部分排序，考虑如下序列：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE34.png" class="" title="图34"><p>如果没有干涉， 在CPU2看来，CPU1的操作顺序就是随机的，即使使用了写内存屏障：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE35.png" class="" title="图35"><p>如果，在CPU2上，在LOAD B和 LOAD A之间插入一个读内存屏障：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE36.png" class="" title="图36"><p>CPU2感受到CPU1操作的顺序就是正确的，如下：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE37.png" class="" title="图37"><p>为了更完整的说明这点，考虑如下代码会发生什么：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE38.png" class="" title="图38"><p>尽管两次LOAD A都发生在 LOAD B之后， 他们也可能获取到不同的值。</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE39.png" class="" title="图39"><p>不过也可能是下面这种情况：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE40.png" class="" title="图40"><p>能保证的是如果LOAD B时B的值是2，那么第二个LOAD A时A的值一定是1。对于第一个LOAD A时A的值可能是0，也可能是1.</p><h2 id="读内存屏障-VS-LOAD预加载"><a href="#读内存屏障-VS-LOAD预加载" class="headerlink" title="读内存屏障 VS  LOAD预加载"></a>读内存屏障 VS  LOAD预加载</h2><p>很多CPU都会对LOAD操作进行预测：意思是他们看到将来需要LOAD一个值，然后他们找一个总线空闲的时候提前把这个值加载进来，即使按照指令序列他们还没有真正的执行到那条LOAD指令的位置。这使得真正的LOAD指令有可能立即完成因为CPU已经有这个值了。</p><p>也有可能证明最终CPU并不需要这个值，比如因为一个分支判断跳过了这个LOAD指令，在这种情况下他可以直接丢弃该值或者缓存住以便下次使用。考虑如下：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE41.png" class="" title="图41"><p>在第二个LOAD之前放一个读内存屏障或者一个数据依赖屏障：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE42.png" class="" title="图42"><p>是否强制重新获取预取的值，在一定程度上依赖于使用的屏障类型。如果值没有发送变化，将直接使用预取的值：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE43.png" class="" title="图43"><p>但如果另一个CPU有更新该值或者使该值失效，就必须重新加载该值：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE44.png" class="" title="图44"><h1 id="MULTICOPY-原子性"><a href="#MULTICOPY-原子性" class="headerlink" title="MULTICOPY 原子性"></a>MULTICOPY 原子性</h1><p>Multicopy原子性是关于顺序的一个直观的概念，但也是真实的计算机系统经常不能提供的，即一个给定的STORE操作在同一时间对所有CPU可见，或者做为一个替代选项，所有CPU对SOTRE操作序列中每个STORE的生效顺序达成一致。然而，支持完整的multicopy原子性会牺牲掉有价值的硬件优化，一个弱化的方式是“其它 multicopy原子性”，指一个给定的STORE操作在同一时间对其它所有CPU可见。该章节后续文档就是讨论这种形式，但是为了简单依然称呼为multicopy 原子性。<br>下面的例子展示了multicopy 原子性：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE45.png" class="" title="图45"><p>假设CPU2 LOAD X返回的值是1，然后将该值 STORE Y中，同时CPU3 LOAD Y返回的值也是1.这表示CPU1的STORE X领先于CPU2的 LOAD X 并且CPU2的STORE Y领先于CPU3 的LOAD Y。此外，内存屏障保证CPU2先执行LOAD X再执行STORE Y， CPU3先执行LOAD Y，再执行LOAD X。那么问题是， CPU3中的LOAD X返回值会是0吗？</p><p>因为CPU3 LOAD X从某种意义上来说在CPU2 LOAD X后面，所以很自然的期望CPU3 LOAD X的返回值是1.这种期望遵从multicopy原子性：在CPU B上执行了一个LOAD操作， 在这个操作之前，在CPU A针对同一个变量也执行了LOAD操作（CPU A 最初没有STORE 这个变量），在遵从multicopy 原子性的系统上，CPU B LOAD的返回值和CPU A LOAD返回的值相同，或者是CPU A LOAD之后的后续的值。但是，linux内核不需要系统是multicopy一致性的。</p><p>当缺少multicopy原子性时，可以按上面例子中那样使用通用内存屏障来保证。在上面的例子中，如果CPU2 LOAD A 返回1并且CPU3 LOAD Y返回1，那么CPU3 LOAD A一定返回1.</p><p>然而，依赖内存屏障、读内存屏障、写内存屏障并不是总能保证multicopy原子性。举个例子，假如CPU2的通用内存屏障去掉，换成数据依赖屏障，见下面：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE46.png" class="" title="图46"><p>这种替换就不能保证multicopy原子性：在这个例子中，CPU2 LOAD A依然返回1， CPU3 LOAD Y依然返回1，但是CPU3 LOAD X可能返回0.</p><p>关键是尽管CPU2的数据依赖顺序确保它自己的LOAD和STORE顺序，但是不能保证和CPU1的STORE顺序。假如上述例子运行在一个非multicopy原子性系统上，并且CPU1 CPU2共享一个Store Buffer或者同一级cache，CPU2有可能更早的访问到CPU1的write结果（这个时候CPU3 却看不到这个write结果）。因此需要通用内存屏障来确保所有CPU针对多个访问能看到一致的组合顺序。</p><p>通用内存屏障不仅可以保证multicopy原子性，还可以额外的保证<strong>所有CPU</strong>对所有操作看到一致的顺序。相反，一连串的release-acquire对没有这种额外的保证,这意味使用了release-acquire的CPU对多个访问看到的顺序是一致的，没有使用的就不确定。看下面例子：</p><img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE47.png" class="" title="图47"><p>因为cpu0 cpu1 cpu2参与了一串的smp_store_release/smp_load_acquire，下面的输出是不可能的：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 1 &amp;&amp; r1 &#x3D;&#x3D; 1 &amp;&amp; r2 &#x3D;&#x3D; 1</span><br></pre></td></tr></table></figure><p>更进一步，因为cpu0和cpu1之间的release-acquire关系，cpu1一定会看到cpu0的输出，所以下面的输出是不可能的：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r1 &#x3D;&#x3D; 1 &amp;&amp; r5 &#x3D;&#x3D; 0</span><br></pre></td></tr></table></figure><p>然而，release-acquire提供的顺序仅限参与进这个序列的cpu之间，所以不会作用于cpu3上，至少在store这方面不会。因此，如下输出是可能的：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 0 &amp;&amp; r1 &#x3D;&#x3D; 1 &amp;&amp; r2 &#x3D;&#x3D; 1 &amp;&amp; r3 &#x3D;&#x3D; 0 &amp;&amp; r4 &#x3D;&#x3D; 0</span><br></pre></td></tr></table></figure><p>另一个方面，下面的输出也是可能的：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 0 &amp;&amp; r1 &#x3D;&#x3D; 1 &amp;&amp; r2 &#x3D;&#x3D; 1 &amp;&amp; r3 &#x3D;&#x3D; 0 &amp;&amp; r4 &#x3D;&#x3D; 0 &amp;&amp; r5 &#x3D;&#x3D; 1</span><br></pre></td></tr></table></figure><p>尽管cpu0 cpu1 cpu2可以针对read write看到一致的顺序，但是没有参与进relase-acquire的cpu可以看到不同的顺序。这个不一致源自于实现smp_load_acquire和smp_store_release所采用的弱化的内存屏障不能保证先前的store和随后的load之间的顺序。这意味这cpu3可以看到cpu0中的store to u 在 cpu1的 load from v之后，即使cpu0 cpu1均同意这两个操作的顺序是store to u 在 load from v之前。</p><p>无论如何，请记住smp_load_acquire不是魔法。典型情况下，它只是有序的读取它的参数。它不能保证特定的值一定呗读到。因此，如下输出是可能的</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 0 &amp;&amp; r1 &#x3D;&#x3D; 0 &amp;&amp; r2 &#x3D;&#x3D; 0 &amp;&amp; r5 &#x3D;&#x3D; 0</span><br></pre></td></tr></table></figure><p>注意，即使在没有任何重排序的虚构的一致性系统中，这个输出也可能会发生。</p><p>在强调下，如果你的代码所有CPU的multicopy 原子性，请使用通用内存屏障。</p><h1 id="显式的内核屏障"><a href="#显式的内核屏障" class="headerlink" title="显式的内核屏障"></a>显式的内核屏障</h1><p>TODO</p><h1 id="隐式的内核内存屏障"><a href="#隐式的内核内存屏障" class="headerlink" title="隐式的内核内存屏障"></a>隐式的内核内存屏障</h1><p>TODO</p><h1 id="CPU之间的ACQUIRE屏障效应"><a href="#CPU之间的ACQUIRE屏障效应" class="headerlink" title="CPU之间的ACQUIRE屏障效应"></a>CPU之间的ACQUIRE屏障效应</h1><p>TODO</p><h1 id="什么时候需要内存屏障"><a href="#什么时候需要内存屏障" class="headerlink" title="什么时候需要内存屏障"></a>什么时候需要内存屏障</h1><p>TODO</p><h1 id="内核I-O屏障效应"><a href="#内核I-O屏障效应" class="headerlink" title="内核I/O屏障效应"></a>内核I/O屏障效应</h1><p>TODO</p><h1 id="假想的最小执行顺序模型"><a href="#假想的最小执行顺序模型" class="headerlink" title="假想的最小执行顺序模型"></a>假想的最小执行顺序模型</h1><p>TODO</p><h1 id="CPU-缓存的影响"><a href="#CPU-缓存的影响" class="headerlink" title="CPU 缓存的影响"></a>CPU 缓存的影响</h1><p>TODO</p><h2 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h2><p>TODO</p><h1 id="CPU要做的事情"><a href="#CPU要做的事情" class="headerlink" title="CPU要做的事情"></a>CPU要做的事情</h1><p>TODO</p><h1 id="使用例子"><a href="#使用例子" class="headerlink" title="使用例子"></a>使用例子</h1><p>TODO</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>TODO</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;译者注&quot;&gt;&lt;a href=&quot;#译者注&quot; class=&quot;headerlink&quot; title=&quot;译者注&quot;&gt;&lt;/a&gt;译者注&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.kernel.org/doc/Documentation/memory-barriers.txt&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;barriers：屏障， 本文档中指内存屏障&lt;br&gt;memory barriers： 内存屏障&lt;/p&gt;
+&lt;h2 id=&quot;指令重排序&quot;&gt;&lt;a href=&quot;#指令重排序&quot; class=&quot;headerlink&quot; title=&quot;指令重排序&quot;&gt;&lt;/a&gt;指令重排序&lt;/h2&gt;&lt;p&gt;基础不牢靠的程序员有一个错觉， 指令执行的顺序就是我所理解的代码编写的顺序。&lt;br&gt;在目前多核、多发射、乱序执行的今天，编译器、CPU都可以根据需要调整指令执行顺序，&lt;strong&gt;指令实际的执行顺序和代码的书写顺序不一定一致&lt;/strong&gt;。  &lt;/p&gt;
+&lt;h2 id=&quot;可见性&quot;&gt;&lt;a href=&quot;#可见性&quot; class=&quot;headerlink&quot; title=&quot;可见性&quot;&gt;&lt;/a&gt;可见性&lt;/h2&gt;&lt;p&gt;在内存-多级缓存的今天，一定存在一个层次，在这个层次下，数据的变化是同步的，即所有CPU看到的都是相同的状态，任意一个CPU的修改其它CPU都能看到。在这个层次只上，每个CPU有自己独享的缓存，这些缓存对其它CPU是不可见的。内存屏障的目的是通知CPU让其将自己的缓存和共享的缓存/内存做一次同步，以便其它CPU可以感知到这些变化。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：内存屏障控制是本CPU独享缓存和共享缓存/内存的同步工作，而不关心和其它的CPU是否同步。如果其它CPU也想和共享内存同步下，需要自己来触发内存屏障。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="memory-cache" scheme="https://maple-leaf-0219.github.io/tags/memory-cache/"/>
+    
+  </entry>
+  
+</feed>

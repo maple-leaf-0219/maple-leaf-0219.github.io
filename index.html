@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="GFE8CrbU9p4SPgaJCBZtEy3P-1knmk1ykePL39vOXZM">
+  <meta name="baidu-site-verification" content="ceFx8mGeWp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://maple-leaf-0219.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="maple-leaf&#39;s blog">
+<meta property="og:url" content="https://maple-leaf-0219.github.io/index.html">
+<meta property="og:site_name" content="maple-leaf&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Maple Leaf">
+<meta property="article:tag" content="memory cache programmer">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://maple-leaf-0219.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>maple-leaf's blog - 技术积累</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b231ae106462939150d6386d2cf987b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="maple-leaf's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">maple-leaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">技术积累</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-booklist">
+
+    <a href="/booklist/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>书单</a>
+
+  </li>
+        <li class="menu-item menu-item-life-rules">
+
+    <a href="/life-rules/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>生活原则</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%A6%82%E4%BD%95%E4%B8%8D%E9%9D%A0%E8%BF%90%E6%B0%94%E5%8F%98%E5%BE%97%E5%AF%8C%E6%9C%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%A6%82%E4%BD%95%E4%B8%8D%E9%9D%A0%E8%BF%90%E6%B0%94%E5%8F%98%E5%BE%97%E5%AF%8C%E6%9C%89/" class="post-title-link" itemprop="url">如何不靠运气变得富有</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-29 14:34:39 / 修改时间：14:35:23" itemprop="dateCreated datePublished" datetime="2020-08-29T14:34:39+08:00">2020-08-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://github.com/taosue/how-to-get-rich-without-getting-lucky/" target="_blank" rel="noopener">如何不靠运气变得富有</a>  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%9F%BA%E4%BA%8E%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%9F%BA%E4%BA%8E%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">基于二维码实时传输数据</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-29 14:23:20 / 修改时间：14:28:39" itemprop="dateCreated datePublished" datetime="2020-08-29T14:23:20+08:00">2020-08-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在特殊情况下,两个系统之间是无网络连接的,但又需要传输少量的数据. 抽时间验证了下基于二维码视频流实现文件传输的想法,核心思路是将数据编码为二维码视频流,然后通过录像设备再从视频流中解析出原始数据.   </p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/watershade2010/article/details/104292102" target="_blank" rel="noopener">用不同的QR Code识别库实现二维码的识别</a><br><a href="https://github.com/LiuhangZhang/qrcode_android" target="_blank" rel="noopener">二维码扫码优化</a><br><a href="https://yo1995.github.io/coding/file-to-GIF/" target="_blank" rel="noopener">GIF 与 QRcode 玩具二则</a>   </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">博客用法笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-29 14:01:13" itemprop="dateCreated datePublished" datetime="2020-08-29T14:01:13+08:00">2020-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-14 10:30:19" itemprop="dateModified" datetime="2020-03-14T10:30:19+08:00">2020-03-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本篇文章的目的是记录hexo+github搭建博客的使用方法，以备查询。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/" class="post-title-link" itemprop="url">项目管理的一点思考</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-18 00:38:03" itemprop="dateCreated datePublished" datetime="2020-05-18T00:38:03+08:00">2020-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-29 14:41:32" itemprop="dateModified" datetime="2020-08-29T14:41:32+08:00">2020-08-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>纸上得来终觉浅，绝知此事要躬行。</p>
+<h1 id="一定要做计划"><a href="#一定要做计划" class="headerlink" title="一定要做计划"></a>一定要做计划</h1><p>做计划时，任务的粒度一定要细，分解的越细，越能及早的发现实际和计划之间的偏差，不至于到最后不可挽回。</p>
+<p>任务的结果一定要明确、可量化、易检查，模糊不清的结果是无法判断是否完成了的。</p>
+<p>以软件中的模块开发为例，可以分解为XXX模块开发，也可以分解成XXX模块接口定义和XXX模式接口实现。在实际执行中，推荐采用后者。</p>
+<p>一个经验教训是，模块的对外接口、系统的对外接口（接口包括但不限于API、通讯规范、交互模式）都需要先评审，评审通过后再继续后续开发。</p>
+<h1 id="一定要监控计划的落实情况"><a href="#一定要监控计划的落实情况" class="headerlink" title="一定要监控计划的落实情况"></a>一定要监控计划的落实情况</h1><p>实际情况和计划一定会有偏差，有偏差是正常的，没有偏差才是不正常的，关键在于是否及时的发现了偏差并采取了应对措施。所以一定要监控计划的落实情况</p>
+<h1 id="要形成适合自己的工作流程"><a href="#要形成适合自己的工作流程" class="headerlink" title="要形成适合自己的工作流程"></a>要形成适合自己的工作流程</h1><p>管理书上讲的流程、工具当然是有用的，但应该根据自己的实际情况裁剪，定制属于自己的工作流程，并经常评估是否还满足当下的实际情况。</p>
+<h1 id="事情的可观测性-可量化性"><a href="#事情的可观测性-可量化性" class="headerlink" title="事情的可观测性/可量化性"></a>事情的可观测性/可量化性</h1><p>项目的进度、执行的结果都应该是可观测的、可量化的，否则很容易成为一锅粥。</p>
+<h1 id="做事情的原则"><a href="#做事情的原则" class="headerlink" title="做事情的原则"></a>做事情的原则</h1><ol>
+<li>做事情、评估事情时，不能仅限于把眼前做好，还应该关注它对我未来有什么用  </li>
+<li>在做事情之前，应该想清楚，它应该是什么样子，现有的资源我能做成什么样子，以什么途径向最终的样子去逼近，也就是所谓的以终为始  </li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%9C%A8%E7%9F%AD%E8%A7%86%E9%A2%91%E7%9A%84%E6%97%B6%E4%BB%A3%EF%BC%8C%E8%AF%BB%E4%B9%A6%E8%BF%87%E6%97%B6%E4%BA%86%E5%90%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%9C%A8%E7%9F%AD%E8%A7%86%E9%A2%91%E7%9A%84%E6%97%B6%E4%BB%A3%EF%BC%8C%E8%AF%BB%E4%B9%A6%E8%BF%87%E6%97%B6%E4%BA%86%E5%90%97/" class="post-title-link" itemprop="url">在短视频的时代，读书过时了吗</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-10 13:04:17 / 修改时间：13:04:43" itemprop="dateCreated datePublished" datetime="2020-05-10T13:04:17+08:00">2020-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://mp.weixin.qq.com/s/yRqOh7xlEmPlUwxtr7Wsuw" target="_blank" rel="noopener">在短视频的时代，读书过时了吗</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E7%A7%91%E5%AD%A6%E6%80%9D%E7%BB%B4%E8%A6%81%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E7%A7%91%E5%AD%A6%E6%80%9D%E7%BB%B4%E8%A6%81%E7%B4%A0/" class="post-title-link" itemprop="url">科学思维要点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-10 13:01:09 / 修改时间：13:02:03" itemprop="dateCreated datePublished" datetime="2020-05-10T13:01:09+08:00">2020-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://mp.weixin.qq.com/s/57yJ5vLgx7KC3OjRxOHD7g" target="_blank" rel="noopener">科学思维要点</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/LD-DEBUG%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/LD-DEBUG%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">LD_DEBUG说明</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-25 15:39:13 / 修改时间：15:51:34" itemprop="dateCreated datePublished" datetime="2020-04-25T15:39:13+08:00">2020-04-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在排查动态库符号查找失败、符号覆盖时特别有用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> LD_DEBUG&#x3D;help .&#x2F;program1</span><br><span class="line">Valid options for the LD_DEBUG environment variable are:</span><br><span class="line"></span><br><span class="line">  libs        display library search paths</span><br><span class="line">  reloc       display relocation processing</span><br><span class="line">  files       display progress for input file</span><br><span class="line">  symbols     display symbol table processing</span><br><span class="line">  bindings    display information about symbol binding</span><br><span class="line">  versions    display version dependencies</span><br><span class="line">  scopes      display scope information</span><br><span class="line">  all         all previous options combined</span><br><span class="line">  statistics  display relocation statistics</span><br><span class="line">  unused      determined unused DSOs</span><br><span class="line">  help        display this help message and exit</span><br><span class="line"></span><br><span class="line">To direct the debugging output into a file instead of standard output</span><br><span class="line">a filename can be specified using the LD_DEBUG_OUTPUT environment variable.</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%9F%BA%E4%BA%8EC%E7%9A%84%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%9F%BA%E4%BA%8EC%E7%9A%84%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">基于C的开发实践</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-11 12:55:00 / 修改时间：13:24:04" itemprop="dateCreated datePublished" datetime="2020-04-11T12:55:00+08:00">2020-04-11</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>从头到尾刷了下<a href="https://blog.codingnow.com/" target="_blank" rel="noopener">云风的博客</a>，将和C、软件设计相关的文章汇总在了该页面，有时候，通过查看文章下面的评论更能理解文章在说什么</p>
+<p><a href="https://blog.codingnow.com/2009/08/getter_setter.html" target="_blank" rel="noopener">关于 getter 和 setter</a><br><a href="https://blog.codingnow.com/2010/01/good_design.html" target="_blank" rel="noopener">好的设计</a><br><a href="https://blog.codingnow.com/2010/01/c_modularization.html" target="_blank" rel="noopener">C 语言对模块化支持的欠缺</a><br><a href="https://blog.codingnow.com/2010/01/modularization_in_c_1.html" target="_blank" rel="noopener">浅谈 C 语言中模块化设计的范式</a><br><a href="https://blog.codingnow.com/2010/05/memory_proxy.html" target="_blank" rel="noopener">给你的模块设防</a><br><a href="https://blog.codingnow.com/2010/03/object_oriented_programming_in_c.html" target="_blank" rel="noopener">我所偏爱的 C 语言面向对象编程范式</a><br><a href="https://blog.codingnow.com/2012/01/_oeouoeie.html" target="_blank" rel="noopener">关于分工合作</a><br><a href="https://blog.codingnow.com/2012/01/libuv.html" target="_blank" rel="noopener">libuv 初窥</a><br><a href="https://blog.codingnow.com/2012/02/ring_buffer.html" target="_blank" rel="noopener">Ring Buffer 的应用</a><br><a href="https://blog.codingnow.com/2014/02/select_bug.html" target="_blank" rel="noopener">一起 select 引起的崩溃</a><br><a href="https://blog.codingnow.com/2018/05/ineffective_debugger.html" target="_blank" rel="noopener">断点单步跟踪是一种低效的调试方法</a><br><a href="https://blog.codingnow.com/2019/07/top_programmer.html" target="_blank" rel="noopener">程序员应该怎样提高自己</a><br><a href="https://blog.codingnow.com/2009/01/c_interface.html" target="_blank" rel="noopener">一个 C 接口设计的问题</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/connect-nonb%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/connect-nonb%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">connect_nonb的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-05 20:55:24 / 修改时间：20:59:04" itemprop="dateCreated datePublished" datetime="2020-04-05T20:55:24+08:00">2020-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>linux socket API connect函数，在socket是堵塞模式下，该API是不允许设置超时时间的，一个经常的实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span>	<span class="meta-string">"unp.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">connect_nonb</span><span class="params">(<span class="keyword">int</span> sockfd, <span class="keyword">const</span> SA *saptr, <span class="keyword">socklen_t</span> salen, <span class="keyword">int</span> nsec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>				flags, n, error;</span><br><span class="line">	<span class="keyword">socklen_t</span>		len;</span><br><span class="line">	fd_set			rset, wset;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>	<span class="title">tval</span>;</span></span><br><span class="line"></span><br><span class="line">	flags = Fcntl(sockfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">	Fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);</span><br><span class="line"></span><br><span class="line">	error = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> ( (n = <span class="built_in">connect</span>(sockfd, (struct sockaddr *) saptr, salen)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">if</span> (errno != EINPROGRESS)</span><br><span class="line">			<span class="keyword">return</span>(<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Do whatever we want while the connect is taking place. */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> done;	<span class="comment">/* connect completed immediately */</span></span><br><span class="line"></span><br><span class="line">	FD_ZERO(&amp;rset);</span><br><span class="line">	FD_SET(sockfd, &amp;rset);</span><br><span class="line">	wset = rset;</span><br><span class="line">	tval.tv_sec = nsec;</span><br><span class="line">	tval.tv_usec = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( (n = Select(sockfd+<span class="number">1</span>, &amp;rset, &amp;wset, <span class="literal">NULL</span>,</span><br><span class="line">					 nsec ? &amp;tval : <span class="literal">NULL</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">close</span>(sockfd);		<span class="comment">/* timeout */</span></span><br><span class="line">		errno = ETIMEDOUT;</span><br><span class="line">		<span class="keyword">return</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (FD_ISSET(sockfd, &amp;rset) || FD_ISSET(sockfd, &amp;wset)) &#123;</span><br><span class="line">		len = <span class="keyword">sizeof</span>(error);</span><br><span class="line">		<span class="keyword">if</span> (getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &amp;error, &amp;len) &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span>(<span class="number">-1</span>);			<span class="comment">/* Solaris pending error */</span></span><br><span class="line">	&#125; <span class="keyword">else</span></span><br><span class="line">		err_quit(<span class="string">"select error: sockfd not set"</span>);</span><br><span class="line"></span><br><span class="line">done:</span><br><span class="line">	Fcntl(sockfd, F_SETFL, flags);	<span class="comment">/* restore file status flags */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (error) &#123;</span><br><span class="line">		<span class="built_in">close</span>(sockfd);		<span class="comment">/* just in case */</span></span><br><span class="line">		errno = error;</span><br><span class="line">		<span class="keyword">return</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是Unix-Network-Programming书上给的一个示例程序，但要注意，<strong>实现过程中采用了select函数，所以sockfd不能超过1024，否则会出问题</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E4%B8%A4%E4%B8%AA%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%AD%A6%E4%BC%9Aperl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E4%B8%A4%E4%B8%AA%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%AD%A6%E4%BC%9Aperl/" class="post-title-link" itemprop="url">两个半小时学会perl</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-05 20:30:17 / 修改时间：20:31:35" itemprop="dateCreated datePublished" datetime="2020-04-05T20:30:17+08:00">2020-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>因工作需要用到了perl语言，在有C开发基础的情况下，通过如下教程可以快速的入门</p>
+<p><a href="https://qntm.org/perl_cn" target="_blank" rel="noopener">两个半小时学会Perl</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maple Leaf</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/maple-leaf-0219" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maple-leaf-0219" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:story.my@qq.com" title="E-Mail → mailto:story.my@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple Leaf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="GFE8CrbU9p4SPgaJCBZtEy3P-1knmk1ykePL39vOXZM">
+  <meta name="baidu-site-verification" content="ceFx8mGeWp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://maple-leaf-0219.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="maple-leaf&#39;s blog">
+<meta property="og:url" content="https://maple-leaf-0219.github.io/page/3/index.html">
+<meta property="og:site_name" content="maple-leaf&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Maple Leaf">
+<meta property="article:tag" content="memory cache programmer">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://maple-leaf-0219.github.io/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>maple-leaf's blog - 技术积累</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b231ae106462939150d6386d2cf987b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="maple-leaf's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">maple-leaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">技术积累</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-booklist">
+
+    <a href="/booklist/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>书单</a>
+
+  </li>
+        <li class="menu-item menu-item-life-rules">
+
+    <a href="/life-rules/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>生活原则</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E7%8C%AB%E5%8D%8A%E5%B9%B4%E5%8F%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E7%8C%AB%E5%8D%8A%E5%B9%B4%E5%8F%98%E5%8C%96/" class="post-title-link" itemprop="url">猫半年变化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-23 01:34:21 / 修改时间：01:39:50" itemprop="dateCreated datePublished" datetime="2020-02-23T01:34:21+08:00">2020-02-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>半年前的样子</p>
+<div style="width:70%;margin:auto"><img src="/2020/%E7%8C%AB%E5%8D%8A%E5%B9%B4%E5%8F%98%E5%8C%96/IMG_20190623_234254.jpg" class="" title="半年前的兜兜"></div>
+
+<p>现在的样子</p>
+<div style="width:70%;margin:auto"><img src="/2020/%E7%8C%AB%E5%8D%8A%E5%B9%B4%E5%8F%98%E5%8C%96/IMG_20200218_125354.jpg" class="" title="现在的兜兜"></div>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E5%85%A5%E9%97%A8-%E8%BD%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E5%85%A5%E9%97%A8-%E8%BD%AC/" class="post-title-link" itemprop="url">缓存一致性入门-转</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-23 01:27:00" itemprop="dateCreated datePublished" datetime="2020-02-23T01:27:00+08:00">2020-02-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h1><p><a href="https://www.infoq.cn/article/cache-coherency-primer/" target="_blank" rel="noopener">中文链接</a><br><a href="https://fgiesen.wordpress.com/2014/07/07/cache-coherency/" target="_blank" rel="noopener">英文链接</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/simdjson-%E8%BD%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/simdjson-%E8%BD%AC/" class="post-title-link" itemprop="url">simdjson-转</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-22 11:55:54" itemprop="dateCreated datePublished" datetime="2020-02-22T11:55:54+08:00">2020-02-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://branchfree.org/2019/02/25/paper-parsing-gigabytes-of-json-per-second/" target="_blank" rel="noopener">Paper: Parsing Gigabytes of JSON per Second</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/ZIP%E6%96%87%E4%BB%B6%E7%A0%B4%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/ZIP%E6%96%87%E4%BB%B6%E7%A0%B4%E8%A7%A3/" class="post-title-link" itemprop="url">ZIP文件破解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-22 11:55:29" itemprop="dateCreated datePublished" datetime="2020-02-22T11:55:29+08:00">2020-02-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ZIP文件破解"><a href="#ZIP文件破解" class="headerlink" title="ZIP文件破解"></a>ZIP文件破解</h1><p><strong>限制</strong>：你拥有加密压缩包里的任意一个文件</p>
+<p><strong>原理</strong>：你输入的密码，首先被转换成3个32bit的key，所以可能的key的组合是2^96，这是个天文数字，如果用暴力穷举的方式是不太可能的，除非你的密码比较短或者有个厉害的字典。压缩软件用这3个key加密所有包中的文件，这也就是说，所有文件的key是一样的，如果我们能够找到这个key，就能解开所有的文件。如果我们找到加密压缩包中的任意一个文件，这个文件和压缩包里的文件是一样的，我们把这个文件用同样的压缩软件同样的压缩方式进行无密码的压缩，得到的文件就是我们的Known plaintext。用这个无密码的压缩包和有密码的压缩包进行比较，分析两个包中相同的那个文件，抽取出两个文件的不同点，就是那3个key了，如此就能得到key。两个相同文件在压缩包中的字节数应该相差12个byte，就是那3个key了。虽然我们还是无法通过这个key还原出密码，但是我们已经可以用这个key解开所有的文件，所以已经满足我的要求了，而且要以前的密码也没什么用呀，我只要文件</p>
+<p><strong>软件</strong>：Advanced ZIP Password Recovery</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%A6%82%E4%BD%95%E5%AE%8C%E5%96%84%E8%87%AA%E5%B7%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84-%E8%BD%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%A6%82%E4%BD%95%E5%AE%8C%E5%96%84%E8%87%AA%E5%B7%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84-%E8%BD%AC/" class="post-title-link" itemprop="url">如何完善自己的知识结构-转</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-21 12:18:11" itemprop="dateCreated datePublished" datetime="2020-02-21T12:18:11+08:00">2020-02-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="转载说明"><a href="#转载说明" class="headerlink" title="转载说明"></a>转载说明</h1><p>原文连接：<a href="https://program-think.blogspot.com/2013/09/knowledge-structure.html" target="_blank" rel="noopener">如何完善自己的知识结构</a>  </p>
+<ul>
+<li>因某些原因，原文需要科学上网才能访问，转载是觉得该篇文章大部分对自己很有帮助，但不代表同意作者观点。  </li>
+<li>因某些原因，文章部分内容有删减。</li>
+</ul>
+<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>最近几年，陆续有读者来信跟俺交流“知识管理”这个话题。也有读者在博客留言，建议俺专门为此话题写一个系列。不过捏，因为手头还有 N 多系列没有收尾，再开新的系列要激起公愤了 :) 所以，今天只单独写一篇，谈谈俺对知识结构的看法。  </p>
+<p>其实捏，这是一个很大的话题，想用一篇博文完全说清楚，不太现实。俺只从三个层面入手，说说个人的看法，仅供列位看官参考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/%E5%A6%82%E4%BD%95%E5%AE%8C%E5%96%84%E8%87%AA%E5%B7%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84-%E8%BD%AC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E6%AF%8F%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%85%E5%AD%98%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%AF%8F%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%85%E5%AD%98%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">每个程序员都应该知道的内存知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-21 00:40:22" itemprop="dateCreated datePublished" datetime="2020-02-21T00:40:22+08:00">2020-02-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这是一个系列文章，本页面只负责归档相关材料。<br>注：中文版只翻译了一部分。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/%E6%AF%8F%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84%E5%86%85%E5%AD%98%E7%9F%A5%E8%AF%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/strict-alias%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/strict-alias%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">strict alias理解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-20 18:43:48" itemprop="dateCreated datePublished" datetime="2020-02-20T18:43:48+08:00">2020-02-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h1><p>别名：多个变量指向同一块内存区域时，这些变量互为别名</p>
+<p>目前CPU都是多核，现代的指令体系都是并行、乱序执行。编译器为了充分利用硬件资源提升程序性能，编译时要分析指令、数据间的依赖关系，没有依赖关系的指令、数据访问可以并发乱序进行。<br>在分析依赖关系时别名就是一个绕不开的问题，究竟谁是谁的别名，如果编译器不清楚，那为了保证编译出的程序的正确性，只能做最坏打算，不确定的地方假定都是别名。<br>后来编译器定义了一些规则，符合什么条件的变量才可能是别名，不符合的绝对不会是别名。通过编译选项 strict-aliasing可以通知编译器，我的代码严格遵守这些规则，放心大胆的优化。<br>通过编译选项no-strict-aliasing可以通知编译器，我代码中有各种风骚的类型转换，你优化时悠着点，做好最坏的打算。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/strict-alias%E7%90%86%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/LTE%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/LTE%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">LTE资料汇总</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-20 14:37:57" itemprop="dateCreated datePublished" datetime="2020-02-20T14:37:57+08:00">2020-02-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><a href="http://www.sharetechnote.com/html/Handbook_LTE.html" target="_blank" rel="noopener">http://www.sharetechnote.com/html/Handbook_LTE.html</a></li>
+<li><a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=5905" target="_blank" rel="noopener">LTE Identification I: UE and ME Identifiers</a></li>
+<li><a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=5906" target="_blank" rel="noopener">LTE Identification II: NE and Location Identifiers</a></li>
+<li><a href="https://www.netmanias.com/en/post/techdocs/5907/lte/lte-identification-iii-eps-session-bearer-identifiers" target="_blank" rel="noopener">LTE Identification III: EPS Session/Bearer Identifiers</a></li>
+<li><a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=5904" target="_blank" rel="noopener">LTE Network Architecture: Basic</a></li>
+<li><a href="https://www.netmanias.com/en/post/blog/5927/lte/lte-gtp-tunnel-1-today-we-will-talk-about-gtp-tunnels-used-in-the-lte-network" target="_blank" rel="noopener">LTE GTP Tunnel 1</a></li>
+<li><a href="https://www.netmanias.com/en/post/blog/5928/lte/lte-gtp-tunnel-2-today-we-will-find-more-about-lte-gtp-tunnels-that-we-have-discussed-previously" target="_blank" rel="noopener">LTE GTP Tunnel 2</a></li>
+<li><a href="http://teletopix.org/4g-lte/what-is-eps-bearer-in-lte/" target="_blank" rel="noopener">What is EPS Bearer in LTE</a></li>
+<li><a href="http://hongjoo71-e.blogspot.com/2015/06/volte-gtp-teid_17.html" target="_blank" rel="noopener">VoLTE: Understanding of GTP TEID to use in LTE trouble shooting</a></li>
+<li><a href="http://www.lteandbeyond.com/2012/01/interfaces-and-their-protocol-stacks.html" target="_blank" rel="noopener">Interfaces and their protocol stacks</a></li>
+<li><a href="https://kb.zyxel.com/KB/searchArticle!gwsViewDetail.action?articleOid=014511&lang=EN" target="_blank" rel="noopener">LAC TAC区别</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E6%83%B3%E7%BB%99%E5%AE%B6%E9%87%8C%E7%BD%AE%E5%8A%9E%E4%B8%80%E4%B8%AA%E4%B9%A6%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%83%B3%E7%BB%99%E5%AE%B6%E9%87%8C%E7%BD%AE%E5%8A%9E%E4%B8%80%E4%B8%AA%E4%B9%A6%E6%9E%B6/" class="post-title-link" itemprop="url">想给家里置办一个书架</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-20 02:06:38 / 修改时间：02:24:26" itemprop="dateCreated datePublished" datetime="2020-02-20T02:06:38+08:00">2020-02-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="/2020/%E6%83%B3%E7%BB%99%E5%AE%B6%E9%87%8C%E7%BD%AE%E5%8A%9E%E4%B8%80%E4%B8%AA%E4%B9%A6%E6%9E%B6/books-1614215_1920.jpg" class="" title="书">
+
+<blockquote><p>在一个理想状态下，一户人家应该有自己的藏书。父母一辈完成了教育和自我教育，在书山文海里遨游过，凭借他们的智慧开辟了一条小径。然后，他们把这条小径作为家传，教给自己的孩子。其中，包括一些必读书单，一些书籍的阶梯划分，以及一个现代人应该有的知识范围和对应的书目。这样，无论孩子要功利性读书，还是漫游式读书，他们手里终归是有个罗盘，想功利才功利得起来，想漫游才找得到边界。三五代人那么传下去，这户人家就有了读书的大本营，在大本营门口插满路标，指示后人应该前去哪一个合适自己的方向。 –源自网络  </p>
+</blockquote>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maple Leaf</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/maple-leaf-0219" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maple-leaf-0219" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:story.my@qq.com" title="E-Mail → mailto:story.my@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple Leaf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>

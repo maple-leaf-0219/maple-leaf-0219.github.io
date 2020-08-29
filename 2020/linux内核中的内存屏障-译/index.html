@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="GFE8CrbU9p4SPgaJCBZtEy3P-1knmk1ykePL39vOXZM">
+  <meta name="baidu-site-verification" content="ceFx8mGeWp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://maple-leaf-0219.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="译者注原文 barriers：屏障， 本文档中指内存屏障memory barriers： 内存屏障 指令重排序基础不牢靠的程序员有一个错觉， 指令执行的顺序就是我所理解的代码编写的顺序。在目前多核、多发射、乱序执行的今天，编译器、CPU都可以根据需要调整指令执行顺序，指令实际的执行顺序和代码的书写顺序不一定一致。   可见性在内存-多级缓存的今天，一定存在一个层次，在这个层次下，数据的变化是同步的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux内核的内存屏障-译">
+<meta property="og:url" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/index.html">
+<meta property="og:site_name" content="maple-leaf&#39;s blog">
+<meta property="og:description" content="译者注原文 barriers：屏障， 本文档中指内存屏障memory barriers： 内存屏障 指令重排序基础不牢靠的程序员有一个错觉， 指令执行的顺序就是我所理解的代码编写的顺序。在目前多核、多发射、乱序执行的今天，编译器、CPU都可以根据需要调整指令执行顺序，指令实际的执行顺序和代码的书写顺序不一定一致。   可见性在内存-多级缓存的今天，一定存在一个层次，在这个层次下，数据的变化是同步的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E7%B3%BB%E7%BB%9F%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE1.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE2.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE3.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE4.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE5.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE6.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE7.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE8.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE9.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE10.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE11.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE12.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE13.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE14.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE15.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE16.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE17.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE18.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE19.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE20.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE21.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE22.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE23.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE24.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE25.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE26.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE27.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE28.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE29.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE30.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE31.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE32.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE33.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE34.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE35.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE36.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE37.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE38.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE39.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE40.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE41.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE42.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE43.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE44.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE45.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE46.png">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE47.png">
+<meta property="article:published_time" content="2020-02-29T05:03:58.000Z">
+<meta property="article:modified_time" content="2020-02-29T05:03:58.000Z">
+<meta property="article:author" content="Maple Leaf">
+<meta property="article:tag" content="memory-cache">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E7%B3%BB%E7%BB%9F%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B.png">
+
+<link rel="canonical" href="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>linux内核的内存屏障-译 | maple-leaf's blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b231ae106462939150d6386d2cf987b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="maple-leaf's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">maple-leaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">技术积累</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-booklist">
+
+    <a href="/booklist/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>书单</a>
+
+  </li>
+        <li class="menu-item menu-item-life-rules">
+
+    <a href="/life-rules/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>生活原则</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          linux内核的内存屏障-译
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-29 13:03:58" itemprop="dateCreated datePublished" datetime="2020-02-29T13:03:58+08:00">2020-02-29</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="译者注"><a href="#译者注" class="headerlink" title="译者注"></a>译者注</h1><p><a href="https://www.kernel.org/doc/Documentation/memory-barriers.txt" target="_blank" rel="noopener">原文</a></p>
+<p>barriers：屏障， 本文档中指内存屏障<br>memory barriers： 内存屏障</p>
+<h2 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序"></a>指令重排序</h2><p>基础不牢靠的程序员有一个错觉， 指令执行的顺序就是我所理解的代码编写的顺序。<br>在目前多核、多发射、乱序执行的今天，编译器、CPU都可以根据需要调整指令执行顺序，<strong>指令实际的执行顺序和代码的书写顺序不一定一致</strong>。  </p>
+<h2 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h2><p>在内存-多级缓存的今天，一定存在一个层次，在这个层次下，数据的变化是同步的，即所有CPU看到的都是相同的状态，任意一个CPU的修改其它CPU都能看到。在这个层次只上，每个CPU有自己独享的缓存，这些缓存对其它CPU是不可见的。内存屏障的目的是通知CPU让其将自己的缓存和共享的缓存/内存做一次同步，以便其它CPU可以感知到这些变化。</p>
+<p><strong>注</strong>：内存屏障控制是本CPU独享缓存和共享缓存/内存的同步工作，而不关心和其它的CPU是否同步。如果其它CPU也想和共享内存同步下，需要自己来触发内存屏障。</p>
+<a id="more"></a>
+<p>如下开始是译文</p>
+<h1 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h1><p>本篇文档不是技术规格说明文档；它有意（为了文档简洁）或者无意（人的因素）的不完整。本篇文档希望用来指导如何使用linux提供的各种内存屏障，如果有任何疑问请提问。一些疑问可以通过提供以前编写的内存一致性模型及其相关的文档（位于tools/memory-model）来解决。然而，即使是这个内存模型也应该只当作这个模型维护人员的集体观点而不是当作永远正确的神谕。</p>
+<p>再次强调下，本篇文档不是linux对硬件预期的规格说明书。</p>
+<p>本文档有两个目的：  </p>
+<ol>
+<li>指出对任何屏障都适用的最小功能集合  </li>
+<li>针对目前可用的屏障提供一个使用指导</li>
+</ol>
+<p>注意任何一个体系结构对任何一种屏障都可以提供超过最小功能集合的功能，但是如果这个体系结构提供的功能少于最小功能集合，这个体系结构是不正确的。</p>
+<p>也注意，针对一个特定的体系结构，内存屏障有可能是一个空操作，因为那个体系结构已经显示的处理了，所以不再需要做任何操作。</p>
+<h1 id="抽象后的内存访问模型"><a href="#抽象后的内存访问模型" class="headerlink" title="抽象后的内存访问模型"></a>抽象后的内存访问模型</h1><p>考虑如下所示的系统的抽象模型：  </p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E7%B3%BB%E7%BB%9F%E6%8A%BD%E8%B1%A1%E6%A8%A1%E5%9E%8B.png" class="" title="系统抽象模型">
+
+<p>每个CPU执行一个会触发内存访问的程序。在抽象的CPU层面，内存操作顺序是非常宽松的，CPU在保证程序因果关系的前提下，可以自由决定内存操作的顺序。类似的，编译器在保证不影响程序因果关系的前提下，也可以自由的重新编排指令。</p>
+<p>上面的图表中，一个CPU触发的内存操作产生的影响可以通过接口（点状虚线表示）被系统的其余部分感知到。</p>
+<p>举例如下，考虑如下事件序列：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE1.png" class="" title="图1">
+
+<p>内存系统（点状竖直虚线中间那部分 Memory）看到的上述内存访问，理论上有24种不同的情况，如下：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE2.png" class="" title="图2">
+
+<p>因此，会得出四种不同的结果：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE3.png" class="" title="图3">
+
+<p>此外，一个CPU向内存系统提交的STORE操作不一定被同一时间另一个CPU向内存系统提交的LOAD操作感知到。</p>
+<p>再举一个例子，考虑如下事件序列：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE4.png" class="" title="图4">
+
+<p>此处有一个显然的数据依赖关系，LOAD到D中的数据取决于CPU2上P中的地址。当上述序列执行完后，有如下三种情况：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE5.png" class="" title="图5">
+
+<p>需要注意的是，CPU2重来不会尝试把C LOAD到D中，因为在执行D = *Q之前一定会先执行 Q = P。</p>
+<h1 id="设备操作"><a href="#设备操作" class="headerlink" title="设备操作"></a>设备操作</h1><p>一些设备通过一组内存地址来表示它们的控制接口，但是这组内存地址所对应的控制寄存器的访问顺序是很重要的。比如，设想一个拥有一组内部寄存器的以太网卡，这组寄存器通过<strong>地址端口寄存器A</strong>和<strong>数据端口寄存器B</strong>来访问。<br>想访问5号内部寄存器，代码可能如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*A &#x3D; 5  </span><br><span class="line"> x &#x3D; *D</span><br></pre></td></tr></table></figure>
+
+<p>但是上述代码可以对应下面两个序列的任何一个：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">STORE *A &#x3D; 5, x &#x3D; LOAD *D  &#x2F;&#x2F;序列1  </span><br><span class="line">x &#x3D; LOAD *D, STORE *A &#x3D; 5  &#x2F;&#x2F;序列2  </span><br></pre></td></tr></table></figure>
+
+<p>序列2肯定会导致故障，因为是先读的值然后才设置。</p>
+<h1 id="保证"><a href="#保证" class="headerlink" title="保证"></a>保证</h1><p>对CPU有一些最低限度的保证：</p>
+<ul>
+<li><p>从特定CPU自己的视角来看，依赖的内存访问必须按顺序触发，这意味着：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Q &#x3D; READ_ONCE(P); D &#x3D; READ_ONCE(*Q); </span><br></pre></td></tr></table></figure>
+
+<p>  CPU会按照如下顺序触发内存操作：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Q &#x3D; LOAD P, D &#x3D; LOAD *Q</span><br></pre></td></tr></table></figure>
+
+<p>  并且总是这个顺序。然而，在DEC Alpha上， READ_ONCE() 经常触发一个内存屏障指令，所以在DEC Alpha CPU上，内存操作序列如下：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Q &#x3D; LOAD P, MEMORY_BARRIER, D &#x3D; LOAD *Q, MEMORY_BARRIER</span><br></pre></td></tr></table></figure>
+
+<p>  无论是在DEC Alpha还是其它平台， READ_ONCE()都保证避免编译器导致的不和。 </p>
+</li>
+<li><p>从特定CPU自己的视角来看，重叠的LOAD和STORE操作必须是按顺序触发，这意味着：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a &#x3D; READ_ONCE(*X); WRITE_ONCE(*X, b);</span><br></pre></td></tr></table></figure>
+
+<p>  CPU比如按如下序列触发内存操作：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a &#x3D; LOAD *X, STORE *X &#x3D; b</span><br></pre></td></tr></table></figure>
+
+<p>  并且：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WRITE_ONCE(*X, c); d &#x3D; READ_ONCE(*X)</span><br></pre></td></tr></table></figure>
+
+<p>  CPU触发的内存序列也只能如下：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STORE *X &#x3D; c, d &#x3D; LOAD *X</span><br></pre></td></tr></table></figure>
+
+<p>  (如果LOAD、STORE操作的内存区域是重叠的则称之为 LOAD STORE重叠)。</p>
+</li>
+</ul>
+<p>特殊注意情况</p>
+<ul>
+<li><p>对没有采用READ_ONCE()、WRITE_ONCE()保护的内存访问不能假定编译器按你期望的方式工作。没有采用保护，编译器有权做各种创造性的转换，这会在<strong>编译屏障</strong>章节说明</p>
+</li>
+<li><p>不能假定独立的LOAD、SOTRE操作会按程序给出的顺序触发。这意味着如下命令</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; *A; Y &#x3D; *B; *D &#x3D; Z;</span><br></pre></td></tr></table></figure>
+<p>  对应的内存访问序列是如下几种可能的任意一种：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; LOAD *A,  Y &#x3D; LOAD *B,  STORE *D &#x3D; Z</span><br><span class="line">X &#x3D; LOAD *A,  STORE *D &#x3D; Z, Y &#x3D; LOAD *B</span><br><span class="line">Y &#x3D; LOAD *B,  X &#x3D; LOAD *A,  STORE *D &#x3D; Z</span><br><span class="line">Y &#x3D; LOAD *B,  STORE *D &#x3D; Z, X &#x3D; LOAD *A</span><br><span class="line">STORE *D &#x3D; Z, X &#x3D; LOAD *A,  Y &#x3D; LOAD *B</span><br><span class="line">STORE *D &#x3D; Z, Y &#x3D; LOAD *B,  X &#x3D; LOAD *A</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>必须假定重叠的内存访问可以被合并或者丢弃，这意味着：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; *A; Y &#x3D; *(A + 4);</span><br></pre></td></tr></table></figure>
+
+<p>  我们可以得到下述序列中的任何一个</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X &#x3D; LOAD *A; Y &#x3D; LOAD *(A + 4);</span><br><span class="line">Y &#x3D; LOAD *(A + 4); X &#x3D; LOAD *A;</span><br><span class="line">&#123;X, Y&#125; &#x3D; LOAD &#123;*A, *(A + 4) &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>  同样道理，对于</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*A &#x3D; X; *(A + 4) &#x3D; Y;</span><br></pre></td></tr></table></figure>
+
+<p>  我们可以得到下述序列中的任何一个</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STORE *A &#x3D; X; STORE *(A + 4) &#x3D; Y;</span><br><span class="line">STORE *(A + 4) &#x3D; Y; STORE *A &#x3D; X;</span><br><span class="line">STORE &#123;*A, *(A + 4) &#125; &#x3D; &#123;X, Y&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>  也会有一些反常情况存在，如下：</p>
+</li>
+<li><p>这些保证不作用于位域，因为针对位操作的代码，编译器生成的代码通常都不是原子操作。不要尝试使用位操作来同步并行的算法。</p>
+</li>
+<li><p>即使有些情况采用了锁对位域进行保护，也要注意必须使用一把锁保护位域中的所有位。如果位域中的两个位使用两个不同的锁保护，编译器生成的代码依然会导致更新一个位的值时破坏相邻位的数据</p>
+</li>
+<li><p>这些保证只作用于以合适方式对齐的、合适大小的标量变量。<strong>合适大小</strong>目前指char/short/int/long，<strong>合适对齐</strong>指自然对齐，即对char类型无约束，short要两字节对齐,int要4字节对齐, 32位平台的long要4字节对齐,64平台的long要8字节对齐。</p>
+</li>
+</ul>
+<h1 id="什么是内存屏障"><a href="#什么是内存屏障" class="headerlink" title="什么是内存屏障"></a>什么是内存屏障</h1><p>从上面可以看出，为了保证效率，独立的内存操作会被随机的执行，当涉及到CPU和CPU、CPU和IO之间的交互时这会是一个问题。所以需要一种介入的方式来通知编译器和CPU，对内存操作的顺序做一个约束。</p>
+<p>内存屏障就是这样的一个介入方式。它在屏障的两边针对内存操作强加了一个可以感知的局部顺序要求。</p>
+<p>这种干预是很重要的，因为系统中的CPU和其它设备会使用很多技巧来提升性能，这些技巧包括内存操作的乱序执行、延期执行和合并执行；预加载；分支预测和各种类型的缓存。内存屏障用来重载或者抑制这些技巧，以便可以稳健的控制多个CPU和设备之间的相互作用。</p>
+<h2 id="内存屏障的类型"><a href="#内存屏障的类型" class="headerlink" title="内存屏障的类型"></a>内存屏障的类型</h2><p>内存屏障有四种基本类型</p>
+<ol>
+<li><p>写内存屏障（Write(or store) memory barriers）<br> 写内存屏障保证屏障之前指定的STORE操作都出现在屏障之后指定的STORE操作之前。</p>
+<p> 写内存屏障只作用于STORE操作；并不要求对LOAD操作有任何作用</p>
+<p> 一个CPU可以被看作随着时间推移会向内存系统提交一系列的内存STORE操作。写屏障之前的所有STORE操作一定在写屏障之后的所有STORE操作之前。<br> <strong>注</strong>：写屏障一般和读/写的数据依赖屏障成对使用，见 “SMB屏障配对”章节。</p>
+</li>
+<li><p>数据依赖屏障（Data dependency barriers）<br> 数据依赖屏障是读内存屏障的弱化版本。当有两个LOAD操作，如果第二个LOAD操作依赖第一个LOAD操作的结果（比如第一个LOAD获取地址，第二个LOAD依据该地址获取该地址的值），此时需要数据依赖屏障来保证第二个LOAD的目标已经被第一个LOAD的获取的值更新过了。</p>
+<p> 数据依赖屏障只作用于<strong>相互作用</strong>的LOAD之间。并不要求对STORE、独立的LOAD、重叠的LOAD有任何影响。</p>
+<p> 正如在1中提到的，系统中的其它CPU可以被看作向内存系统提交了一系列的STORE操作，这些操作随后被该CPU感知到。由该CPU发出的数据依赖屏障可以确保任何在该屏障之前的LOAD指令，如果该LOAD指令的目标被另一个CPU的STORE指令修改，在屏障执行完成之后，所有在该LOAD指令对应的STORE指令之前的STORE指令的更新都会被所有在数据依赖屏障之后的LOAD指令感知。（原话： A data dependency barrier issued by the CPU under consideration guarantees that for any load preceding it, if that load touches one of a sequence of stores from another CPU, then by the time the barrier completes, the effects of all the stores prior to that touched by the load will be perceptible to any loads issued after the data dependency barrier.）</p>
+<p> 参见 “内存屏障序列例子”章节查看顺序约束。<br> <strong>注1</strong>：第一个LOAD必须有一个数据依赖，而不能是控制依赖。如果第二个LOAD的地址依赖第一个LOAD，但是这个依赖是通过条件判断而不是真正的地址本身，那么就是一个控制依赖，此时需要一个完整的读屏障或者更强的屏障。查看”控制依赖”章节获取更多信息。<br> <strong>注2</strong>：数据依赖屏障一般和写内存屏障配对使用，查看”SMB屏障配对”章节。</p>
+</li>
+<li><p>读内存屏障（Read (or load) memory barriers）<br> 读内存屏障是数据依赖屏障加上如下一个保证：屏障之前的所有LOAD操作出现在屏障之后的所有LOAD操作之前。</p>
+<p> 读内存屏障只作用于LOAD，并不要求对STORE有什么影响。</p>
+<p> 读内存屏障暗含数据依赖屏障，所以可以替代数据依赖屏障。</p>
+<p> <strong>注</strong>：读内存屏障经常和写内存屏障配对使用，查看”SMB屏障配对”章节。</p>
+</li>
+<li><p>通用内内存屏障（General memory barriers）<br> 通用内存屏障保证：该屏障之前的LOAD和STORE操作，看起来一定在屏障之后的LOAD和STORE操作之前执行。</p>
+<p> 通用内存屏障作用于LOAD和STORE。</p>
+<p> 通用内存屏障暗含读内存屏障和写内存屏障，所以可以替代读/写内存屏障</p>
+</li>
+</ol>
+<p>内存屏障还有如下隐含的变种：</p>
+<ol start="5">
+<li><p>ACQUIRE 操作<br> 这类似一个单向渗透的屏障。它保证：ACQUIRE操作之后的所有内存操作一定出现在ACQUIRE操作之后。ACQUIRE操作包括LOCK操作和smp_load_acquire、smp_cond_load_acquire操作</p>
+<p> ACQUIRE操作之前的内存操作也可以在ACQUIRE之后完成。</p>
+<p> ACQUIRE操作经常和 RELEASE操作成对出现</p>
+</li>
+<li><p>RELEASE 操作<br> 这类似一个单向渗透的屏障。它保证：RELEASE操作之前的内存操作一定出现RELEASE操作之前。RELEASE操作包括UNLOCK和smp_store_release。</p>
+<p> RELEASE操作之后的内存操作也可以在RELEASE操作之前出现。</p>
+<p> 使用ACQUIRE和RELEASE的目的通常是为了避免使用各种内存屏障。此外，RELEASE + ACQUIRE对不等同于完整的内存屏障。然而，在一个给定的变量上进行ACQUIRE操作后，在相同变量上之前进行的RELEASE操作之前的内存访问均可见。换句话说，在一个给定变量的临界区，同一个变量先前临界区的所有操作均已完成。（The use of ACQUIRE and RELEASE operations generally precludes the need for other sorts of memory barrier.  In addition, a RELEASE+ACQUIRE pair is -not- guaranteed to act as a full memory barrier.  However, after an ACQUIRE on a given variable, all memory accesses preceding any prior RELEASE on that same variable are guaranteed to be visible.  In other words, within a given variable’s critical section, all accesses of all previous critical sections for that variable are guaranteed to have completed.）</p>
+<p> 这意味着ACQUIRE类似于一个最小的acquire操作，RELEASE类似于一个最小的release操作。</p>
+</li>
+</ol>
+<p>A subset of the atomic operations described in atomic_t.txt have ACQUIRE and<br>RELEASE variants in addition to fully-ordered and relaxed (no barrier<br>semantics) definitions.  For compound atomics performing both a load and a<br>store, ACQUIRE semantics apply only to the load and RELEASE semantics apply<br>only to the store portion of the operation.【不知道如何翻译】</p>
+<p>只有当两个CPU之间或者CPU和设备之间有相互作用时才需要内存屏障。如果可以确保某段代码中不会有任何这种交互，那么这段代码就不需要内存屏障。</p>
+<p>需要注意这些是最低的保证。不同体系结构可能给更多的保证，但是不应该依赖多出的那些写代码。</p>
+<h2 id="内存屏障不保证什么"><a href="#内存屏障不保证什么" class="headerlink" title="内存屏障不保证什么"></a>内存屏障不保证什么</h2><p>有一些事情是Linux内核中的内存屏障不保证的：</p>
+<ul>
+<li>不能保证，任何在内存屏障之前的内存访问操作能在内存屏障指令执行完成时也执行完成；内存屏障相当于在CPU的访问队列中划了一条界线，相应类型的指令不能跨过该界线</li>
+<li>不能保证，一个CPU发出的内存屏障能对另一个CPU或该系统中的其它硬件有任何直接影响。只会间接影响到第二个CPU看第一个CPU的存取操作发生的顺序，但请看下一条：</li>
+<li>不能保证，一个CPU看到第二个CPU存取操作的结果的顺序，即使第二个CPU使用了内存屏障，除非第一个CPU也使用与第二个CPU相匹配的内存屏障</li>
+<li>不能保证，一些CPU相关的硬件不会对内存访问重排序。 CPU缓存的一致性机制会在多个CPU之间传播内存屏障的间接影响，但可能不是有序的</li>
+</ul>
+<h2 id="数据依赖屏障（历史）"><a href="#数据依赖屏障（历史）" class="headerlink" title="数据依赖屏障（历史）"></a>数据依赖屏障（历史）</h2><p>从linux内核4.15版本开始，smp_read_barrier_depends()添加到了READ_ONCE()中，这意味着只有涉及DEC Alpha 体系结构特定的代码和READ_ONCE()实现的人才需要关注本章节。对这些需要的人，或者对这段历史感兴趣的人，本章节讲讲数据依赖屏障的故事。</p>
+<p>需要使用数据依赖屏障的情况有点微妙，也经常不那么明显。为了解释，考虑如下事件序列：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE6.png" class="" title="图6">
+
+<p>此处有一个明显的数据依赖，处理结束后，Q只可能是&amp;A 或 &amp;B，同时：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE7.png" class="" title="图7">
+
+<p>但是！！！CPU2可能先看到P更新，然后才看到B更新，这会导致如下情形：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE8.png" class="" title="图8"> 
+
+<p>这可能看起来像是一致性或因果关系维护失败，但其实不是，这是在某些CPU上可以真实看到的情况（比如DEC Alpha）。</p>
+<p>为了处理这种情况，必须在地址LOAD和数据LOAD之前插入数据依赖屏障：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE9.png" class="" title="图9"> 
+
+<p>这强制只能出现上述的两种情况，而不会出现第三种情况。</p>
+<p><strong>注意</strong>：这种极其有违直觉的场景，在有多个独立缓存（split caches）的机器上很容易出现，比如：一个cache bank处理偶数编号的缓存行，另外一个cache bank处理奇数编号的缓存行。指针P可能存储在奇数编号的缓存行，变量B可能存储在偶数编号的缓存行中。然后，如果在读取CPU缓存的时候，偶数的bank非常繁忙，而奇数bank处于闲置状态，就会出现指针P（&amp;B）是新值，但变量B（2）是旧值的情况。</p>
+<p>不需要通过数据依赖屏障来对写依赖的指令进行排序，因为linux内核支持的CPU在下面三个条件不具备时不会真正的写。</p>
+<ol>
+<li>确实需要这个写操作  </li>
+<li>知道了要写的位置  </li>
+<li>知道了要写的值<br>但请仔细阅读“控制依赖”章节和Documentation/RCU/rcu_dereference.txt文档：编译器可以以多种创造性的方式破坏依赖。</li>
+</ol>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE10.png" class="" title="图10">
+
+<p>因此，在Q = READ_ONCE(P)和WRITE_ONCE(*Q, 5)之前不需要插入数据依赖屏障。换句话说，即使没有数据依赖屏障，也不会出现如下结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(Q &#x3D;&#x3D; &amp;B) &amp;&amp; (B &#x3D;&#x3D; 4)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是这些情形很少出现。毕竟，依赖关系排序的全部意义在于防止数据结构的写操作，以及与这些写操作相关的昂贵缓存丢失。这种情形可以用来记录罕见的错误情况，同时cpu自然产生的顺序可以防止这些记录丢失。</p>
+<p>同时也要注意，通过数据依赖提供的顺序只对包含该数据依赖屏障的CPU有用。查阅“Multicopy原子性”章节获取更多信息。</p>
+<p>数据依赖屏障对RCU系统特别重要，例子可以参见See rcu_assign_pointer() and rcu_dereference() in<br>include/linux/rcupdate.h。这个函数允许RCU的指针被替换为一个新的值，而这个新的值还没有完全的初始化。</p>
+<p>更多详细的例子参见”高速缓存一致性”小节。</p>
+<h2 id="控制依赖"><a href="#控制依赖" class="headerlink" title="控制依赖"></a>控制依赖</h2><p>控制依赖有点狡猾因为当前的编译器不理解它。本章节的目的就是避免编译器的无知而破坏你的代码。</p>
+<p>一个LOAD-LOAD控制依赖需要一个完整的读内存屏障，而不是一个简单的数据依赖屏障就能保证工作正常的。考虑如下代码：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE11.png" class="" title="图11">  
+
+<p>此处的数据依赖屏障不会起到预期的效果，因为此处没有真正的数据依赖。此处是因CPU提前预测结果导致IF短路引起的控制依赖，这种情况其它CPU可能看到LOAD b发生在LOAD a之前。在这种情况下，真正需要的是下面所示：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE12.png" class="" title="图12"> 
+
+<p>然而，STORE不会因预测而执行（预读不会有问题，预写会导致逻辑问题）。意思是说对于LOAD-STORE控制依赖，顺序是固定的，如下面例子所示：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE13.png" class="" title="图13"> 
+
+<p>控制依赖经常和其它类型的屏障成对使用。也就是说，请注意上文中的READ_ONCE()和WRITE_ONCE()均不是可选的！没有READ_ONCE(),编译器可能将LOAD a和其它地方的LOAD a合并。没有WRITE_ONCE()，编译器可能将STORE b和其它地方的STORE b合并。任意一种合并都会导致违反直觉的顺序。</p>
+<p>更加糟糕的是，如果编译器可以证明变量’a’的值肯定是非0，那么编译器可以合法的消除IF语句，将上面的例子优化成下面的样子：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE14.png" class="" title="图14"> 
+
+<p>所以不要去掉READ_ONCE()。</p>
+<p>在if多个分支具有相同的STORE操作时，很容易忍不住添加一些强制顺序，比如下面的例子：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE15.png" class="" title="图15"> 
+
+<p>很不幸，当前的编译器在高优化等级的情况下，会将上面代码转换为如下代码：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE16.png" class="" title="图16">
+
+<p>从代码上，看不出LOAD a和STORE b之间有关联，所以CPU有权重新进行排序。这个条件是绝对需要的，所以无论采用什么优化选项，在最终的汇编代码中也会体现出这个条件。因此，如果你需要控制顺序，你需要显示的使用内存屏障，比如使用smp_store_release():</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE17.png" class="" title="图17">
+
+<p>相反，没有显式的内存屏障，IF语句的两个分支控制顺序又想保证，只能STORE不同的值，如下：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE18.png" class="" title="图18">
+
+<p>The initial READ_ONCE() is still required to prevent the compiler from<br>proving the value of ‘a’.</p>
+<p>另外，你需要注意局部变量q的相关操作，否则编译器可能推测q的值导致再次去掉条件语句，例如：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE19.png" class="" title="图19">
+
+<p>如果MAX值为1，然后编译器知道q%MAX肯定是0.在这种情况下编译器有权将上面的代码转换成下面的形式：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE20.png" class="" title="图20">
+
+<p>经过上述转换，CPU也不用再遵守LOAD a和STORE b之间的先后顺序。此时可能禁不住诱惑，会在二者之间添加一个内存屏障，然而这不会器作用。条件已经没有了，内存屏障不会将条件再带回来。因此，如果你依赖这个顺序，你需要确保MAX大于1，代码可能如下：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE21.png" class="" title="图21">
+
+<p>请再次注意，两个分支下STORE b的值是不同的。如果值相同，正如前文所说，编译器会将STORE b这个操作放在条件之外。</p>
+<p>你也必须很小心的不要依赖太多的布尔短路计算。考虑如下代码：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE22.png" class="" title="图22">
+
+<p>if条件永远成立，编译器将上述代码转换为下面形式：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE23.png" class="" title="图23">
+
+<p>上面的例子强调了必须保证编译器不能推测你的代码。更概括的说，尽管READ_ONCE()强制编译器针对一个LOAD操作一定生成代码，但也不能强制编译器去使用这个结果。</p>
+<p>此外，控制依赖只作用于if语句的then从句和else从句。典型的，它不会作用于如下的声明：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE24.png" class="" title="图24">
+
+<p>人们很容易认为这段代码保证了访问顺序因为编译器不能对volatile 访问进行重排序也不能对条件中的STORE b进行重排序。不幸的是，编译器可以将上面代码转为如下伪代码所表示的意思：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE25.png" class="" title="图25">
+
+<p>对于一个弱顺序的CPU来说，LOAD a和STORE c之间没有任何的依赖信息。控制依赖只作用于成对的cmov和依赖该指令的store上。简而言之，控制依赖只作用于IF语句的then从句和else从句中的STORE操作，不作用于IF语句之后的语句。</p>
+<p>同时注意，控制依赖提供的顺序也只针对包含该控制依赖的CPU。查阅”Multicopy 原子”获取更多信息。</p>
+<p>总结如下：</p>
+<ul>
+<li>控制依赖可以保证前面的LOAD和后面的STORE之间的顺序。然后，不能保证其它情况的顺序：不能保证前面的LOAD和后面的LOAD之间的顺序，不能保证前面的STORE和后面所有指令的顺序。如果你需要这些其它类型的顺序，使用smp_rmb()、smp_wmb()。如果在前面的STORE和后面的LOAD之间保序，使用smb_mb()。</li>
+<li>如果IF语句的两个分支都以相同值STORE到相同变量，那么这些STORE需要通过在STORE之前加入smp_mb()或者smp_store_release()来保证顺序。需要注意，在每个分支的前面添加barrier()是不充足的，因为像前文所说，编译器优化在遵守barrier()的前提下依然可以破坏条件依赖。</li>
+<li>控制依赖在前面的LOAD和后面的STORE之间需要至少一个运行时的条件，这个条件牵涉到前面的LOAD。如果编译器可以优化掉这个条件，那么也能优化掉顺序。仔细的使用READ_ONCE和WRITE_ONCE来保护这个条件不被优化。</li>
+<li>控制依赖需要编译器避免重新排序导致依赖不存在。仔细的使用READ_ONCE/atomic_read/atomic64_read可以帮助保护依赖。查看“编译屏障”章节获取更多信息</li>
+<li>控制依赖只作用于 IF语句的两个从句，包括从句中调用的函数。控制依赖不作用于IF语句之后的语句。</li>
+<li>控制依赖经常和其它类型的屏障配对使用</li>
+<li>控制依赖不提供multicopy atomicity。如果需要所有CPU在同一时间看到指定的STORE，使用smb_mb()</li>
+<li>编译器不理解控制依赖。因此你要保证编译器不会破坏你的代码。</li>
+</ul>
+<h2 id="SMP-屏障配对"><a href="#SMP-屏障配对" class="headerlink" title="SMP 屏障配对"></a>SMP 屏障配对</h2><p>当处理CPU和CPU之间的相互作用时，特定类型的内存屏障经常是成对使用的。缺少配对的使用几乎可以肯定是错误的。</p>
+<p>通用内存屏障自己和自己配对，尽管他们也可以和其它大部分类型的屏障配对使用。Acquire屏障和Relase屏障配对使用，但是他们两个都可以和其它类型的屏障配对使用，包括通用内存屏障。一个写内存屏障可以和数据依赖屏障、控制依赖、Acquire屏障、Relase屏障、读内存屏障或者通用内存屏障配对使用。类似的，一个读内存屏障、控制依赖屏障、数据依赖屏障也可以和写内存屏障、Acquire屏障、Release屏障或通用屏障配对使用。（原文：General barriers pair with each other, though they also pair with most other types of barriers, albeit without multicopy atomicity.  An acquire barrier pairs with a release barrier, but both may also pair with other barriers, including of course general barriers.  A write barrier pairs with a data dependency barrier, a control dependency, an acquire barrier, a release barrier, a read barrier, or a general barrier.  Similarly a read barrier, control dependency, or a data dependency barrier pairs with a write barrier, an acquire barrier, a release barrier, or a general barrier）</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE26.png" class="" title="图26">
+
+<p>基本上那个位置的读屏障是必不可少的，即使有时候是弱一些的读屏障。</p>
+<p><strong>注</strong>：写屏障之前的STORE指令经常和读屏障之后的LOAD指令相匹配，反之亦然。</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE27.png" class="" title="图27">
+
+<h2 id="内存屏障序列的例子"><a href="#内存屏障序列的例子" class="headerlink" title="内存屏障序列的例子"></a>内存屏障序列的例子</h2><p>第一， 写内存屏障作用类似于对STORE操作做部分排序。考虑如下序列：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE28.png" class="" title="图28">
+
+<p>上述的序列提交给内存一致性系统，系统的其它部分可以感知到的顺序是 STORE A, STORE B, STORE C一定在STORE D, STORE E之前，至于 ABC之前的顺序和DE之间的顺序不做承诺。</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE29.png" class="" title="图29">
+
+<p>第二， 数据依赖内存屏障作用类似于在数据依赖的LOAD操作间部分排序，考虑如下序列：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE30.png" class="" title="图30">
+
+<p>如果没有干涉，CPU1触发的序列在CPU2看来就是随机的顺序，即使CPU1使用了写内存屏障：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE31.png" class="" title="图31">
+
+<p>在上面的例子中， CPU2 感受到的B取值就是7，尽管LOAD *C在 LOAD C之后发生。</p>
+<p>如果，在CPU2上， 在LOAD C 和 LOAD *C之间插入一个数据依赖屏障：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE32.png" class="" title="图32">
+
+<p>那么CPU之间发生的事件序列如下：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE33.png" class="" title="图33">
+
+<p>第三， 一个读内存屏障作用类似于对LOAD操作做部分排序，考虑如下序列：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE34.png" class="" title="图34">
+
+<p>如果没有干涉， 在CPU2看来，CPU1的操作顺序就是随机的，即使使用了写内存屏障：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE35.png" class="" title="图35">
+
+<p>如果，在CPU2上，在LOAD B和 LOAD A之间插入一个读内存屏障：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE36.png" class="" title="图36">
+
+<p>CPU2感受到CPU1操作的顺序就是正确的，如下：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE37.png" class="" title="图37">
+
+<p>为了更完整的说明这点，考虑如下代码会发生什么：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE38.png" class="" title="图38">
+
+<p>尽管两次LOAD A都发生在 LOAD B之后， 他们也可能获取到不同的值。</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE39.png" class="" title="图39">
+
+<p>不过也可能是下面这种情况：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE40.png" class="" title="图40">
+
+<p>能保证的是如果LOAD B时B的值是2，那么第二个LOAD A时A的值一定是1。对于第一个LOAD A时A的值可能是0，也可能是1.</p>
+<h2 id="读内存屏障-VS-LOAD预加载"><a href="#读内存屏障-VS-LOAD预加载" class="headerlink" title="读内存屏障 VS  LOAD预加载"></a>读内存屏障 VS  LOAD预加载</h2><p>很多CPU都会对LOAD操作进行预测：意思是他们看到将来需要LOAD一个值，然后他们找一个总线空闲的时候提前把这个值加载进来，即使按照指令序列他们还没有真正的执行到那条LOAD指令的位置。这使得真正的LOAD指令有可能立即完成因为CPU已经有这个值了。</p>
+<p>也有可能证明最终CPU并不需要这个值，比如因为一个分支判断跳过了这个LOAD指令，在这种情况下他可以直接丢弃该值或者缓存住以便下次使用。考虑如下：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE41.png" class="" title="图41">
+<p>在第二个LOAD之前放一个读内存屏障或者一个数据依赖屏障：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE42.png" class="" title="图42">
+
+<p>是否强制重新获取预取的值，在一定程度上依赖于使用的屏障类型。如果值没有发送变化，将直接使用预取的值：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE43.png" class="" title="图43">
+
+<p>但如果另一个CPU有更新该值或者使该值失效，就必须重新加载该值：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE44.png" class="" title="图44">
+
+<h1 id="MULTICOPY-原子性"><a href="#MULTICOPY-原子性" class="headerlink" title="MULTICOPY 原子性"></a>MULTICOPY 原子性</h1><p>Multicopy原子性是关于顺序的一个直观的概念，但也是真实的计算机系统经常不能提供的，即一个给定的STORE操作在同一时间对所有CPU可见，或者做为一个替代选项，所有CPU对SOTRE操作序列中每个STORE的生效顺序达成一致。然而，支持完整的multicopy原子性会牺牲掉有价值的硬件优化，一个弱化的方式是“其它 multicopy原子性”，指一个给定的STORE操作在同一时间对其它所有CPU可见。该章节后续文档就是讨论这种形式，但是为了简单依然称呼为multicopy 原子性。<br>下面的例子展示了multicopy 原子性：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE45.png" class="" title="图45">
+
+<p>假设CPU2 LOAD X返回的值是1，然后将该值 STORE Y中，同时CPU3 LOAD Y返回的值也是1.这表示CPU1的STORE X领先于CPU2的 LOAD X 并且CPU2的STORE Y领先于CPU3 的LOAD Y。此外，内存屏障保证CPU2先执行LOAD X再执行STORE Y， CPU3先执行LOAD Y，再执行LOAD X。那么问题是， CPU3中的LOAD X返回值会是0吗？</p>
+<p>因为CPU3 LOAD X从某种意义上来说在CPU2 LOAD X后面，所以很自然的期望CPU3 LOAD X的返回值是1.这种期望遵从multicopy原子性：在CPU B上执行了一个LOAD操作， 在这个操作之前，在CPU A针对同一个变量也执行了LOAD操作（CPU A 最初没有STORE 这个变量），在遵从multicopy 原子性的系统上，CPU B LOAD的返回值和CPU A LOAD返回的值相同，或者是CPU A LOAD之后的后续的值。但是，linux内核不需要系统是multicopy一致性的。</p>
+<p>当缺少multicopy原子性时，可以按上面例子中那样使用通用内存屏障来保证。在上面的例子中，如果CPU2 LOAD A 返回1并且CPU3 LOAD Y返回1，那么CPU3 LOAD A一定返回1.</p>
+<p>然而，依赖内存屏障、读内存屏障、写内存屏障并不是总能保证multicopy原子性。举个例子，假如CPU2的通用内存屏障去掉，换成数据依赖屏障，见下面：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE46.png" class="" title="图46">
+
+<p>这种替换就不能保证multicopy原子性：在这个例子中，CPU2 LOAD A依然返回1， CPU3 LOAD Y依然返回1，但是CPU3 LOAD X可能返回0.</p>
+<p>关键是尽管CPU2的数据依赖顺序确保它自己的LOAD和STORE顺序，但是不能保证和CPU1的STORE顺序。假如上述例子运行在一个非multicopy原子性系统上，并且CPU1 CPU2共享一个Store Buffer或者同一级cache，CPU2有可能更早的访问到CPU1的write结果（这个时候CPU3 却看不到这个write结果）。因此需要通用内存屏障来确保所有CPU针对多个访问能看到一致的组合顺序。</p>
+<p>通用内存屏障不仅可以保证multicopy原子性，还可以额外的保证<strong>所有CPU</strong>对所有操作看到一致的顺序。相反，一连串的release-acquire对没有这种额外的保证,这意味使用了release-acquire的CPU对多个访问看到的顺序是一致的，没有使用的就不确定。看下面例子：</p>
+<img src="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/%E5%9B%BE47.png" class="" title="图47">
+
+<p>因为cpu0 cpu1 cpu2参与了一串的smp_store_release/smp_load_acquire，下面的输出是不可能的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 1 &amp;&amp; r1 &#x3D;&#x3D; 1 &amp;&amp; r2 &#x3D;&#x3D; 1</span><br></pre></td></tr></table></figure>
+
+<p>更进一步，因为cpu0和cpu1之间的release-acquire关系，cpu1一定会看到cpu0的输出，所以下面的输出是不可能的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r1 &#x3D;&#x3D; 1 &amp;&amp; r5 &#x3D;&#x3D; 0</span><br></pre></td></tr></table></figure>
+
+<p>然而，release-acquire提供的顺序仅限参与进这个序列的cpu之间，所以不会作用于cpu3上，至少在store这方面不会。因此，如下输出是可能的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 0 &amp;&amp; r1 &#x3D;&#x3D; 1 &amp;&amp; r2 &#x3D;&#x3D; 1 &amp;&amp; r3 &#x3D;&#x3D; 0 &amp;&amp; r4 &#x3D;&#x3D; 0</span><br></pre></td></tr></table></figure>
+
+<p>另一个方面，下面的输出也是可能的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 0 &amp;&amp; r1 &#x3D;&#x3D; 1 &amp;&amp; r2 &#x3D;&#x3D; 1 &amp;&amp; r3 &#x3D;&#x3D; 0 &amp;&amp; r4 &#x3D;&#x3D; 0 &amp;&amp; r5 &#x3D;&#x3D; 1</span><br></pre></td></tr></table></figure>
+
+<p>尽管cpu0 cpu1 cpu2可以针对read write看到一致的顺序，但是没有参与进relase-acquire的cpu可以看到不同的顺序。这个不一致源自于实现smp_load_acquire和smp_store_release所采用的弱化的内存屏障不能保证先前的store和随后的load之间的顺序。这意味这cpu3可以看到cpu0中的store to u 在 cpu1的 load from v之后，即使cpu0 cpu1均同意这两个操作的顺序是store to u 在 load from v之前。</p>
+<p>无论如何，请记住smp_load_acquire不是魔法。典型情况下，它只是有序的读取它的参数。它不能保证特定的值一定呗读到。因此，如下输出是可能的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">r0 &#x3D;&#x3D; 0 &amp;&amp; r1 &#x3D;&#x3D; 0 &amp;&amp; r2 &#x3D;&#x3D; 0 &amp;&amp; r5 &#x3D;&#x3D; 0</span><br></pre></td></tr></table></figure>
+
+<p>注意，即使在没有任何重排序的虚构的一致性系统中，这个输出也可能会发生。</p>
+<p>在强调下，如果你的代码所有CPU的multicopy 原子性，请使用通用内存屏障。</p>
+<h1 id="显式的内核屏障"><a href="#显式的内核屏障" class="headerlink" title="显式的内核屏障"></a>显式的内核屏障</h1><p>TODO</p>
+<h1 id="隐式的内核内存屏障"><a href="#隐式的内核内存屏障" class="headerlink" title="隐式的内核内存屏障"></a>隐式的内核内存屏障</h1><p>TODO</p>
+<h1 id="CPU之间的ACQUIRE屏障效应"><a href="#CPU之间的ACQUIRE屏障效应" class="headerlink" title="CPU之间的ACQUIRE屏障效应"></a>CPU之间的ACQUIRE屏障效应</h1><p>TODO</p>
+<h1 id="什么时候需要内存屏障"><a href="#什么时候需要内存屏障" class="headerlink" title="什么时候需要内存屏障"></a>什么时候需要内存屏障</h1><p>TODO</p>
+<h1 id="内核I-O屏障效应"><a href="#内核I-O屏障效应" class="headerlink" title="内核I/O屏障效应"></a>内核I/O屏障效应</h1><p>TODO</p>
+<h1 id="假想的最小执行顺序模型"><a href="#假想的最小执行顺序模型" class="headerlink" title="假想的最小执行顺序模型"></a>假想的最小执行顺序模型</h1><p>TODO</p>
+<h1 id="CPU-缓存的影响"><a href="#CPU-缓存的影响" class="headerlink" title="CPU 缓存的影响"></a>CPU 缓存的影响</h1><p>TODO</p>
+<h2 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h2><p>TODO</p>
+<h1 id="CPU要做的事情"><a href="#CPU要做的事情" class="headerlink" title="CPU要做的事情"></a>CPU要做的事情</h1><p>TODO</p>
+<h1 id="使用例子"><a href="#使用例子" class="headerlink" title="使用例子"></a>使用例子</h1><p>TODO</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>TODO</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/memory-cache/" rel="tag"># memory-cache</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/%E7%8C%AB%E5%8D%8A%E5%B9%B4%E5%8F%98%E5%8C%96/" rel="prev" title="猫半年变化">
+      <i class="fa fa-chevron-left"></i> 猫半年变化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/false-share/" rel="next" title="false share（伪共享）">
+      false share（伪共享） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#译者注"><span class="nav-number">1.</span> <span class="nav-text">译者注</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指令重排序"><span class="nav-number">1.1.</span> <span class="nav-text">指令重排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可见性"><span class="nav-number">1.2.</span> <span class="nav-text">可见性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#免责声明"><span class="nav-number">2.</span> <span class="nav-text">免责声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象后的内存访问模型"><span class="nav-number">3.</span> <span class="nav-text">抽象后的内存访问模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设备操作"><span class="nav-number">4.</span> <span class="nav-text">设备操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#保证"><span class="nav-number">5.</span> <span class="nav-text">保证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是内存屏障"><span class="nav-number">6.</span> <span class="nav-text">什么是内存屏障</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存屏障的类型"><span class="nav-number">6.1.</span> <span class="nav-text">内存屏障的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存屏障不保证什么"><span class="nav-number">6.2.</span> <span class="nav-text">内存屏障不保证什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据依赖屏障（历史）"><span class="nav-number">6.3.</span> <span class="nav-text">数据依赖屏障（历史）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制依赖"><span class="nav-number">6.4.</span> <span class="nav-text">控制依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMP-屏障配对"><span class="nav-number">6.5.</span> <span class="nav-text">SMP 屏障配对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存屏障序列的例子"><span class="nav-number">6.6.</span> <span class="nav-text">内存屏障序列的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读内存屏障-VS-LOAD预加载"><span class="nav-number">6.7.</span> <span class="nav-text">读内存屏障 VS  LOAD预加载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MULTICOPY-原子性"><span class="nav-number">7.</span> <span class="nav-text">MULTICOPY 原子性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显式的内核屏障"><span class="nav-number">8.</span> <span class="nav-text">显式的内核屏障</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐式的内核内存屏障"><span class="nav-number">9.</span> <span class="nav-text">隐式的内核内存屏障</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU之间的ACQUIRE屏障效应"><span class="nav-number">10.</span> <span class="nav-text">CPU之间的ACQUIRE屏障效应</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么时候需要内存屏障"><span class="nav-number">11.</span> <span class="nav-text">什么时候需要内存屏障</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内核I-O屏障效应"><span class="nav-number">12.</span> <span class="nav-text">内核I&#x2F;O屏障效应</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#假想的最小执行顺序模型"><span class="nav-number">13.</span> <span class="nav-text">假想的最小执行顺序模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU-缓存的影响"><span class="nav-number">14.</span> <span class="nav-text">CPU 缓存的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存一致性"><span class="nav-number">14.1.</span> <span class="nav-text">缓存一致性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU要做的事情"><span class="nav-number">15.</span> <span class="nav-text">CPU要做的事情</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用例子"><span class="nav-number">16.</span> <span class="nav-text">使用例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">17.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maple Leaf</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/maple-leaf-0219" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maple-leaf-0219" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:story.my@qq.com" title="E-Mail → mailto:story.my@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple Leaf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'c74968e2d6f3e97713c0',
+      clientSecret: '023ad290f507c31a651dd7d416f30879c3284cb1',
+      repo: 'blog-comment',
+      owner: 'maple-leaf-0219',
+      admin: ['maple-leaf-0219'],
+      id: '764d11467c8c0369186825be083b13cb',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

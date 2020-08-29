@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="GFE8CrbU9p4SPgaJCBZtEy3P-1knmk1ykePL39vOXZM">
+  <meta name="baidu-site-verification" content="ceFx8mGeWp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://maple-leaf-0219.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="纸上得来终觉浅，绝知此事要躬行。 一定要做计划做计划时，任务的粒度一定要细，分解的越细，越能及早的发现实际和计划之间的偏差，不至于到最后不可挽回。 任务的结果一定要明确、可量化、易检查，模糊不清的结果是无法判断是否完成了的。 以软件中的模块开发为例，可以分解为XXX模块开发，也可以分解成XXX模块接口定义和XXX模式接口实现。在实际执行中，推荐采用后者。 一个经验教训是，模块的对外接口、系统的对外">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目管理的一点思考">
+<meta property="og:url" content="https://maple-leaf-0219.github.io/2020/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html">
+<meta property="og:site_name" content="maple-leaf&#39;s blog">
+<meta property="og:description" content="纸上得来终觉浅，绝知此事要躬行。 一定要做计划做计划时，任务的粒度一定要细，分解的越细，越能及早的发现实际和计划之间的偏差，不至于到最后不可挽回。 任务的结果一定要明确、可量化、易检查，模糊不清的结果是无法判断是否完成了的。 以软件中的模块开发为例，可以分解为XXX模块开发，也可以分解成XXX模块接口定义和XXX模式接口实现。在实际执行中，推荐采用后者。 一个经验教训是，模块的对外接口、系统的对外">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-17T16:38:03.000Z">
+<meta property="article:modified_time" content="2020-08-29T06:41:32.002Z">
+<meta property="article:author" content="Maple Leaf">
+<meta property="article:tag" content="项目管理">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://maple-leaf-0219.github.io/2020/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>项目管理的一点思考 | maple-leaf's blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b231ae106462939150d6386d2cf987b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="maple-leaf's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">maple-leaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">技术积累</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-booklist">
+
+    <a href="/booklist/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>书单</a>
+
+  </li>
+        <li class="menu-item menu-item-life-rules">
+
+    <a href="/life-rules/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>生活原则</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          项目管理的一点思考
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-18 00:38:03" itemprop="dateCreated datePublished" datetime="2020-05-18T00:38:03+08:00">2020-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-29 14:41:32" itemprop="dateModified" datetime="2020-08-29T14:41:32+08:00">2020-08-29</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>纸上得来终觉浅，绝知此事要躬行。</p>
+<h1 id="一定要做计划"><a href="#一定要做计划" class="headerlink" title="一定要做计划"></a>一定要做计划</h1><p>做计划时，任务的粒度一定要细，分解的越细，越能及早的发现实际和计划之间的偏差，不至于到最后不可挽回。</p>
+<p>任务的结果一定要明确、可量化、易检查，模糊不清的结果是无法判断是否完成了的。</p>
+<p>以软件中的模块开发为例，可以分解为XXX模块开发，也可以分解成XXX模块接口定义和XXX模式接口实现。在实际执行中，推荐采用后者。</p>
+<p>一个经验教训是，模块的对外接口、系统的对外接口（接口包括但不限于API、通讯规范、交互模式）都需要先评审，评审通过后再继续后续开发。</p>
+<h1 id="一定要监控计划的落实情况"><a href="#一定要监控计划的落实情况" class="headerlink" title="一定要监控计划的落实情况"></a>一定要监控计划的落实情况</h1><p>实际情况和计划一定会有偏差，有偏差是正常的，没有偏差才是不正常的，关键在于是否及时的发现了偏差并采取了应对措施。所以一定要监控计划的落实情况</p>
+<h1 id="要形成适合自己的工作流程"><a href="#要形成适合自己的工作流程" class="headerlink" title="要形成适合自己的工作流程"></a>要形成适合自己的工作流程</h1><p>管理书上讲的流程、工具当然是有用的，但应该根据自己的实际情况裁剪，定制属于自己的工作流程，并经常评估是否还满足当下的实际情况。</p>
+<h1 id="事情的可观测性-可量化性"><a href="#事情的可观测性-可量化性" class="headerlink" title="事情的可观测性/可量化性"></a>事情的可观测性/可量化性</h1><p>项目的进度、执行的结果都应该是可观测的、可量化的，否则很容易成为一锅粥。</p>
+<h1 id="做事情的原则"><a href="#做事情的原则" class="headerlink" title="做事情的原则"></a>做事情的原则</h1><ol>
+<li>做事情、评估事情时，不能仅限于把眼前做好，还应该关注它对我未来有什么用  </li>
+<li>在做事情之前，应该想清楚，它应该是什么样子，现有的资源我能做成什么样子，以什么途径向最终的样子去逼近，也就是所谓的以终为始  </li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="tag"># 项目管理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/%E5%9C%A8%E7%9F%AD%E8%A7%86%E9%A2%91%E7%9A%84%E6%97%B6%E4%BB%A3%EF%BC%8C%E8%AF%BB%E4%B9%A6%E8%BF%87%E6%97%B6%E4%BA%86%E5%90%97/" rel="prev" title="在短视频的时代，读书过时了吗">
+      <i class="fa fa-chevron-left"></i> 在短视频的时代，读书过时了吗
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95%E7%AC%94%E8%AE%B0/" rel="next" title="博客用法笔记">
+      博客用法笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一定要做计划"><span class="nav-number">1.</span> <span class="nav-text">一定要做计划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一定要监控计划的落实情况"><span class="nav-number">2.</span> <span class="nav-text">一定要监控计划的落实情况</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#要形成适合自己的工作流程"><span class="nav-number">3.</span> <span class="nav-text">要形成适合自己的工作流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事情的可观测性-可量化性"><span class="nav-number">4.</span> <span class="nav-text">事情的可观测性&#x2F;可量化性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#做事情的原则"><span class="nav-number">5.</span> <span class="nav-text">做事情的原则</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maple Leaf</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/maple-leaf-0219" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maple-leaf-0219" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:story.my@qq.com" title="E-Mail → mailto:story.my@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple Leaf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'c74968e2d6f3e97713c0',
+      clientSecret: '023ad290f507c31a651dd7d416f30879c3284cb1',
+      repo: 'blog-comment',
+      owner: 'maple-leaf-0219',
+      admin: ['maple-leaf-0219'],
+      id: '5422dd570939918de103c549ae979759',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
