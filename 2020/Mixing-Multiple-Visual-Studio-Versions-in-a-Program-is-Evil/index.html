@@ -48,20 +48,20 @@
   };
 </script>
 
-  <meta name="description" content="概述随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。不要寄希望于万能的模型实践，每个模型都有各自的优缺点，要根据自己的实际情况选择。 仓库组织单仓库将所有项目代码存放在一个代码仓库当中，这个好处在于项目的所有开发者可以共享看到项目中的所有代码； 在项目规模较小的时候，一个库可以更好地管理和维护，发版本只要统一发布即可">
+  <meta name="description" content="文章的核心意思是多版本混用会在进程中引入多个运行时环境.多个运行时环境的API兼容并不意味着ABI也兼容.当运行时对象跨运行时环境传递时,每个运行时环境对同一个对象的解释有可能不同,导致出问题. Mixing Multiple Visual Studio Versions is Evil  Mixing Multiple Visual Studio Versions is Evil.pdf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="源码管理范式">
-<meta property="og:url" content="https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/index.html">
+<meta property="og:title" content="Mixing Multiple Visual Studio Versions in a Program is Evil">
+<meta property="og:url" content="https://maple-leaf-0219.github.io/2020/Mixing-Multiple-Visual-Studio-Versions-in-a-Program-is-Evil/index.html">
 <meta property="og:site_name" content="maple-leaf&#39;s blog">
-<meta property="og:description" content="概述随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。不要寄希望于万能的模型实践，每个模型都有各自的优缺点，要根据自己的实际情况选择。 仓库组织单仓库将所有项目代码存放在一个代码仓库当中，这个好处在于项目的所有开发者可以共享看到项目中的所有代码； 在项目规模较小的时候，一个库可以更好地管理和维护，发版本只要统一发布即可">
+<meta property="og:description" content="文章的核心意思是多版本混用会在进程中引入多个运行时环境.多个运行时环境的API兼容并不意味着ABI也兼容.当运行时对象跨运行时环境传递时,每个运行时环境对同一个对象的解释有可能不同,导致出问题. Mixing Multiple Visual Studio Versions is Evil  Mixing Multiple Visual Studio Versions is Evil.pdf">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-28T06:13:44.000Z">
-<meta property="article:modified_time" content="2020-03-28T09:07:30.000Z">
+<meta property="article:published_time" content="2020-09-06T07:12:46.000Z">
+<meta property="article:modified_time" content="2020-09-06T07:52:07.597Z">
 <meta property="article:author" content="Maple Leaf">
 <meta property="article:tag" content="memory cache programmer">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/">
+<link rel="canonical" href="https://maple-leaf-0219.github.io/2020/Mixing-Multiple-Visual-Studio-Versions-in-a-Program-is-Evil/">
 
 
 <script id="page-configurations">
@@ -73,7 +73,7 @@
   };
 </script>
 
-  <title>源码管理范式 | maple-leaf's blog</title>
+  <title>Mixing Multiple Visual Studio Versions in a Program is Evil | maple-leaf's blog</title>
   
 
 
@@ -204,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/Mixing-Multiple-Visual-Studio-Versions-in-a-Program-is-Evil/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -217,7 +217,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          源码管理范式
+          Mixing Multiple Visual Studio Versions in a Program is Evil
         </h2>
 
         <div class="post-meta">
@@ -228,7 +228,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-28 14:13:44 / 修改时间：17:07:30" itemprop="dateCreated datePublished" datetime="2020-03-28T14:13:44+08:00">2020-03-28</time>
+              <time title="创建时间：2020-09-06 15:12:46 / 修改时间：15:52:07" itemprop="dateCreated datePublished" datetime="2020-09-06T15:12:46+08:00">2020-09-06</time>
             </span>
 
           
@@ -249,32 +249,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。<br>不要寄希望于万能的模型实践，每个模型都有各自的优缺点，要根据自己的实际情况选择。</p>
-<h1 id="仓库组织"><a href="#仓库组织" class="headerlink" title="仓库组织"></a>仓库组织</h1><h2 id="单仓库"><a href="#单仓库" class="headerlink" title="单仓库"></a>单仓库</h2><p>将所有项目代码存放在一个代码仓库当中，这个好处在于项目的所有开发者可以共享看到项目中的所有代码； 在项目规模较小的时候，一个库可以更好地管理和维护，发版本只要统一发布即可；对于持续集成，也只需要针对一个库维护若干条流水线。但再好的实践以及工具都有它适用的范围。Git 已经是非常流行的代码托管工具，但 Git 会把所有历史记录以及代码同步到各个用户的本地机器，所以对于大型项目而言，如果使用单仓库，就意味着某个模块开发者的本地可能有大量冗余代码和提交记录的信息，这个时候拆分成更小的库显得更加合适。</p>
-<p>谷歌与 Facebook 就是业界典型的单仓库派代表。作为代码行数已经超过数十亿行、commit 数量累计达到千万次的团队（2015 年的统计数据），如果没有强悍的基础设施，也很难运转顺利。Google 曾发表论文介绍其强大的代码管理系统 Piper 以及客户端工具 CitC，但对于大部分企业来说是否有必要投入如此之大的研发成本去自研一个代码管理系统值得商榷，所以谷歌的实践对于大部分企业来说不一定具备参考性。</p>
-<p>项目规模小时一般都是单仓库，但项目规模庞大时，如果再使用单仓库则要有完善的工具链支持。</p>
-<h2 id="多仓库"><a href="#多仓库" class="headerlink" title="多仓库"></a>多仓库</h2><p>将项目代码进行一定的拆分放在多个库当中，好处就是 将代码进行一定的解耦，对于体型较为庞大的项目来说管理上会更加清晰和富有弹性。将代码按照一定逻辑分库之后，仓库与模块有了自描述的特征，让一起协作的开发者可以一目了然。发布源码版本、持续集成构建时，负责各仓库的研发组织可以按照自己的节奏来发布，同时将一些“坏代码”的影响控制在某个仓库中，而不会影响项目全部代码。分库也有要注意的地方，在同一个项目里的代码多多少少都有业务上或者是技术上的联系，比如编译依赖：以一个Java 项目为例，客户端接口的调用代码究竟是直接依赖服务端接口代码的定义，还是间接依赖？如果是间接依赖，那么分库管理是非常方便的，但同时客户端就无法快速感知到服务端接口定义的变化。所以在进行多仓库划分时，要注意划分的一些常用原则。</p>
-<p>多仓库情况下，要仔细处理项目多组件之间的依赖关系并能及时检测到依赖变更和不兼容升级，<strong>可以通过语义化版本号和依赖管理工具来维护</strong>。</p>
-<h1 id="分支模型"><a href="#分支模型" class="headerlink" title="分支模型"></a>分支模型</h1><p>只讨论基于git的分支模型，常见的有如下几种，详细介绍见参考资料</p>
-<ul>
-<li>GitFlow模型  </li>
-<li>GitHub Flow 模型  </li>
-<li>Trunk Based development 模型 （配合Branch By Abstraction使用）  </li>
-<li>GitLab Flow 模型  </li>
-<li>Atlassian Simple Git Flow 模型  </li>
-</ul>
-<p>在上面的模型介绍中，TBD模型支持多个不兼容版本维护，其余的模型未看到如何支持多个不兼容版本的并行维护。</p>
-<h1 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h1><p>选用了仓库模型和分支模型，基本就确定了版本发布模型。</p>
-<h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><p>在源码管理上可以参考安卓、IOS的源码管理变迁，因为安卓、IOS需求多变，承载的业务复杂，其演进的轨迹具有借鉴意义。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="https://yrom.net/blog/2018/10/18/evolution-of-android-codebase-organization-in-bilibili/" target="_blank" rel="noopener">B 站 Android 代码库的演进历程</a></li>
-<li><a href="http://www.brofive.org/?p=2165" target="_blank" rel="noopener">Git 代码分支模型（1）</a></li>
-<li><a href="http://www.brofive.org/?p=2233" target="_blank" rel="noopener">Git 代码分支模型（2）</a></li>
-<li><a href="http://www.brofive.org/?p=4352" target="_blank" rel="noopener">Git 代码分支模型（3）</a></li>
-<li><a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li>
-<li><a href="https://trunkbaseddevelopment.com/" target="_blank" rel="noopener">Trunk Based development </a></li>
-<li><a href="https://cloud.tencent.com/developer/article/1441619" target="_blank" rel="noopener">App组件化与业务拆分那些事</a></li>
-</ul>
+        <p>文章的核心意思是多版本混用会在进程中引入多个运行时环境.多个运行时环境的API兼容并不意味着ABI也兼容.当运行时对象跨运行时环境传递时,每个运行时环境对同一个对象的解释有可能不同,导致出问题.</p>
+<p><a href="https://siomsystems.com/mixing-visual-studio-versions/" target="_blank" rel="noopener">Mixing Multiple Visual Studio Versions is Evil</a> </p>
+<a href="/2020/Mixing-Multiple-Visual-Studio-Versions-in-a-Program-is-Evil/1.pdf" title="Mixing Multiple Visual Studio Versions is Evil.pdf">Mixing Multiple Visual Studio Versions is Evil.pdf</a>
 
     </div>
 
@@ -290,13 +267,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/" rel="prev" title="只言片语">
-      <i class="fa fa-chevron-left"></i> 只言片语
+    <a href="/2020/%E5%A6%82%E4%BD%95%E4%B8%8D%E9%9D%A0%E8%BF%90%E6%B0%94%E5%8F%98%E5%BE%97%E5%AF%8C%E6%9C%89/" rel="prev" title="如何不靠运气变得富有">
+      <i class="fa fa-chevron-left"></i> 如何不靠运气变得富有
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/vscode-hexo-markdown%E5%AE%9A%E5%88%B6%E6%80%9D%E8%B7%AF/" rel="next" title="vscode hexo markdown定制思路">
-      vscode hexo markdown定制思路 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -357,7 +331,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#仓库组织"><span class="nav-number">2.</span> <span class="nav-text">仓库组织</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单仓库"><span class="nav-number">2.1.</span> <span class="nav-text">单仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多仓库"><span class="nav-number">2.2.</span> <span class="nav-text">多仓库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支模型"><span class="nav-number">3.</span> <span class="nav-text">分支模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本发布"><span class="nav-number">4.</span> <span class="nav-text">版本发布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件化"><span class="nav-number">5.</span> <span class="nav-text">组件化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -514,7 +487,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo: 'blog-comment',
       owner: 'maple-leaf-0219',
       admin: ['maple-leaf-0219'],
-      id: '187bdfacc860bd20ecf50921db29672b',
+      id: '6ad5ff7c624097ae78ed511e6c4be41f',
         language: '',
       distractionFreeMode: true
     });

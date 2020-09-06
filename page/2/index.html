@@ -200,6 +200,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E4%B8%A4%E4%B8%AA%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%AD%A6%E4%BC%9Aperl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E4%B8%A4%E4%B8%AA%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%AD%A6%E4%BC%9Aperl/" class="post-title-link" itemprop="url">两个半小时学会perl</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-05 20:30:17 / 修改时间：20:31:35" itemprop="dateCreated datePublished" datetime="2020-04-05T20:30:17+08:00">2020-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>因工作需要用到了perl语言，在有C开发基础的情况下，通过如下教程可以快速的入门</p>
+<p><a href="https://qntm.org/perl_cn" target="_blank" rel="noopener">两个半小时学会Perl</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/ubuntu%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -831,75 +891,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Maple Leaf">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="maple-leaf's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/" class="post-title-link" itemprop="url">linux内核的内存屏障-译</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-29 13:03:58" itemprop="dateCreated datePublished" datetime="2020-02-29T13:03:58+08:00">2020-02-29</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="译者注"><a href="#译者注" class="headerlink" title="译者注"></a>译者注</h1><p><a href="https://www.kernel.org/doc/Documentation/memory-barriers.txt" target="_blank" rel="noopener">原文</a></p>
-<p>barriers：屏障， 本文档中指内存屏障<br>memory barriers： 内存屏障</p>
-<h2 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序"></a>指令重排序</h2><p>基础不牢靠的程序员有一个错觉， 指令执行的顺序就是我所理解的代码编写的顺序。<br>在目前多核、多发射、乱序执行的今天，编译器、CPU都可以根据需要调整指令执行顺序，<strong>指令实际的执行顺序和代码的书写顺序不一定一致</strong>。  </p>
-<h2 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h2><p>在内存-多级缓存的今天，一定存在一个层次，在这个层次下，数据的变化是同步的，即所有CPU看到的都是相同的状态，任意一个CPU的修改其它CPU都能看到。在这个层次只上，每个CPU有自己独享的缓存，这些缓存对其它CPU是不可见的。内存屏障的目的是通知CPU让其将自己的缓存和共享的缓存/内存做一次同步，以便其它CPU可以感知到这些变化。</p>
-<p><strong>注</strong>：内存屏障控制是本CPU独享缓存和共享缓存/内存的同步工作，而不关心和其它的CPU是否同步。如果其它CPU也想和共享内存同步下，需要自己来触发内存屏障。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/linux%E5%86%85%E6%A0%B8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C-%E8%AF%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -970,7 +961,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
