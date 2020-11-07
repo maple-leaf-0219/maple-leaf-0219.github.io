@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="GFE8CrbU9p4SPgaJCBZtEy3P-1knmk1ykePL39vOXZM">
+  <meta name="baidu-site-verification" content="ceFx8mGeWp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://maple-leaf-0219.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="基本概念音频属性 采样频率(Sample Rate)每秒对声音的采集次数，它用赫兹(Hz)来表示，也可以看作类似动态映像的帧数。(采样率越高越靠近原声音的波形)    量化精度(Bit Depth)指记录声音的动态范围，它以位(Bit)为单位。(对Y轴进行切割,以最大振幅切成2的n次方计算，n就是bit数)  声音通道(Channel)声道数。比如左声道右声道。  码率取样频率×量化精度×声道数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音视频基本概念">
+<meta property="og:url" content="https://maple-leaf-0219.github.io/2020/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="maple-leaf&#39;s blog">
+<meta property="og:description" content="基本概念音频属性 采样频率(Sample Rate)每秒对声音的采集次数，它用赫兹(Hz)来表示，也可以看作类似动态映像的帧数。(采样率越高越靠近原声音的波形)    量化精度(Bit Depth)指记录声音的动态范围，它以位(Bit)为单位。(对Y轴进行切割,以最大振幅切成2的n次方计算，n就是bit数)  声音通道(Channel)声道数。比如左声道右声道。  码率取样频率×量化精度×声道数。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-07T12:26:53.000Z">
+<meta property="article:modified_time" content="2020-11-07T12:30:10.348Z">
+<meta property="article:author" content="Maple Leaf">
+<meta property="article:tag" content="memory cache programmer">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://maple-leaf-0219.github.io/2020/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>音视频基本概念 | maple-leaf's blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b231ae106462939150d6386d2cf987b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="maple-leaf's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">maple-leaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">技术积累</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-booklist">
+
+    <a href="/booklist/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>书单</a>
+
+  </li>
+        <li class="menu-item menu-item-life-rules">
+
+    <a href="/life-rules/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>生活原则</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          音视频基本概念
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-07 20:26:53 / 修改时间：20:30:10" itemprop="dateCreated datePublished" datetime="2020-11-07T20:26:53+08:00">2020-11-07</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="音频属性"><a href="#音频属性" class="headerlink" title="音频属性"></a>音频属性</h2><ul>
+<li><p>采样频率(Sample Rate)<br>每秒对声音的采集次数，它用赫兹(Hz)来表示，也可以看作类似动态映像的帧数。(采样率越高越靠近原声音的波形)  </p>
+</li>
+<li><p>量化精度(Bit Depth)<br>指记录声音的动态范围，它以位(Bit)为单位。(对Y轴进行切割,以最大振幅切成2的n次方计算，n就是bit数)</p>
+</li>
+<li><p>声音通道(Channel)<br>声道数。比如左声道右声道。</p>
+</li>
+<li><p>码率<br>取样频率×量化精度×声道数。即单位时间内传输的数据量</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="packets-frames-chunks"><a href="#packets-frames-chunks" class="headerlink" title="packets/frames/chunks"></a>packets/frames/chunks</h2><p>受设备或codec所限而分隔开的一小段数据</p>
+<h2 id="codecs"><a href="#codecs" class="headerlink" title="codecs"></a>codecs</h2><p>为了更好的描述数据所采用的算法.通常分为encoder和decoder两部分.</p>
+<h2 id="Encoding"><a href="#Encoding" class="headerlink" title="Encoding"></a>Encoding</h2><p>The process of converting a raw media signal to a binary file of a codec. For example encoding a series of raw images to the video codec H.264. Encoding can also refer to the process of converting a very high quality raw video file into a mezzanine format for simpler sharing &amp; transmission – Ex: taking an uncompressed RGB 16-bit frame , with a size of 12.4MB, for 60 seconds (measured at 24 frames/sec) totalling 17.9GB – and compressing it into 8-bit frames with a size of 3.11MB per frame, which for the same video of 60 seconds at 24fps is 2.9GB in total. Effectively compressing the size of the video file down by 15GB!</p>
+<h2 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h2><p>The opposite of encoding; decoding is the process of converting binary files back into raw media signals. Ex: H.264 codec streams into viewable images.<br>Transcoding: The process of converting one codec to another (or the same) codec. Both decoding &amp; encoding are necessary steps to achieving a successful transcode. Best described as: decoding the source codec stream and then encoding it again to a new target codec stream. Although encoding is typically lossy, additional techniques like frame interpolation and upscaling increase the quality of the conversion of a compressed video format.<br>Muxing: The process of adding one or more codec streams into a container format. </p>
+<h2 id="Demuxing"><a href="#Demuxing" class="headerlink" title="Demuxing"></a>Demuxing</h2><p>Extracting a codec stream from a container format.</p>
+<h2 id="Transmuxing"><a href="#Transmuxing" class="headerlink" title="Transmuxing"></a>Transmuxing</h2><p>Extracting streams from one container format and putting them in a different (or the same) container format.</p>
+<h2 id="Multiplexing"><a href="#Multiplexing" class="headerlink" title="Multiplexing:"></a>Multiplexing:</h2><p>The process of interweaving audio and video into one data stream. Ex: An elementary stream (audio &amp; video) from the encoder are turned into Packetized Elementary Streams (PES) and then converted into Transport Streams (TS).</p>
+<h2 id="Demultiplexing"><a href="#Demultiplexing" class="headerlink" title="Demultiplexing"></a>Demultiplexing</h2><p>The reverse operation of multiplexing. This means extracting an elementary stream from a media container. E.g.: Extracting the mp3 audio data from an mp4 music video.</p>
+<h2 id="In-Band-Events"><a href="#In-Band-Events" class="headerlink" title="In-Band Events"></a>In-Band Events</h2><p>This refers to metadata events that are associated with a specific timestamp. This usually means that these events are synchronized with video and audio streams. E.g.: These events can be used to trigger dynamic content replacement (ad-insertion) or the presentation of supplemental content.</p>
+<h2 id="stream-Track"><a href="#stream-Track" class="headerlink" title="stream/Track"></a>stream/Track</h2><p>表示一路音频或视频,为了效率,通常是通过codec编码过后的数据  </p>
+<h2 id="container-容器"><a href="#container-容器" class="headerlink" title="container 容器"></a>container 容器</h2><p>就是我们平常所说的音视频的文件格式,比如avi/wav/mp4等.一个容器中一般包含一个或多个stream </p>
+<h2 id="format"><a href="#format" class="headerlink" title="format"></a>format</h2><p>容器在磁盘上的格式</p>
+<h2 id="MUX和DEMUX"><a href="#MUX和DEMUX" class="headerlink" title="MUX和DEMUX"></a>MUX和DEMUX</h2><p>Mux 是 Multiplex 的缩写，意为“多路传输”，其实就是“混流”、“封装”的意思，与“合成”的意思相似就是指把视频素材和音频素材封装到一个单独的文件中。</p>
+<p><strong>意义</strong>：<br>通过 muxing（混流），可以将视频流、音频流甚至是字幕流捆绑到一个单独的文件中，作为一个信号进行传输，等传输完毕，就可以通过 demuxing（分离） 将里面的视频、音频或字幕分解出来各自进行解码和播放。</p>
+<p><strong>要点</strong>：<br>在 muxing 与 demuxing 的整个过程，都不对原来的视频、音频或字幕重新编码。混流（封装、打包）后的文件，可以通过分离（分解、解包）操作，获得与原始素材一模一样的独立的视频、音频和字幕文件。</p>
+<p>通过mux可以将多个stream打包到一个container中,通过demux可以将一个容器中的多个stream分离出来  </p>
+<h2 id="Filter（滤镜）"><a href="#Filter（滤镜）" class="headerlink" title="Filter（滤镜）"></a>Filter（滤镜）</h2><p>滤镜是一种约定的数据转换原则.比如水平翻转滤镜就是将图像水平翻转下.</p>
+<h2 id="RTP-Timestamp-计算"><a href="#RTP-Timestamp-计算" class="headerlink" title="RTP Timestamp 计算"></a>RTP Timestamp 计算</h2><p>RTP timestamp is an important attribute in RTP header and is used plug the packet in right order for playback. Also it is used to synchronize audio video packets. Lets see how these RTP timestamps are calculated.</p>
+<p>RTP timestamp calculation involves two parameters explained below.</p>
+<ul>
+<li><p>Packetization time - Packetization time represents one RTP packet duration in milliseconds. For example, In G711 case, one RTP packet may represent 20 millisecond. Please note that other than 20ms packetization time is a valid case as well.</p>
+</li>
+<li><p>Sampling rate - Sampling rate is number of analog samples taken per second to convert to digital form. In a typical G711 case, sampling rate is 8kHz. So 8000 analog samples are taken per second to convert to digital form. Higher the sampling rate, better is the quality.</p>
+</li>
+</ul>
+<h3 id="Audio-RTP-Timestamps"><a href="#Audio-RTP-Timestamps" class="headerlink" title="Audio RTP Timestamps"></a>Audio RTP Timestamps</h3><p>One can choose a random value for audio RTP timestamp. And for successive Audio RTP packets, timestamp should be incremented by sampling rate / packets per second. Lets consider a case where sampling rate is 8kHz and packetization time is 20ms.</p>
+<p>One frame corresponds to 20ms<br>For 1 second, there will be 1000ms / 20ms = 50 frames</p>
+<p>Audio RTP packet timestamp incremental value = 8kHz / 50 = 8000Hz / 50 = 160.</p>
+<h3 id="Video-RTP-Timestamps"><a href="#Video-RTP-Timestamps" class="headerlink" title="Video RTP Timestamps"></a>Video RTP Timestamps</h3><p>Typically in video case there are 30 frames per second or 24 frames per second video. Lets consider a typical case, where sampling rate is 90kHz and fps is 30.</p>
+<p>Then video RTP packet timestamp incremental value = 90kHz / 30 = 90,000Hz / 30 = 3000.<br>Hence each video RTP frame timestamp should be incremented by 3000.</p>
+<p>In practice, one video frame may be sent as more than one RTP packet because of bigger size. Say one video frame you are sending as 3 RTP packets. For all these 3 RTP packets, you need to keep timestamp same. For next video frame you can increase RTP timestamp by 3000.</p>
+<p>In certain cases, if you do not know fps, probably you need to go for system clock time and derive timestamp.</p>
+<h2 id="其它说明"><a href="#其它说明" class="headerlink" title="其它说明"></a>其它说明</h2><p>container/format/mux/demux是一个东西的多个方面.container是一个逻辑上的概念,format是这个概念在磁盘上/传输过程中的具体格式,将多个stream合并成container就是mux,从container中解析出独立的steam就是demux </p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/haomcu/article/details/7072707" target="_blank" rel="noopener">关于音视频的一些知识（demux、filter等）</a><br><a href="https://bitmovin.com/container-formats-fun-1/" target="_blank" rel="noopener">Fun with Container Formats – Part 1</a>  </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/ffmpeg-filter/" rel="prev" title="ffmpeg filter 滤镜/过滤器">
+      <i class="fa fa-chevron-left"></i> ffmpeg filter 滤镜/过滤器
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#音频属性"><span class="nav-number">1.1.</span> <span class="nav-text">音频属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#packets-frames-chunks"><span class="nav-number">1.2.</span> <span class="nav-text">packets&#x2F;frames&#x2F;chunks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#codecs"><span class="nav-number">1.3.</span> <span class="nav-text">codecs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoding"><span class="nav-number">1.4.</span> <span class="nav-text">Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoding"><span class="nav-number">1.5.</span> <span class="nav-text">Decoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demuxing"><span class="nav-number">1.6.</span> <span class="nav-text">Demuxing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transmuxing"><span class="nav-number">1.7.</span> <span class="nav-text">Transmuxing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiplexing"><span class="nav-number">1.8.</span> <span class="nav-text">Multiplexing:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demultiplexing"><span class="nav-number">1.9.</span> <span class="nav-text">Demultiplexing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#In-Band-Events"><span class="nav-number">1.10.</span> <span class="nav-text">In-Band Events</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stream-Track"><span class="nav-number">1.11.</span> <span class="nav-text">stream&#x2F;Track</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#container-容器"><span class="nav-number">1.12.</span> <span class="nav-text">container 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#format"><span class="nav-number">1.13.</span> <span class="nav-text">format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MUX和DEMUX"><span class="nav-number">1.14.</span> <span class="nav-text">MUX和DEMUX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter（滤镜）"><span class="nav-number">1.15.</span> <span class="nav-text">Filter（滤镜）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RTP-Timestamp-计算"><span class="nav-number">1.16.</span> <span class="nav-text">RTP Timestamp 计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Audio-RTP-Timestamps"><span class="nav-number">1.16.1.</span> <span class="nav-text">Audio RTP Timestamps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Video-RTP-Timestamps"><span class="nav-number">1.16.2.</span> <span class="nav-text">Video RTP Timestamps</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它说明"><span class="nav-number">1.17.</span> <span class="nav-text">其它说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maple Leaf</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/maple-leaf-0219" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maple-leaf-0219" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:story.my@qq.com" title="E-Mail → mailto:story.my@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple Leaf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'c74968e2d6f3e97713c0',
+      clientSecret: '023ad290f507c31a651dd7d416f30879c3284cb1',
+      repo: 'blog-comment',
+      owner: 'maple-leaf-0219',
+      admin: ['maple-leaf-0219'],
+      id: 'af68fca810cb8b6b2aaa0a41a48fdc30',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

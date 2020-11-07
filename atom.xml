@@ -6,7 +6,7 @@
   <link href="https://maple-leaf-0219.github.io/atom.xml" rel="self"/>
   
   <link href="https://maple-leaf-0219.github.io/"/>
-  <updated>2020-10-18T14:13:42.652Z</updated>
+  <updated>2020-11-07T12:30:10.348Z</updated>
   <id>https://maple-leaf-0219.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>音视频基本概念</title>
+    <link href="https://maple-leaf-0219.github.io/2020/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <id>https://maple-leaf-0219.github.io/2020/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</id>
+    <published>2020-11-07T12:26:53.000Z</published>
+    <updated>2020-11-07T12:30:10.348Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="音频属性"><a href="#音频属性" class="headerlink" title="音频属性"></a>音频属性</h2><ul><li><p>采样频率(Sample Rate)<br>每秒对声音的采集次数，它用赫兹(Hz)来表示，也可以看作类似动态映像的帧数。(采样率越高越靠近原声音的波形)  </p></li><li><p>量化精度(Bit Depth)<br>指记录声音的动态范围，它以位(Bit)为单位。(对Y轴进行切割,以最大振幅切成2的n次方计算，n就是bit数)</p></li><li><p>声音通道(Channel)<br>声道数。比如左声道右声道。</p></li><li><p>码率<br>取样频率×量化精度×声道数。即单位时间内传输的数据量</p></li></ul><a id="more"></a><h2 id="packets-frames-chunks"><a href="#packets-frames-chunks" class="headerlink" title="packets/frames/chunks"></a>packets/frames/chunks</h2><p>受设备或codec所限而分隔开的一小段数据</p><h2 id="codecs"><a href="#codecs" class="headerlink" title="codecs"></a>codecs</h2><p>为了更好的描述数据所采用的算法.通常分为encoder和decoder两部分.</p><h2 id="Encoding"><a href="#Encoding" class="headerlink" title="Encoding"></a>Encoding</h2><p>The process of converting a raw media signal to a binary file of a codec. For example encoding a series of raw images to the video codec H.264. Encoding can also refer to the process of converting a very high quality raw video file into a mezzanine format for simpler sharing &amp; transmission – Ex: taking an uncompressed RGB 16-bit frame , with a size of 12.4MB, for 60 seconds (measured at 24 frames/sec) totalling 17.9GB – and compressing it into 8-bit frames with a size of 3.11MB per frame, which for the same video of 60 seconds at 24fps is 2.9GB in total. Effectively compressing the size of the video file down by 15GB!</p><h2 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h2><p>The opposite of encoding; decoding is the process of converting binary files back into raw media signals. Ex: H.264 codec streams into viewable images.<br>Transcoding: The process of converting one codec to another (or the same) codec. Both decoding &amp; encoding are necessary steps to achieving a successful transcode. Best described as: decoding the source codec stream and then encoding it again to a new target codec stream. Although encoding is typically lossy, additional techniques like frame interpolation and upscaling increase the quality of the conversion of a compressed video format.<br>Muxing: The process of adding one or more codec streams into a container format. </p><h2 id="Demuxing"><a href="#Demuxing" class="headerlink" title="Demuxing"></a>Demuxing</h2><p>Extracting a codec stream from a container format.</p><h2 id="Transmuxing"><a href="#Transmuxing" class="headerlink" title="Transmuxing"></a>Transmuxing</h2><p>Extracting streams from one container format and putting them in a different (or the same) container format.</p><h2 id="Multiplexing"><a href="#Multiplexing" class="headerlink" title="Multiplexing:"></a>Multiplexing:</h2><p>The process of interweaving audio and video into one data stream. Ex: An elementary stream (audio &amp; video) from the encoder are turned into Packetized Elementary Streams (PES) and then converted into Transport Streams (TS).</p><h2 id="Demultiplexing"><a href="#Demultiplexing" class="headerlink" title="Demultiplexing"></a>Demultiplexing</h2><p>The reverse operation of multiplexing. This means extracting an elementary stream from a media container. E.g.: Extracting the mp3 audio data from an mp4 music video.</p><h2 id="In-Band-Events"><a href="#In-Band-Events" class="headerlink" title="In-Band Events"></a>In-Band Events</h2><p>This refers to metadata events that are associated with a specific timestamp. This usually means that these events are synchronized with video and audio streams. E.g.: These events can be used to trigger dynamic content replacement (ad-insertion) or the presentation of supplemental content.</p><h2 id="stream-Track"><a href="#stream-Track" class="headerlink" title="stream/Track"></a>stream/Track</h2><p>表示一路音频或视频,为了效率,通常是通过codec编码过后的数据  </p><h2 id="container-容器"><a href="#container-容器" class="headerlink" title="container 容器"></a>container 容器</h2><p>就是我们平常所说的音视频的文件格式,比如avi/wav/mp4等.一个容器中一般包含一个或多个stream </p><h2 id="format"><a href="#format" class="headerlink" title="format"></a>format</h2><p>容器在磁盘上的格式</p><h2 id="MUX和DEMUX"><a href="#MUX和DEMUX" class="headerlink" title="MUX和DEMUX"></a>MUX和DEMUX</h2><p>Mux 是 Multiplex 的缩写，意为“多路传输”，其实就是“混流”、“封装”的意思，与“合成”的意思相似就是指把视频素材和音频素材封装到一个单独的文件中。</p><p><strong>意义</strong>：<br>通过 muxing（混流），可以将视频流、音频流甚至是字幕流捆绑到一个单独的文件中，作为一个信号进行传输，等传输完毕，就可以通过 demuxing（分离） 将里面的视频、音频或字幕分解出来各自进行解码和播放。</p><p><strong>要点</strong>：<br>在 muxing 与 demuxing 的整个过程，都不对原来的视频、音频或字幕重新编码。混流（封装、打包）后的文件，可以通过分离（分解、解包）操作，获得与原始素材一模一样的独立的视频、音频和字幕文件。</p><p>通过mux可以将多个stream打包到一个container中,通过demux可以将一个容器中的多个stream分离出来  </p><h2 id="Filter（滤镜）"><a href="#Filter（滤镜）" class="headerlink" title="Filter（滤镜）"></a>Filter（滤镜）</h2><p>滤镜是一种约定的数据转换原则.比如水平翻转滤镜就是将图像水平翻转下.</p><h2 id="RTP-Timestamp-计算"><a href="#RTP-Timestamp-计算" class="headerlink" title="RTP Timestamp 计算"></a>RTP Timestamp 计算</h2><p>RTP timestamp is an important attribute in RTP header and is used plug the packet in right order for playback. Also it is used to synchronize audio video packets. Lets see how these RTP timestamps are calculated.</p><p>RTP timestamp calculation involves two parameters explained below.</p><ul><li><p>Packetization time - Packetization time represents one RTP packet duration in milliseconds. For example, In G711 case, one RTP packet may represent 20 millisecond. Please note that other than 20ms packetization time is a valid case as well.</p></li><li><p>Sampling rate - Sampling rate is number of analog samples taken per second to convert to digital form. In a typical G711 case, sampling rate is 8kHz. So 8000 analog samples are taken per second to convert to digital form. Higher the sampling rate, better is the quality.</p></li></ul><h3 id="Audio-RTP-Timestamps"><a href="#Audio-RTP-Timestamps" class="headerlink" title="Audio RTP Timestamps"></a>Audio RTP Timestamps</h3><p>One can choose a random value for audio RTP timestamp. And for successive Audio RTP packets, timestamp should be incremented by sampling rate / packets per second. Lets consider a case where sampling rate is 8kHz and packetization time is 20ms.</p><p>One frame corresponds to 20ms<br>For 1 second, there will be 1000ms / 20ms = 50 frames</p><p>Audio RTP packet timestamp incremental value = 8kHz / 50 = 8000Hz / 50 = 160.</p><h3 id="Video-RTP-Timestamps"><a href="#Video-RTP-Timestamps" class="headerlink" title="Video RTP Timestamps"></a>Video RTP Timestamps</h3><p>Typically in video case there are 30 frames per second or 24 frames per second video. Lets consider a typical case, where sampling rate is 90kHz and fps is 30.</p><p>Then video RTP packet timestamp incremental value = 90kHz / 30 = 90,000Hz / 30 = 3000.<br>Hence each video RTP frame timestamp should be incremented by 3000.</p><p>In practice, one video frame may be sent as more than one RTP packet because of bigger size. Say one video frame you are sending as 3 RTP packets. For all these 3 RTP packets, you need to keep timestamp same. For next video frame you can increase RTP timestamp by 3000.</p><p>In certain cases, if you do not know fps, probably you need to go for system clock time and derive timestamp.</p><h2 id="其它说明"><a href="#其它说明" class="headerlink" title="其它说明"></a>其它说明</h2><p>container/format/mux/demux是一个东西的多个方面.container是一个逻辑上的概念,format是这个概念在磁盘上/传输过程中的具体格式,将多个stream合并成container就是mux,从container中解析出独立的steam就是demux </p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/haomcu/article/details/7072707" target="_blank" rel="noopener">关于音视频的一些知识（demux、filter等）</a><br><a href="https://bitmovin.com/container-formats-fun-1/" target="_blank" rel="noopener">Fun with Container Formats – Part 1</a>  </p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;h2 id=&quot;音频属性&quot;&gt;&lt;a href=&quot;#音频属性&quot; class=&quot;headerlink&quot; title=&quot;音频属性&quot;&gt;&lt;/a&gt;音频属性&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;采样频率(Sample Rate)&lt;br&gt;每秒对声音的采集次数，它用赫兹(Hz)来表示，也可以看作类似动态映像的帧数。(采样率越高越靠近原声音的波形)  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;量化精度(Bit Depth)&lt;br&gt;指记录声音的动态范围，它以位(Bit)为单位。(对Y轴进行切割,以最大振幅切成2的n次方计算，n就是bit数)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;声音通道(Channel)&lt;br&gt;声道数。比如左声道右声道。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;码率&lt;br&gt;取样频率×量化精度×声道数。即单位时间内传输的数据量&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>ffmpeg filter 滤镜/过滤器</title>
@@ -420,32 +446,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>个人知识管理及相关工具</title>
-    <link href="https://maple-leaf-0219.github.io/2020/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7/"/>
-    <id>https://maple-leaf-0219.github.io/2020/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7/</id>
-    <published>2020-03-01T16:40:07.000Z</published>
-    <updated>2020-03-01T16:45:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="学习的过程"><a href="#学习的过程" class="headerlink" title="学习的过程"></a>学习的过程</h1><p>回顾这几年的求索之路，除了一开始的迷糊之外，后续基本遵循着下面一个循环</p><ol><li>提出问题<br> 首先要提出一个明确的问题，可以是因工作需要提出，也可以因个人进修需要拟定的。</li><li>搜集资料<br> 根据提出的问题检索资料。检索到的资料会先读一遍，如果觉得好就搜集起来。通过阅读资料会建立起来一个知识的轮廓，随着阅读的增多，知识的面貌会越来越清晰，直到感觉自己搞懂了。<br> 搜集资料这块可以使用中文了解轮廓，但真正深入的技术问题，要真正的搞明白，还是要读英文资料。</li><li>消化吸收<br> 这个步骤和搜集资料是重叠的、交互进行的。随着对知识理解的加深，需要搜集更多的资料来学习。</li><li>整理输出<br> 到此阶段，自己觉得自己已经掌握了这块知识，也可能没有真正的掌握，只是感觉掌握了。通过整理资料，组织逻辑关系，能用自己的话表达出来才算是真正的理解。</li><li>资料归档<br> 针对以前搜集的资料，结合现有的理解，剔除糟粕、重复的，将相关资料归档，以便将来查阅。</li></ol><a id="more"></a><h1 id="使用的工具"><a href="#使用的工具" class="headerlink" title="使用的工具"></a>使用的工具</h1><ul><li><a href="https://dida365.com/" target="_blank" rel="noopener">滴答清单</a><br>  用来随时随地的记录自己的想法，并定时的整理，从中筛选出真的有价值的问题。</li><li><a href="https://feedly.com/" target="_blank" rel="noopener">feedly</a><br>  订阅优秀的RSS源，以便更新自己的知识，在此过程中会提出各种各样的问题，然后用滴答清单记录下来</li><li>科学上网工具<br>  真正的检索资料，推荐使用谷歌，次之是必应国际版。有一把好梯子，使用谷歌事半功倍。</li><li><a href="https://maple-leaf-0219.github.io/">博客</a><br>  整理输出的东西和最终归档的资料会放在该博客上</li><li><a href="https://app.getpocket.com/" target="_blank" rel="noopener">pocket</a><br>  特别好用的一个Chrome的插件，可以收藏当前网页并按标签分类，以便后续消化吸收。</li><li><a href="https://cidian.youdao.com/index.html" target="_blank" rel="noopener">有道词典</a><br>  没办法，进阶的、有价值的资料都是以英文表达的。</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;学习的过程&quot;&gt;&lt;a href=&quot;#学习的过程&quot; class=&quot;headerlink&quot; title=&quot;学习的过程&quot;&gt;&lt;/a&gt;学习的过程&lt;/h1&gt;&lt;p&gt;回顾这几年的求索之路，除了一开始的迷糊之外，后续基本遵循着下面一个循环&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;提出问题&lt;br&gt; 首先要提出一个明确的问题，可以是因工作需要提出，也可以因个人进修需要拟定的。&lt;/li&gt;
-&lt;li&gt;搜集资料&lt;br&gt; 根据提出的问题检索资料。检索到的资料会先读一遍，如果觉得好就搜集起来。通过阅读资料会建立起来一个知识的轮廓，随着阅读的增多，知识的面貌会越来越清晰，直到感觉自己搞懂了。&lt;br&gt; 搜集资料这块可以使用中文了解轮廓，但真正深入的技术问题，要真正的搞明白，还是要读英文资料。&lt;/li&gt;
-&lt;li&gt;消化吸收&lt;br&gt; 这个步骤和搜集资料是重叠的、交互进行的。随着对知识理解的加深，需要搜集更多的资料来学习。&lt;/li&gt;
-&lt;li&gt;整理输出&lt;br&gt; 到此阶段，自己觉得自己已经掌握了这块知识，也可能没有真正的掌握，只是感觉掌握了。通过整理资料，组织逻辑关系，能用自己的话表达出来才算是真正的理解。&lt;/li&gt;
-&lt;li&gt;资料归档&lt;br&gt; 针对以前搜集的资料，结合现有的理解，剔除糟粕、重复的，将相关资料归档，以便将来查阅。&lt;/li&gt;
-&lt;/ol&gt;</summary>
-    
-    
-    
-    
-    <category term="MISC" scheme="https://maple-leaf-0219.github.io/tags/MISC/"/>
     
   </entry>
   
