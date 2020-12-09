@@ -200,6 +200,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/strict-alias%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/strict-alias%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">strict alias理解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-20 18:43:48" itemprop="dateCreated datePublished" datetime="2020-02-20T18:43:48+08:00">2020-02-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h1><p>别名：多个变量指向同一块内存区域时，这些变量互为别名</p>
+<p>目前CPU都是多核，现代的指令体系都是并行、乱序执行。编译器为了充分利用硬件资源提升程序性能，编译时要分析指令、数据间的依赖关系，没有依赖关系的指令、数据访问可以并发乱序进行。<br>在分析依赖关系时别名就是一个绕不开的问题，究竟谁是谁的别名，如果编译器不清楚，那为了保证编译出的程序的正确性，只能做最坏打算，不确定的地方假定都是别名。<br>后来编译器定义了一些规则，符合什么条件的变量才可能是别名，不符合的绝对不会是别名。通过编译选项 strict-aliasing可以通知编译器，我的代码严格遵守这些规则，放心大胆的优化。<br>通过编译选项no-strict-aliasing可以通知编译器，我代码中有各种风骚的类型转换，你优化时悠着点，做好最坏的打算。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/strict-alias%E7%90%86%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/LTE%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,7 +465,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

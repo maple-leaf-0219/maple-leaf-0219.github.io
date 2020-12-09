@@ -6,7 +6,7 @@
   <link href="https://maple-leaf-0219.github.io/atom.xml" rel="self"/>
   
   <link href="https://maple-leaf-0219.github.io/"/>
-  <updated>2020-11-07T12:30:10.348Z</updated>
+  <updated>2020-12-09T11:06:46.499Z</updated>
   <id>https://maple-leaf-0219.github.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>lex yacc学习-给自己开一个新坑</title>
+    <link href="https://maple-leaf-0219.github.io/2020/lex-yacc%E5%AD%A6%E4%B9%A0-%E7%BB%99%E8%87%AA%E5%B7%B1%E5%BC%80%E4%B8%80%E4%B8%AA%E6%96%B0%E5%9D%91/"/>
+    <id>https://maple-leaf-0219.github.io/2020/lex-yacc%E5%AD%A6%E4%B9%A0-%E7%BB%99%E8%87%AA%E5%B7%B1%E5%BC%80%E4%B8%80%E4%B8%AA%E6%96%B0%E5%9D%91/</id>
+    <published>2020-12-09T11:06:46.000Z</published>
+    <updated>2020-12-09T11:06:46.499Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>音视频基本概念</title>
@@ -423,29 +436,6 @@
     
     
     <category term="碎碎念" scheme="https://maple-leaf-0219.github.io/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>信息素养</title>
-    <link href="https://maple-leaf-0219.github.io/2020/%E4%BF%A1%E6%81%AF%E7%B4%A0%E5%85%BB/"/>
-    <id>https://maple-leaf-0219.github.io/2020/%E4%BF%A1%E6%81%AF%E7%B4%A0%E5%85%BB/</id>
-    <published>2020-03-07T06:32:13.000Z</published>
-    <updated>2020-03-21T06:23:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在目前的网络中，为了获得流量，充斥着虚假的信息，为了做出有效的决策，我们必须对获取的信息质量进行评估。</p><ul><li>尽可能看原始来源<br>  信息传递过程中会失真（未必是故意的），所以要寻找信息的原始来源做确认。</li><li>尽可能从不同的视角了解同一个消息<br>  屁股决定脑袋，不同的人/信息源/媒介有不同立场，不同的价值观，在传递信息的过程中有可能只保留了一个视角的信息（再次强调，未必是故意的）。</li><li>区分事实和观点<br>  事实是一种客观存在，你可以可验证其真实存在与否；观点是个人看法，你可以同意或者不同意一个观点，但是你不能证明或者证伪一个观点的存在。要基于事实做出自己的观点，评估他人的观点，而不是忽视事实，直接采用他人的观点</li><li>理解概率<br>  当前的信息未必能得出明确的结论，但可以依据概率获取一个可能的结论，并随着信息的增加修改完善/推翻这个结论。概率不能保证处理的一定对，但放到一个大的时间尺度下，能保证你大部分时候是对的。</li><li>严谨的思路<br>  不要被带节奏，要能独立自主的思考做决策</li><li>对信息源建立自己的分级体系<br>  不是所有的信息源都是同等有价值的，有的信息源更可信，要建立自己的分级体系并动态调整</li></ul><p>还有一点，即使是权威的信息源，也会有自己的立场，当评估时，一定要考虑到信息源本身的立场和信息的价值是否冲突。</p><h1 id="原始来源"><a href="#原始来源" class="headerlink" title="原始来源"></a>原始来源</h1><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxMjQwNDcxNQ==&mid=2649329422&idx=1&sn=7f104ad54b862e94e889b335540cf85b&scene=21#wechat_redirect" target="_blank" rel="noopener">逼近真相：在虚假和半真半假中的生存指南</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzAxMjQwNDcxNQ==&mid=2649329431&idx=1&sn=6834c8b2a3ce5dcde809706ac76dec8e&chksm=83af7d93b4d8f485fa569f91a23818e1d11a5686a314709ec6ff55ed0433cfcc2eb531bb964a&mpshare=1&scene=1&srcid=&sharer_sharetime=1579906035265&sharer_shareid=67f1f28fc114be68c1b15160f246d0c2#rd" target="_blank" rel="noopener">斯坦索姆的故事</a><br><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODIyMTE0MA==&mid=2650974297&idx=1&sn=70f0a6ec8e9f745c40c8ab8bc84a1e24&chksm=bd380c628a4f857447329ee3e179f743886c5abaa9b0820d1fc3f5095148af47d51dd2c26227&mpshare=1&scene=1&srcid=&sharer_sharetime=1583557552368&sharer_shareid=67f1f28fc114be68c1b15160f246d0c2#rd" target="_blank" rel="noopener">疫情之下，提高一点个人信息素养</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在目前的网络中，为了获得流量，充斥着虚假的信息，为了做出有效的决策，我们必须对获取的信息质量进行评估。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;尽可能看原始来源&lt;br&gt;  信息传递过程中会失真（未必是故意的），所以要寻找信息的原始来源做确认。&lt;/li&gt;
-&lt;li&gt;尽可能从不同的视角了解同一</summary>
-      
-    
-    
-    
     
   </entry>
   
