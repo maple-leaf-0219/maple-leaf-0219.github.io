@@ -200,6 +200,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/" class="post-title-link" itemprop="url">只言片语</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-21 14:23:53 / 修改时间：14:25:51" itemprop="dateCreated datePublished" datetime="2020-03-21T14:23:53+08:00">2020-03-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>生活终究是复杂的，具体的。罕有完美无缺的英雄，也难有十恶不赦的坏蛋。更普遍的情况是，英雄可能在某些场合私欲膨胀，而坏蛋也可能在某些时候良心发现。<br>窥见英雄的阴暗面，由此剧烈转向，相信“人间不值得”是一种选择，但未必是必然的选择，因为由此理解人性的复杂，明白要始终做个好人并不容易，也是一种选择。<br>–源自网络</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/CPU-topology-%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/CPU-topology-%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">CPU topology 汇总</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-14 11:34:03" itemprop="dateCreated datePublished" datetime="2020-03-14T11:34:03+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-29 03:12:39" itemprop="dateModified" datetime="2020-03-29T03:12:39+08:00">2020-03-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="SMP-NUMA-MPP"><a href="#SMP-NUMA-MPP" class="headerlink" title="SMP,NUMA,MPP"></a>SMP,NUMA,MPP</h2><h3 id="SMP-Symmetric-Multi-Processor"><a href="#SMP-Symmetric-Multi-Processor" class="headerlink" title="SMP(Symmetric Multi-Processor)"></a>SMP(Symmetric Multi-Processor)</h3><img src="/2020/CPU-topology-%E6%B1%87%E6%80%BB/smp.gif" class="" title="smp.gif">     
+
+<p>SMP（对称多处理系统）， 所谓对称多处理器结构，是指服务器中多个 CPU 对称工作，无主次或从属关系。各 CPU 共享相同的物理内存，每个 CPU 访问内存中的任何地址所需时间是相同的，因此 SMP 也被称为一致存储器访问结构 (UMA ： Uniform Memory Access) 。对 SMP 服务器进行扩展的方式包括增加内存、使用更快的 CPU 、增加 CPU 、扩充 I/O( 槽口数与总线数 ) 以及添加更多的外部设备 ( 通常是磁盘存储 ) 。</p>
+<p>SMP 服务器的主要特征是共享，系统中所有资源 (CPU 、内存、 I/O 等 ) 都是共享的。也正是由于这种特征，导致了 SMP 服务器的主要问题，那就是它的扩展能力非常有限。对于 SMP 服务器而言，每一个共享的环节都可能造成 SMP 服务器扩展时的瓶颈，而最受限制的则是内存。由于每个 CPU 必须通过相同的内存总线访问相同的内存资源，因此随着 CPU 数量的增加，内存访问冲突将迅速增加，最终会造成 CPU 资源的浪费，使 CPU 性能的有效性大大降低。实验证明， SMP 服务器 CPU 利用率最好的情况是 2 至 4 个 CPU 。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/CPU-topology-%E6%B1%87%E6%80%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E4%B8%89%E5%8D%81%E8%80%8C%E7%AB%8B%E5%90%8E%E7%9A%84%E5%BF%83%E6%80%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -711,137 +845,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/ZIP%E6%96%87%E4%BB%B6%E7%A0%B4%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Maple Leaf">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="maple-leaf's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/ZIP%E6%96%87%E4%BB%B6%E7%A0%B4%E8%A7%A3/" class="post-title-link" itemprop="url">ZIP文件破解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-22 11:55:29" itemprop="dateCreated datePublished" datetime="2020-02-22T11:55:29+08:00">2020-02-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ZIP文件破解"><a href="#ZIP文件破解" class="headerlink" title="ZIP文件破解"></a>ZIP文件破解</h1><p><strong>限制</strong>：你拥有加密压缩包里的任意一个文件</p>
-<p><strong>原理</strong>：你输入的密码，首先被转换成3个32bit的key，所以可能的key的组合是2^96，这是个天文数字，如果用暴力穷举的方式是不太可能的，除非你的密码比较短或者有个厉害的字典。压缩软件用这3个key加密所有包中的文件，这也就是说，所有文件的key是一样的，如果我们能够找到这个key，就能解开所有的文件。如果我们找到加密压缩包中的任意一个文件，这个文件和压缩包里的文件是一样的，我们把这个文件用同样的压缩软件同样的压缩方式进行无密码的压缩，得到的文件就是我们的Known plaintext。用这个无密码的压缩包和有密码的压缩包进行比较，分析两个包中相同的那个文件，抽取出两个文件的不同点，就是那3个key了，如此就能得到key。两个相同文件在压缩包中的字节数应该相差12个byte，就是那3个key了。虽然我们还是无法通过这个key还原出密码，但是我们已经可以用这个key解开所有的文件，所以已经满足我的要求了，而且要以前的密码也没什么用呀，我只要文件</p>
-<p><strong>软件</strong>：Advanced ZIP Password Recovery</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%A6%82%E4%BD%95%E5%AE%8C%E5%96%84%E8%87%AA%E5%B7%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84-%E8%BD%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Maple Leaf">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="maple-leaf's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/%E5%A6%82%E4%BD%95%E5%AE%8C%E5%96%84%E8%87%AA%E5%B7%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84-%E8%BD%AC/" class="post-title-link" itemprop="url">如何完善自己的知识结构-转</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-21 12:18:11" itemprop="dateCreated datePublished" datetime="2020-02-21T12:18:11+08:00">2020-02-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="转载说明"><a href="#转载说明" class="headerlink" title="转载说明"></a>转载说明</h1><p>原文连接：<a href="https://program-think.blogspot.com/2013/09/knowledge-structure.html" target="_blank" rel="noopener">如何完善自己的知识结构</a>  </p>
-<ul>
-<li>因某些原因，原文需要科学上网才能访问，转载是觉得该篇文章大部分对自己很有帮助，但不代表同意作者观点。  </li>
-<li>因某些原因，文章部分内容有删减。</li>
-</ul>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>最近几年，陆续有读者来信跟俺交流“知识管理”这个话题。也有读者在博客留言，建议俺专门为此话题写一个系列。不过捏，因为手头还有 N 多系列没有收尾，再开新的系列要激起公愤了 :) 所以，今天只单独写一篇，谈谈俺对知识结构的看法。  </p>
-<p>其实捏，这是一个很大的话题，想用一篇博文完全说清楚，不太现实。俺只从三个层面入手，说说个人的看法，仅供列位看官参考。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/%E5%A6%82%E4%BD%95%E5%AE%8C%E5%96%84%E8%87%AA%E5%B7%B1%E7%9A%84%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84-%E8%BD%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -912,7 +915,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
