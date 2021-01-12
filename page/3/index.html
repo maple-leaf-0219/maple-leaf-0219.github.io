@@ -200,6 +200,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/" class="post-title-link" itemprop="url">源码管理范式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-28 14:13:44 / 修改时间：17:07:30" itemprop="dateCreated datePublished" datetime="2020-03-28T14:13:44+08:00">2020-03-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。<br>不要寄希望于万能的模型实践，每个模型都有各自的优缺点，要根据自己的实际情况选择。</p>
+<h1 id="仓库组织"><a href="#仓库组织" class="headerlink" title="仓库组织"></a>仓库组织</h1><h2 id="单仓库"><a href="#单仓库" class="headerlink" title="单仓库"></a>单仓库</h2><p>将所有项目代码存放在一个代码仓库当中，这个好处在于项目的所有开发者可以共享看到项目中的所有代码； 在项目规模较小的时候，一个库可以更好地管理和维护，发版本只要统一发布即可；对于持续集成，也只需要针对一个库维护若干条流水线。但再好的实践以及工具都有它适用的范围。Git 已经是非常流行的代码托管工具，但 Git 会把所有历史记录以及代码同步到各个用户的本地机器，所以对于大型项目而言，如果使用单仓库，就意味着某个模块开发者的本地可能有大量冗余代码和提交记录的信息，这个时候拆分成更小的库显得更加合适。</p>
+<p>谷歌与 Facebook 就是业界典型的单仓库派代表。作为代码行数已经超过数十亿行、commit 数量累计达到千万次的团队（2015 年的统计数据），如果没有强悍的基础设施，也很难运转顺利。Google 曾发表论文介绍其强大的代码管理系统 Piper 以及客户端工具 CitC，但对于大部分企业来说是否有必要投入如此之大的研发成本去自研一个代码管理系统值得商榷，所以谷歌的实践对于大部分企业来说不一定具备参考性。</p>
+<p>项目规模小时一般都是单仓库，但项目规模庞大时，如果再使用单仓库则要有完善的工具链支持。</p>
+<h2 id="多仓库"><a href="#多仓库" class="headerlink" title="多仓库"></a>多仓库</h2><p>将项目代码进行一定的拆分放在多个库当中，好处就是 将代码进行一定的解耦，对于体型较为庞大的项目来说管理上会更加清晰和富有弹性。将代码按照一定逻辑分库之后，仓库与模块有了自描述的特征，让一起协作的开发者可以一目了然。发布源码版本、持续集成构建时，负责各仓库的研发组织可以按照自己的节奏来发布，同时将一些“坏代码”的影响控制在某个仓库中，而不会影响项目全部代码。分库也有要注意的地方，在同一个项目里的代码多多少少都有业务上或者是技术上的联系，比如编译依赖：以一个Java 项目为例，客户端接口的调用代码究竟是直接依赖服务端接口代码的定义，还是间接依赖？如果是间接依赖，那么分库管理是非常方便的，但同时客户端就无法快速感知到服务端接口定义的变化。所以在进行多仓库划分时，要注意划分的一些常用原则。</p>
+<p>多仓库情况下，要仔细处理项目多组件之间的依赖关系并能及时检测到依赖变更和不兼容升级，<strong>可以通过语义化版本号和依赖管理工具来维护</strong>。</p>
+<h1 id="分支模型"><a href="#分支模型" class="headerlink" title="分支模型"></a>分支模型</h1><p>只讨论基于git的分支模型，常见的有如下几种，详细介绍见参考资料</p>
+<ul>
+<li>GitFlow模型  </li>
+<li>GitHub Flow 模型  </li>
+<li>Trunk Based development 模型 （配合Branch By Abstraction使用）  </li>
+<li>GitLab Flow 模型  </li>
+<li>Atlassian Simple Git Flow 模型  </li>
+</ul>
+<p>在上面的模型介绍中，TBD模型支持多个不兼容版本维护，其余的模型未看到如何支持多个不兼容版本的并行维护。</p>
+<h1 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h1><p>选用了仓库模型和分支模型，基本就确定了版本发布模型。</p>
+<h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><p>在源码管理上可以参考安卓、IOS的源码管理变迁，因为安卓、IOS需求多变，承载的业务复杂，其演进的轨迹具有借鉴意义。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://yrom.net/blog/2018/10/18/evolution-of-android-codebase-organization-in-bilibili/" target="_blank" rel="noopener">B 站 Android 代码库的演进历程</a></li>
+<li><a href="http://www.brofive.org/?p=2165" target="_blank" rel="noopener">Git 代码分支模型（1）</a></li>
+<li><a href="http://www.brofive.org/?p=2233" target="_blank" rel="noopener">Git 代码分支模型（2）</a></li>
+<li><a href="http://www.brofive.org/?p=4352" target="_blank" rel="noopener">Git 代码分支模型（3）</a></li>
+<li><a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li>
+<li><a href="https://trunkbaseddevelopment.com/" target="_blank" rel="noopener">Trunk Based development </a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1441619" target="_blank" rel="noopener">App组件化与业务拆分那些事</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -787,64 +871,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2020/simdjson-%E8%BD%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Maple Leaf">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="maple-leaf's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/simdjson-%E8%BD%AC/" class="post-title-link" itemprop="url">simdjson-转</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-22 11:55:54" itemprop="dateCreated datePublished" datetime="2020-02-22T11:55:54+08:00">2020-02-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://branchfree.org/2019/02/25/paper-parsing-gigabytes-of-json-per-second/" target="_blank" rel="noopener">Paper: Parsing Gigabytes of JSON per Second</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -915,7 +941,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -955,7 +981,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

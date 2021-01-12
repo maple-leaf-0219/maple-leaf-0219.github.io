@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="GFE8CrbU9p4SPgaJCBZtEy3P-1knmk1ykePL39vOXZM">
+  <meta name="baidu-site-verification" content="ceFx8mGeWp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://maple-leaf-0219.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="传真概述   分组 ITU相关标准 8.5*11 inch页面传输时间    G1  (Group 1) T.2 6分钟   G2  (Group 2) T.3 3分钟   G3  (Group 3) T.30 T.4 T.6 1分钟 或更少   SG3 (Super Group 3) T.30 T.6 小于1分钟   G4  (Group 4) T.6 T.503 T.521 T.563 T.7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FAX学习总结">
+<meta property="og:url" content="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="maple-leaf&#39;s blog">
+<meta property="og:description" content="传真概述   分组 ITU相关标准 8.5*11 inch页面传输时间    G1  (Group 1) T.2 6分钟   G2  (Group 2) T.3 3分钟   G3  (Group 3) T.30 T.4 T.6 1分钟 或更少   SG3 (Super Group 3) T.30 T.6 小于1分钟   G4  (Group 4) T.6 T.503 T.521 T.563 T.7">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img1.webp">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img2.webp">
+<meta property="og:image" content="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img3.webp">
+<meta property="article:published_time" content="2021-01-12T03:14:08.000Z">
+<meta property="article:modified_time" content="2021-01-12T10:09:03.963Z">
+<meta property="article:author" content="Maple Leaf">
+<meta property="article:tag" content="memory cache programmer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img1.webp">
+
+<link rel="canonical" href="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>FAX学习总结 | maple-leaf's blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b231ae106462939150d6386d2cf987b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="maple-leaf's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">maple-leaf's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">技术积累</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-booklist">
+
+    <a href="/booklist/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>书单</a>
+
+  </li>
+        <li class="menu-item menu-item-life-rules">
+
+    <a href="/life-rules/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>生活原则</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maple Leaf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maple-leaf's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          FAX学习总结
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-12 11:14:08 / 修改时间：18:09:03" itemprop="dateCreated datePublished" datetime="2021-01-12T11:14:08+08:00">2021-01-12</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="传真概述"><a href="#传真概述" class="headerlink" title="传真概述"></a>传真概述</h1><table>
+<thead>
+<tr>
+<th>分组</th>
+<th>ITU相关标准</th>
+<th>8.5*11 inch页面传输时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G1  (Group 1)</td>
+<td>T.2</td>
+<td>6分钟</td>
+</tr>
+<tr>
+<td>G2  (Group 2)</td>
+<td>T.3</td>
+<td>3分钟</td>
+</tr>
+<tr>
+<td>G3  (Group 3)</td>
+<td>T.30 T.4 T.6</td>
+<td>1分钟 或更少</td>
+</tr>
+<tr>
+<td>SG3 (Super Group 3)</td>
+<td>T.30 T.6</td>
+<td>小于1分钟</td>
+</tr>
+<tr>
+<td>G4  (Group 4)</td>
+<td>T.6 T.503 T.521 T.563 T.72 T.62 T.62 bis T.70 F.161</td>
+<td>1分钟 或更少</td>
+</tr>
+</tbody></table>
+<p>目前正在广泛使用的是G3和SG3, 其中G1、G2已经被G3、SG3取代，G4并未推广开。</p>
+<a id="more"></a>
+
+<p>基于PSTN传输网络的传真工作流程如下图：    </p>
+<img src="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img1.webp" class="" title="传真工作流程">   
+
+<p>分为如下几步：  </p>
+<ol>
+<li>通过图像传感器成像  </li>
+<li>为节省带宽，采用一定算法对图像进行编码（T.4 T.6 规范）   </li>
+<li>将编码后的图像数据转换对应调制速率所要求的规格（V.17等系列）</li>
+<li>将最终的数据调制（FSK）  </li>
+</ol>
+<p>整个交互流程由T.30规定  </p>
+<h1 id="FAX-OVER-IP"><a href="#FAX-OVER-IP" class="headerlink" title="FAX OVER IP"></a>FAX OVER IP</h1><p>有如下几种方式   </p>
+<h2 id="透传-passthrough"><a href="#透传-passthrough" class="headerlink" title="透传 passthrough"></a>透传 passthrough</h2><p>实时处理，这是最简单的一种方式。实际实现上是基于VOIP实现的透传。VOIP传输的是用户的声音，如果将声音替换成传真的数据即可实现透传。唯一需要注意的是，VOIP为了话音做了很多优化以便在降低带宽占用率的情况下依然保持很好的通话质量，比如压缩、静默帧等。这些优化未必适合传真数据，所以在传输传真数据时对话音的编码方式有要求，一般是G711，流程如下图所示：</p>
+<img src="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img2.webp" class="" title="透传流程">    
+
+<h2 id="中继-relay"><a href="#中继-relay" class="headerlink" title="中继  relay"></a>中继  relay</h2><p>实时处理，整个处理逻辑和传统的传真通讯流程类似，只是将T.30转换成T.38以便在IP网络上传输，流程如下图所示：</p>
+<img src="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img3.webp" class="" title="中继流程">  
+<h2 id="基于T-37的存储转发-T-37-Store-and-Forward-fax"><a href="#基于T-37的存储转发-T-37-Store-and-Forward-fax" class="headerlink" title="基于T.37的存储转发  T.37 Store-and-Forward fax"></a>基于T.37的存储转发  T.37 Store-and-Forward fax</h2><p>非实时， 还未碰到这样的数据，不多叙述，感兴趣的见参考资料。</p>
+<h1 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h1><h2 id="spandsp"><a href="#spandsp" class="headerlink" title="spandsp"></a>spandsp</h2><p><a href="https://github.com/jart/spandsp" target="_blank" rel="noopener">spandsp</a>   </p>
+<h2 id="fax-tool-v1"><a href="#fax-tool-v1" class="headerlink" title="fax_tool_v1"></a>fax_tool_v1</h2><p><a href="https://github.com/gter1216/fax_tool_v1" target="_blank" rel="noopener">fax_tool_v1</a><br>这个是基于spandsp编写的一个将WAV转换成TIFF、解析T38的工具</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/Implementing-Fax-over-IP.pdf" title="Implementing-Fax-over-IP">Implementing-Fax-over-IP</a>   </li>
+<li><a href="https://www.cisco.com/web/services/news/ts_newsletter/tech/chalktalk/archives/200808.html" target="_blank" rel="noopener">Implementing-Fax-over-IP</a>  </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T.38-Fax-over-IP-call-on-Wireshark.pdf" title="T.38 Fax over IP call on Wireshark.pdf">T.38 Fax over IP call on Wireshark.pdf</a>  </li>
+<li><a href="https://blog.escarra.org/?p=613" target="_blank" rel="noopener">T.38 Fax over IP call on Wireshark</a>    </li>
+<li><a href="https://en.wikipedia.org/wiki/Fax" target="_blank" rel="noopener">fax</a>   </li>
+<li><a href="https://www.vocal.com/voip/t-38-image-extraction-from-captured-network-data/" target="_blank" rel="noopener">T.38 Image Extraction from Captured Network Data</a>   </li>
+<li><a href="https://electronics.howstuffworks.com/gadgets/fax/fax-machine.htm/printable" target="_blank" rel="noopener">How Fax Machines Work</a>   </li>
+<li><a href="https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/voice/fax/configuration/15-mt/vf-15-mt-book/Fax_and_Modem_Services_over_IP_Overview.html" target="_blank" rel="noopener">Fax and Modem Services over IP Overview</a>    </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.4-200307-I!!PDF-E.pdf" title="T-REC-T.4-200307-I!!PDF-E.pdf">T-REC-T.4-200307-I!!PDF-E.pdf</a>   </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.30-200509-I!!PDF-C.pdf" title="T-REC-T.30-200509-I!!PDF-C.pdf">T-REC-T.30-200509-I!!PDF-C.pdf</a>   </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.30-200509-I!!PDF-E.pdf" title="T-REC-T.30-200509-I!!PDF-E.pdf">T-REC-T.30-200509-I!!PDF-E.pdf</a>   </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.38-200509-S!!PDF-C.pdf" title="T-REC-T.38-200509-S!!PDF-C.pdf">T-REC-T.38-200509-S!!PDF-C.pdf</a>   </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.38-201511-I!!PDF-E.pdf" title="T-REC-T.38-201511-I!!PDF-E.pdf">T-REC-T.38-201511-I!!PDF-E.pdf</a>   </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-V.17-199102-I!!PDF-E.pdf" title="T-REC-V.17-199102-I!!PDF-E.pdf">T-REC-V.17-199102-I!!PDF-E.pdf</a>   </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-V.21-198811-I!!PDF-E.pdf" title="T-REC-V.21-198811-I!!PDF-E.pdf">T-REC-V.21-198811-I!!PDF-E.pdf</a>   </li>
+<li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/vf-15-mt-book.pdf" title="vf-15-mt-book.pdf">vf-15-mt-book.pdf</a>   </li>
+<li><a href="https://www.soft-switch.org/spandsp-modules.html" target="_blank" rel="noopener">spandsp-modules</a>   </li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/%E4%BA%92%E8%81%94%E7%BD%91%E6%98%AF%E4%BA%BA%E7%B1%BB%E5%8E%86%E5%8F%B2%E7%9A%84%E4%B8%80%E6%AE%B5%E5%BC%AF%E8%B7%AF%E5%90%97/" rel="prev" title="互联网是人类历史的一段弯路吗">
+      <i class="fa fa-chevron-left"></i> 互联网是人类历史的一段弯路吗
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#传真概述"><span class="nav-number">1.</span> <span class="nav-text">传真概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FAX-OVER-IP"><span class="nav-number">2.</span> <span class="nav-text">FAX OVER IP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#透传-passthrough"><span class="nav-number">2.1.</span> <span class="nav-text">透传 passthrough</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中继-relay"><span class="nav-number">2.2.</span> <span class="nav-text">中继  relay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于T-37的存储转发-T-37-Store-and-Forward-fax"><span class="nav-number">2.3.</span> <span class="nav-text">基于T.37的存储转发  T.37 Store-and-Forward fax</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开源项目"><span class="nav-number">3.</span> <span class="nav-text">开源项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spandsp"><span class="nav-number">3.1.</span> <span class="nav-text">spandsp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fax-tool-v1"><span class="nav-number">3.2.</span> <span class="nav-text">fax_tool_v1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maple Leaf</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/maple-leaf-0219" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maple-leaf-0219" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:story.my@qq.com" title="E-Mail → mailto:story.my@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maple Leaf</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'c74968e2d6f3e97713c0',
+      clientSecret: '023ad290f507c31a651dd7d416f30879c3284cb1',
+      repo: 'blog-comment',
+      owner: 'maple-leaf-0219',
+      admin: ['maple-leaf-0219'],
+      id: '1905cb2d030cb9099da728c4b2d5f57e',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

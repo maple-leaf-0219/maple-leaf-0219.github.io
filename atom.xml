@@ -6,7 +6,7 @@
   <link href="https://maple-leaf-0219.github.io/atom.xml" rel="self"/>
   
   <link href="https://maple-leaf-0219.github.io/"/>
-  <updated>2020-12-17T14:34:58.871Z</updated>
+  <updated>2021-01-12T10:09:03.963Z</updated>
   <id>https://maple-leaf-0219.github.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FAX学习总结</title>
+    <link href="https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <id>https://maple-leaf-0219.github.io/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</id>
+    <published>2021-01-12T03:14:08.000Z</published>
+    <updated>2021-01-12T10:09:03.963Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="传真概述"><a href="#传真概述" class="headerlink" title="传真概述"></a>传真概述</h1><table><thead><tr><th>分组</th><th>ITU相关标准</th><th>8.5*11 inch页面传输时间</th></tr></thead><tbody><tr><td>G1  (Group 1)</td><td>T.2</td><td>6分钟</td></tr><tr><td>G2  (Group 2)</td><td>T.3</td><td>3分钟</td></tr><tr><td>G3  (Group 3)</td><td>T.30 T.4 T.6</td><td>1分钟 或更少</td></tr><tr><td>SG3 (Super Group 3)</td><td>T.30 T.6</td><td>小于1分钟</td></tr><tr><td>G4  (Group 4)</td><td>T.6 T.503 T.521 T.563 T.72 T.62 T.62 bis T.70 F.161</td><td>1分钟 或更少</td></tr></tbody></table><p>目前正在广泛使用的是G3和SG3, 其中G1、G2已经被G3、SG3取代，G4并未推广开。</p><a id="more"></a><p>基于PSTN传输网络的传真工作流程如下图：    </p><img src="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img1.webp" class="" title="传真工作流程">   <p>分为如下几步：  </p><ol><li>通过图像传感器成像  </li><li>为节省带宽，采用一定算法对图像进行编码（T.4 T.6 规范）   </li><li>将编码后的图像数据转换对应调制速率所要求的规格（V.17等系列）</li><li>将最终的数据调制（FSK）  </li></ol><p>整个交互流程由T.30规定  </p><h1 id="FAX-OVER-IP"><a href="#FAX-OVER-IP" class="headerlink" title="FAX OVER IP"></a>FAX OVER IP</h1><p>有如下几种方式   </p><h2 id="透传-passthrough"><a href="#透传-passthrough" class="headerlink" title="透传 passthrough"></a>透传 passthrough</h2><p>实时处理，这是最简单的一种方式。实际实现上是基于VOIP实现的透传。VOIP传输的是用户的声音，如果将声音替换成传真的数据即可实现透传。唯一需要注意的是，VOIP为了话音做了很多优化以便在降低带宽占用率的情况下依然保持很好的通话质量，比如压缩、静默帧等。这些优化未必适合传真数据，所以在传输传真数据时对话音的编码方式有要求，一般是G711，流程如下图所示：</p><img src="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img2.webp" class="" title="透传流程">    <h2 id="中继-relay"><a href="#中继-relay" class="headerlink" title="中继  relay"></a>中继  relay</h2><p>实时处理，整个处理逻辑和传统的传真通讯流程类似，只是将T.30转换成T.38以便在IP网络上传输，流程如下图所示：</p><img src="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/chalk_0808img3.webp" class="" title="中继流程">  <h2 id="基于T-37的存储转发-T-37-Store-and-Forward-fax"><a href="#基于T-37的存储转发-T-37-Store-and-Forward-fax" class="headerlink" title="基于T.37的存储转发  T.37 Store-and-Forward fax"></a>基于T.37的存储转发  T.37 Store-and-Forward fax</h2><p>非实时， 还未碰到这样的数据，不多叙述，感兴趣的见参考资料。</p><h1 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h1><h2 id="spandsp"><a href="#spandsp" class="headerlink" title="spandsp"></a>spandsp</h2><p><a href="https://github.com/jart/spandsp" target="_blank" rel="noopener">spandsp</a>   </p><h2 id="fax-tool-v1"><a href="#fax-tool-v1" class="headerlink" title="fax_tool_v1"></a>fax_tool_v1</h2><p><a href="https://github.com/gter1216/fax_tool_v1" target="_blank" rel="noopener">fax_tool_v1</a><br>这个是基于spandsp编写的一个将WAV转换成TIFF、解析T38的工具</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/Implementing-Fax-over-IP.pdf" title="Implementing-Fax-over-IP">Implementing-Fax-over-IP</a>   </li><li><a href="https://www.cisco.com/web/services/news/ts_newsletter/tech/chalktalk/archives/200808.html" target="_blank" rel="noopener">Implementing-Fax-over-IP</a>  </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T.38-Fax-over-IP-call-on-Wireshark.pdf" title="T.38 Fax over IP call on Wireshark.pdf">T.38 Fax over IP call on Wireshark.pdf</a>  </li><li><a href="https://blog.escarra.org/?p=613" target="_blank" rel="noopener">T.38 Fax over IP call on Wireshark</a>    </li><li><a href="https://en.wikipedia.org/wiki/Fax" target="_blank" rel="noopener">fax</a>   </li><li><a href="https://www.vocal.com/voip/t-38-image-extraction-from-captured-network-data/" target="_blank" rel="noopener">T.38 Image Extraction from Captured Network Data</a>   </li><li><a href="https://electronics.howstuffworks.com/gadgets/fax/fax-machine.htm/printable" target="_blank" rel="noopener">How Fax Machines Work</a>   </li><li><a href="https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/voice/fax/configuration/15-mt/vf-15-mt-book/Fax_and_Modem_Services_over_IP_Overview.html" target="_blank" rel="noopener">Fax and Modem Services over IP Overview</a>    </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.4-200307-I!!PDF-E.pdf" title="T-REC-T.4-200307-I!!PDF-E.pdf">T-REC-T.4-200307-I!!PDF-E.pdf</a>   </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.30-200509-I!!PDF-C.pdf" title="T-REC-T.30-200509-I!!PDF-C.pdf">T-REC-T.30-200509-I!!PDF-C.pdf</a>   </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.30-200509-I!!PDF-E.pdf" title="T-REC-T.30-200509-I!!PDF-E.pdf">T-REC-T.30-200509-I!!PDF-E.pdf</a>   </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.38-200509-S!!PDF-C.pdf" title="T-REC-T.38-200509-S!!PDF-C.pdf">T-REC-T.38-200509-S!!PDF-C.pdf</a>   </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-T.38-201511-I!!PDF-E.pdf" title="T-REC-T.38-201511-I!!PDF-E.pdf">T-REC-T.38-201511-I!!PDF-E.pdf</a>   </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-V.17-199102-I!!PDF-E.pdf" title="T-REC-V.17-199102-I!!PDF-E.pdf">T-REC-V.17-199102-I!!PDF-E.pdf</a>   </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/T-REC-V.21-198811-I!!PDF-E.pdf" title="T-REC-V.21-198811-I!!PDF-E.pdf">T-REC-V.21-198811-I!!PDF-E.pdf</a>   </li><li><a href="/2021/FAX%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/vf-15-mt-book.pdf" title="vf-15-mt-book.pdf">vf-15-mt-book.pdf</a>   </li><li><a href="https://www.soft-switch.org/spandsp-modules.html" target="_blank" rel="noopener">spandsp-modules</a>   </li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;传真概述&quot;&gt;&lt;a href=&quot;#传真概述&quot; class=&quot;headerlink&quot; title=&quot;传真概述&quot;&gt;&lt;/a&gt;传真概述&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;分组&lt;/th&gt;
+&lt;th&gt;ITU相关标准&lt;/th&gt;
+&lt;th&gt;8.5*11 inch页面传输时间&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;G1  (Group 1)&lt;/td&gt;
+&lt;td&gt;T.2&lt;/td&gt;
+&lt;td&gt;6分钟&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;G2  (Group 2)&lt;/td&gt;
+&lt;td&gt;T.3&lt;/td&gt;
+&lt;td&gt;3分钟&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;G3  (Group 3)&lt;/td&gt;
+&lt;td&gt;T.30 T.4 T.6&lt;/td&gt;
+&lt;td&gt;1分钟 或更少&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SG3 (Super Group 3)&lt;/td&gt;
+&lt;td&gt;T.30 T.6&lt;/td&gt;
+&lt;td&gt;小于1分钟&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;G4  (Group 4)&lt;/td&gt;
+&lt;td&gt;T.6 T.503 T.521 T.563 T.72 T.62 T.62 bis T.70 F.161&lt;/td&gt;
+&lt;td&gt;1分钟 或更少&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;目前正在广泛使用的是G3和SG3, 其中G1、G2已经被G3、SG3取代，G4并未推广开。&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>互联网是人类历史的一段弯路吗</title>
@@ -425,26 +476,6 @@
     
     
     <category term="博客用法" scheme="https://maple-leaf-0219.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%94%A8%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>源码管理范式</title>
-    <link href="https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/"/>
-    <id>https://maple-leaf-0219.github.io/2020/%E6%BA%90%E7%A0%81%E7%AE%A1%E7%90%86%E8%8C%83%E5%BC%8F/</id>
-    <published>2020-03-28T06:13:44.000Z</published>
-    <updated>2020-03-28T09:07:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。<br>不要寄希望于万能的模型实践，每个模型都有各自的优缺点，要根据自己的实际情况选择。</p><h1 id="仓库组织"><a href="#仓库组织" class="headerlink" title="仓库组织"></a>仓库组织</h1><h2 id="单仓库"><a href="#单仓库" class="headerlink" title="单仓库"></a>单仓库</h2><p>将所有项目代码存放在一个代码仓库当中，这个好处在于项目的所有开发者可以共享看到项目中的所有代码； 在项目规模较小的时候，一个库可以更好地管理和维护，发版本只要统一发布即可；对于持续集成，也只需要针对一个库维护若干条流水线。但再好的实践以及工具都有它适用的范围。Git 已经是非常流行的代码托管工具，但 Git 会把所有历史记录以及代码同步到各个用户的本地机器，所以对于大型项目而言，如果使用单仓库，就意味着某个模块开发者的本地可能有大量冗余代码和提交记录的信息，这个时候拆分成更小的库显得更加合适。</p><p>谷歌与 Facebook 就是业界典型的单仓库派代表。作为代码行数已经超过数十亿行、commit 数量累计达到千万次的团队（2015 年的统计数据），如果没有强悍的基础设施，也很难运转顺利。Google 曾发表论文介绍其强大的代码管理系统 Piper 以及客户端工具 CitC，但对于大部分企业来说是否有必要投入如此之大的研发成本去自研一个代码管理系统值得商榷，所以谷歌的实践对于大部分企业来说不一定具备参考性。</p><p>项目规模小时一般都是单仓库，但项目规模庞大时，如果再使用单仓库则要有完善的工具链支持。</p><h2 id="多仓库"><a href="#多仓库" class="headerlink" title="多仓库"></a>多仓库</h2><p>将项目代码进行一定的拆分放在多个库当中，好处就是 将代码进行一定的解耦，对于体型较为庞大的项目来说管理上会更加清晰和富有弹性。将代码按照一定逻辑分库之后，仓库与模块有了自描述的特征，让一起协作的开发者可以一目了然。发布源码版本、持续集成构建时，负责各仓库的研发组织可以按照自己的节奏来发布，同时将一些“坏代码”的影响控制在某个仓库中，而不会影响项目全部代码。分库也有要注意的地方，在同一个项目里的代码多多少少都有业务上或者是技术上的联系，比如编译依赖：以一个Java 项目为例，客户端接口的调用代码究竟是直接依赖服务端接口代码的定义，还是间接依赖？如果是间接依赖，那么分库管理是非常方便的，但同时客户端就无法快速感知到服务端接口定义的变化。所以在进行多仓库划分时，要注意划分的一些常用原则。</p><p>多仓库情况下，要仔细处理项目多组件之间的依赖关系并能及时检测到依赖变更和不兼容升级，<strong>可以通过语义化版本号和依赖管理工具来维护</strong>。</p><h1 id="分支模型"><a href="#分支模型" class="headerlink" title="分支模型"></a>分支模型</h1><p>只讨论基于git的分支模型，常见的有如下几种，详细介绍见参考资料</p><ul><li>GitFlow模型  </li><li>GitHub Flow 模型  </li><li>Trunk Based development 模型 （配合Branch By Abstraction使用）  </li><li>GitLab Flow 模型  </li><li>Atlassian Simple Git Flow 模型  </li></ul><p>在上面的模型介绍中，TBD模型支持多个不兼容版本维护，其余的模型未看到如何支持多个不兼容版本的并行维护。</p><h1 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h1><p>选用了仓库模型和分支模型，基本就确定了版本发布模型。</p><h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><p>在源码管理上可以参考安卓、IOS的源码管理变迁，因为安卓、IOS需求多变，承载的业务复杂，其演进的轨迹具有借鉴意义。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="https://yrom.net/blog/2018/10/18/evolution-of-android-codebase-organization-in-bilibili/" target="_blank" rel="noopener">B 站 Android 代码库的演进历程</a></li><li><a href="http://www.brofive.org/?p=2165" target="_blank" rel="noopener">Git 代码分支模型（1）</a></li><li><a href="http://www.brofive.org/?p=2233" target="_blank" rel="noopener">Git 代码分支模型（2）</a></li><li><a href="http://www.brofive.org/?p=4352" target="_blank" rel="noopener">Git 代码分支模型（3）</a></li><li><a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li><li><a href="https://trunkbaseddevelopment.com/" target="_blank" rel="noopener">Trunk Based development </a></li><li><a href="https://cloud.tencent.com/developer/article/1441619" target="_blank" rel="noopener">App组件化与业务拆分那些事</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;随着业务的发展，源码组织的方式、仓库分支模型、版本发布流程也需要不停的演进以便适应当前业务需要。本文档是搜集相关的资料并加以总结。&lt;br&gt;不</summary>
-      
-    
-    
-    
     
   </entry>
   
